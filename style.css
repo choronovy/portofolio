@@ -2849,90 +2849,85 @@ html, body {
     }
 }
 
-
 /* -------------------------------------------------------------------
-   22. SYNCHRONOUS THEME SWITCHING (SERENTAK & ZERO LAG)
+   24. INTERACTIVE CODE EDITOR (KETIK PHP & PYTHON)
    ------------------------------------------------------------------- */
-.theme-switching,
-.theme-switching *,
-.theme-switching *::before,
-.theme-switching *::after {
-    -webkit-transition: none !important;
-    -moz-transition: none !important;
-    -o-transition: none !important;
-    -ms-transition: none !important;
-    transition: none !important;
-}
-
-/* -------------------------------------------------------------------
-   23. CONTINUOUS INFINITE MARQUEE TESTIMONIALS (BERGERAK KE KIRI)
-   ------------------------------------------------------------------- */
-.testimonials-marquee-wrapper {
-    width: 100%;
-    overflow: hidden;
+.editor-body {
+    padding: 0 !important;
+    background: #060a16;
     position: relative;
-    padding: 1.5rem 0 2.5rem;
-    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    overflow: hidden;
 }
 
-.testimonials-track {
+[data-theme="light"] .editor-body {
+    background: #090f1e;
+}
+
+.editor-container {
     display: flex;
-    width: max-content;
-    gap: 1.75rem;
-    animation: marquee-left 32s linear infinite;
-    will-change: transform;
+    min-height: 280px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    position: relative;
+    max-height: 380px;
 }
 
-/* Pause automatically on hover or touch focus so user can read comfortably */
-.testimonials-track:hover {
-    animation-play-state: paused;
-}
-
-.testimonials-group {
-    display: flex;
-    gap: 1.75rem;
-    flex-shrink: 0;
-}
-
-@keyframes marquee-left {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(calc(-50% - 0.875rem));
-    }
-}
-
-.testimonials-marquee-wrapper .testimonial-card {
-    width: 24rem;
-    max-width: 82vw;
-    flex-shrink: 0;
-    min-height: 18rem;
+.editor-line-numbers {
+    padding: 1.15rem 0.65rem 1.15rem 0.9rem;
+    text-align: right;
+    color: #475569;
+    user-select: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 1.75rem;
-    border-radius: 1.25rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    transition: transform var(--trans-normal), border-color var(--trans-normal), box-shadow var(--trans-normal);
+    min-width: 2.75rem;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
 }
 
-.testimonials-marquee-wrapper .testimonial-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--brand-cyan-light);
-    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.5), 0 0 25px -4px var(--accent-glow);
+.code-editor-textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 1.15rem 1rem 1.15rem 0.95rem;
+    color: #38bdf8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+    overflow-y: auto;
+    caret-color: #38bdf8;
+    tab-size: 2;
+    -moz-tab-size: 2;
+    width: 100%;
 }
 
-@media (max-width: 768px) {
-    .testimonials-marquee-wrapper .testimonial-card {
-        width: 19.5rem;
-        padding: 1.5rem 1.25rem;
-        min-height: 16.5rem;
-    }
+.code-editor-textarea::selection {
+    background: rgba(56, 189, 248, 0.35);
+}
 
-    .testimonials-track {
-        animation-duration: 24s;
-    }
+.code-editor-textarea:focus {
+    box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1);
+}
+
+.editor-hint-badge {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 0.4rem;
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--brand-cyan-light);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    font-family: 'JetBrains Mono', monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
 }

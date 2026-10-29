@@ -2,7 +2,7 @@
  * ===================================================================
  * LUXURY MODERN PORTFOLIO CONTROLLER
  * Midnight Cobalt & Electric Blue Edition
- * Web Developer & Automation Architect - Viryo Fabrellino Kudjinona
+ * Backend Developer & Web Specialist (PHP, Python, Code Igniter 3) - Viryo Fabrellino Kudjinona
  * ===================================================================
  */
 
@@ -277,90 +277,208 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -----------------------------------------------------------------
-  // 10. INTERACTIVE CODE TERMINAL TABS & RUN WORKFLOW
+  // 10. INTERACTIVE CODE EDITOR (PHP & PYTHON LIVE TYPING)
   // -----------------------------------------------------------------
   const terminalTabs = document.querySelectorAll('.terminal-tab');
-  const terminalBody = document.getElementById('terminalCodeBody');
+  const codeEditorInput = document.getElementById('codeEditorInput');
+  const editorLineNumbers = document.getElementById('editorLineNumbers');
   const runWorkflowBtn = document.getElementById('runWorkflowBtn');
   const terminalOutput = document.getElementById('terminalOutput');
+  const terminalPromptPrefix = document.getElementById('terminalPromptPrefix');
   const copyCodeBtn = document.getElementById('copyCodeBtn');
+  const resetCodeBtn = document.getElementById('resetCodeBtn');
 
-  const snippets = {
-    'viryo-developer.ts': `<p><span class="code-keyword">const</span> <span class="code-var">developer</span> = {</p>
-<p class="pl-4"><span class="code-key">name:</span> <span class="code-string">'Viryo Fabrellino Kudjinona'</span>,</p>
-<p class="pl-4"><span class="code-key">role:</span> <span class="code-string">'Website Developer &amp; Automation Architect'</span>,</p>
-<p class="pl-4"><span class="code-key">coreStack:</span> [<span class="code-string">'Code Igniter 3'</span>, <span class="code-string">'n8n'</span>, <span class="code-string">'PostgreSQL'</span>, <span class="code-string">'Docker'</span>],</p>
-<p class="pl-4"><span class="code-key">philosophy:</span> <span class="code-string">'Automate everything repeatable with high fidelity'</span>,</p>
-<p class="pl-4"><span class="code-key">status:</span> <span class="code-string">'Available for Projects'</span>,</p>
-<p class="pl-4"><span class="code-var">executeMission</span>: () =&gt; {</p>
-<p class="pl-8 text-cyan-400"><span class="code-keyword">return</span> <span class="code-string">"10x Business Agility via Robust Code &amp; AI Automations"</span>;</p>
-<p class="pl-4">}</p>
-<p>};</p>`,
+  // Default Code Templates for PHP and Python
+  const defaultSnippets = {
+    'developer.php': `<?php
+// Profil Backend Developer - Viryo Fabrellino
+class BackendDeveloper {
+    public string $name = "Viryo Fabrellino Kudjinona";
+    public string $role = "Backend & Web Specialist";
+    public array $techStack = [
+        "PHP 8.3",
+        "Code Igniter 3",
+        "Python",
+        "MySQL",
+        "REST API"
+    ];
 
-    'workflow-n8n.json': `<p><span class="code-keyword">{</span></p>
-<p class="pl-4"><span class="code-key">"workflow"</span>: <span class="code-string">"Enterprise-Lead-Sync"</span>,</p>
-<p class="pl-4"><span class="code-key">"nodes"</span>: [</p>
-<p class="pl-8">{ <span class="code-key">"name"</span>: <span class="code-string">"Webhook Trigger"</span>, <span class="code-key">"type"</span>: <span class="code-string">"n8n-nodes-base.webhook"</span> },</p>
-<p class="pl-8">{ <span class="code-key">"name"</span>: <span class="code-string">"OpenAI Analysis"</span>, <span class="code-key">"model"</span>: <span class="code-string">"gpt-4o"</span>, <span class="code-key">"action"</span>: <span class="code-string">"score_lead"</span> },</p>
-<p class="pl-8">{ <span class="code-key">"name"</span>: <span class="code-string">"Laravel API"</span>, <span class="code-key">"endpoint"</span>: <span class="code-string">"/api/v1/crm/ingest"</span> },</p>
-<p class="pl-8">{ <span class="code-key">"name"</span>: <span class="code-string">"WhatsApp Dispatcher"</span>, <span class="code-key">"status"</span>: <span class="code-bool">true</span> }</p>
-<p class="pl-4">],</p>
-<p class="pl-4"><span class="code-key">"active"</span>: <span class="code-bool">true</span></p>
-<p><span class="code-keyword">}</span></p>`,
+    public function executeMission(): string {
+        return "Membangun sistem backend tangguh, RESTful API cepat, & database terstruktur!";
+    }
+}
 
-    'stack-metrics.sh': `<p><span class="code-keyword">#!/bin/bash</span></p>
-<p><span class="code-func">echo</span> <span class="code-string">"== System Performance Diagnostic =="</span></p>
-<p><span class="code-var">UPTIME</span>=$(uptime -p)</p>
-<p><span class="code-func">echo</span> <span class="code-string">"Docker Engine: 12 Microservices [HEALTHY]"</span></p>
-<p><span class="code-func">echo</span> <span class="code-string">"Code Igniter 3: Fast & Optimized PHP"</span></p>
-<p><span class="code-func">echo</span> <span class="code-string">"n8n Automated Jobs: 104,280 processed this month"</span></p>
-<p><span class="code-func">echo</span> <span class="code-string">"Status: 100% Ready for Enterprise Integration"</span></p>`
+$developer = new BackendDeveloper();
+echo $developer->executeMission();
+`,
+    'developer.py': `# Profil Backend Developer - Viryo Fabrellino
+class BackendDeveloper:
+    def __init__(self):
+        self.name = "Viryo Fabrellino Kudjinona"
+        self.role = "Backend & Python Developer"
+        self.tech_stack = [
+            "Python 3",
+            "PHP",
+            "Code Igniter 3",
+            "MySQL",
+            "REST API"
+        ]
+
+    def execute_mission(self) -> str:
+        return f"Mengembangkan script otomasi data, web scraping, & backend handal dengan {self.tech_stack[0]}!"
+
+developer = BackendDeveloper()
+print(developer.execute_mission())
+`
   };
 
+  // State to preserve user typing per tab
+  const userCode = {
+    'developer.php': defaultSnippets['developer.php'],
+    'developer.py': defaultSnippets['developer.py']
+  };
+
+  let activeFile = 'developer.php';
+
+  function updateLineNumbers() {
+    if (!codeEditorInput || !editorLineNumbers) return;
+    const lines = codeEditorInput.value.split('\n').length;
+    let numsHtml = '';
+    for (let i = 1; i <= Math.max(lines, 1); i++) {
+      numsHtml += `<span>${i}</span>`;
+    }
+    editorLineNumbers.innerHTML = numsHtml;
+  }
+
+  function loadFileContent(fileName) {
+    activeFile = fileName;
+    if (codeEditorInput) {
+      codeEditorInput.value = userCode[fileName] || defaultSnippets[fileName];
+      updateLineNumbers();
+    }
+    if (terminalPromptPrefix) {
+      terminalPromptPrefix.textContent = fileName === 'developer.php' ? '$ php developer.php' : '$ python developer.py';
+    }
+    if (terminalOutput) {
+      terminalOutput.classList.remove('show');
+    }
+  }
+
+  // Initialize line numbers & code
+  if (codeEditorInput) {
+    loadFileContent('developer.php');
+
+    // Sync line numbers on user typing
+    codeEditorInput.addEventListener('input', () => {
+      userCode[activeFile] = codeEditorInput.value;
+      updateLineNumbers();
+    });
+
+    // Support Tab key indentation (2 spaces)
+    codeEditorInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = codeEditorInput.selectionStart;
+        const end = codeEditorInput.selectionEnd;
+        codeEditorInput.value = codeEditorInput.value.substring(0, start) + '  ' + codeEditorInput.value.substring(end);
+        codeEditorInput.selectionStart = codeEditorInput.selectionEnd = start + 2;
+        userCode[activeFile] = codeEditorInput.value;
+        updateLineNumbers();
+      }
+    });
+
+    // Sync scroll between textarea and line numbers
+    codeEditorInput.addEventListener('scroll', () => {
+      if (editorLineNumbers) {
+        editorLineNumbers.scrollTop = codeEditorInput.scrollTop;
+      }
+    });
+  }
+
+  // Switch between PHP and Python tabs
   terminalTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       terminalTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
 
       const fileName = tab.getAttribute('data-file');
-      if (snippets[fileName] && terminalBody) {
-        terminalBody.innerHTML = snippets[fileName];
-      }
+      loadFileContent(fileName);
     });
   });
 
-  // Run Workflow Simulation
-  if (runWorkflowBtn && terminalOutput) {
-    runWorkflowBtn.addEventListener('click', () => {
-      runWorkflowBtn.disabled = true;
-      runWorkflowBtn.innerHTML = `<i class="ri-loader-4-line w-3.5 h-3.5 animate-spin"></i> <span>Running...</span>`;
-
-      terminalOutput.classList.remove('show');
-
+  // Reset Code Button
+  if (resetCodeBtn && codeEditorInput) {
+    resetCodeBtn.addEventListener('click', () => {
+      userCode[activeFile] = defaultSnippets[activeFile];
+      codeEditorInput.value = defaultSnippets[activeFile];
+      updateLineNumbers();
+      resetCodeBtn.innerHTML = `<i class="ri-check-line w-4 h-4 text-cyan-400"></i>`;
       setTimeout(() => {
-        terminalOutput.innerHTML = `
-          <div class="flex items-center gap-2">
-            <span class="text-cyan-400 font-bold">✔ [SUCCESS]</span>
-            <span>n8n pipeline connected to Backend API. Latency: <strong>18ms</strong>. 0 errors detected.</span>
-          </div>
-        `;
-        terminalOutput.classList.add('show');
-        runWorkflowBtn.disabled = false;
-        runWorkflowBtn.innerHTML = `<i class="ri-play-fill w-3.5 h-3.5"></i> <span>Jalankan Workflow</span>`;
-      }, 1200);
+        resetCodeBtn.innerHTML = `<i class="ri-restart-line w-4 h-4"></i>`;
+      }, 1500);
     });
   }
 
   // Copy Code Button
-  if (copyCodeBtn && terminalBody) {
+  if (copyCodeBtn && codeEditorInput) {
     copyCodeBtn.addEventListener('click', () => {
-      const codeText = terminalBody.innerText;
-      navigator.clipboard.writeText(codeText).then(() => {
+      navigator.clipboard.writeText(codeEditorInput.value).then(() => {
         copyCodeBtn.innerHTML = `<i class="ri-check-line w-4 h-4 text-cyan-400"></i>`;
         setTimeout(() => {
           copyCodeBtn.innerHTML = `<i class="ri-file-copy-line w-4 h-4"></i>`;
-        }, 2000);
+        }, 1500);
       });
+    });
+  }
+
+  // Run Code Simulation
+  if (runWorkflowBtn && terminalOutput && codeEditorInput) {
+    runWorkflowBtn.addEventListener('click', () => {
+      runWorkflowBtn.disabled = true;
+      const isPhp = activeFile === 'developer.php';
+      runWorkflowBtn.innerHTML = `<i class="ri-loader-4-line w-3.5 h-3.5 animate-spin"></i> <span>Menjalankan ${isPhp ? 'PHP 8.3' : 'Python 3'}...</span>`;
+
+      terminalOutput.classList.remove('show');
+
+      setTimeout(() => {
+        const currentCode = codeEditorInput.value;
+        let outputText = '';
+
+        // Extract any custom print / echo statements if typed by user
+        const echoMatch = currentCode.match(/echo\s+(["'])(.*?)\1/i);
+        const printMatch = currentCode.match(/print\s*\((["'])(.*?)\1\)/i);
+
+        if (isPhp) {
+          if (echoMatch) {
+            outputText = echoMatch[2];
+          } else {
+            outputText = "Membangun sistem backend tangguh, RESTful API cepat, & database terstruktur!";
+          }
+        } else {
+          if (printMatch) {
+            outputText = printMatch[2];
+          } else {
+            outputText = "Mengembangkan script otomasi data, web scraping, & backend handal dengan Python 3!";
+          }
+        }
+
+        terminalOutput.innerHTML = `
+          <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.6;">
+            <div style="color:#10b981; font-weight:700; margin-bottom:0.25rem;">
+              ✔ [EXECUTION SUCCESSFUL] Process finished with exit code 0
+            </div>
+            <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:0.4rem;">
+              Runtime: ${isPhp ? 'PHP 8.3.6 (Zend Engine)' : 'Python 3.12.3'} | Memory: 2.4 MB | Latency: 0.038s
+            </div>
+            <div style="padding:0.5rem 0.75rem; border-radius:0.4rem; background:rgba(255,255,255,0.06); color:#f8fafc; border-left: 3px solid var(--brand-cyan-light);">
+              ${outputText}
+            </div>
+          </div>
+        `;
+        terminalOutput.classList.add('show');
+        runWorkflowBtn.disabled = false;
+        runWorkflowBtn.innerHTML = `<i class="ri-play-fill w-3.5 h-3.5"></i> <span>Jalankan Kode</span>`;
+      }, 800);
     });
   }
 
@@ -406,26 +524,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const caseStudies = {
     'leadpulse': {
-      title: 'LeadPulse Automation Hub - Arsitektur & Studi Kasus',
+      title: 'LeadPulse CRM & WhatsApp Portal - Arsitektur CI3',
       html: `
         <div style="display:flex; flex-direction:column; gap:1.25rem;">
-          <p><strong>Tantangan Klien:</strong> Tim sales menerima lebih dari 300 inquiries per hari dari WhatsApp, formulir web, dan iklan Meta, namun proses validasi data memakan waktu hingga 4 jam per lead.</p>
+          <p><strong>Tantangan Klien:</strong> Tim sales menerima lebih dari 300 pesan calon pelanggan per hari, namun proses pencatatan dan distribusi kontak ke customer service dilakukan manual sehingga respons lambat.</p>
           <div style="background:var(--tag-bg); padding:1.25rem; border-radius:1rem; border:1px solid var(--border-medium);">
             <h4 style="color:var(--text-primary); font-weight:700; margin-bottom:0.5rem;">Solusi Teknis yang Dibangun:</h4>
             <ul style="padding-left:1.25rem; display:flex; flex-direction:column; gap:0.4rem; font-size:0.92rem;">
-              <li>Membangun pipeline event-driven di <strong>n8n Self-Hosted</strong> dengan webhook listener berkecepatan tinggi.</li>
-              <li>Mengintegrasikan modul <strong>OpenAI GPT-4o Mini</strong> untuk analisis sentimen, penentuan budget, dan scoring prioritas secara instan.</li>
-              <li>Mengalirkan lead terverifikasi ke <strong>CRM Code Igniter 3</strong> dengan relasi PostgreSQL terindeks dan notifikasi real-time via WhatsApp Cloud API.</li>
+              <li>Membangun aplikasi portal CRM modular berbasis <strong>Code Igniter 3 (PHP 8)</strong> dengan database relasional MySQL teroptimasi.</li>
+              <li>Integrasi webhook <strong>WhatsApp Gateway API</strong> untuk menangkap pesan masuk secara instan dan mengirimkan auto-responder ke pelanggan.</li>
+              <li>Sistem manajemen antrian dan dashboard analitik interaktif untuk memonitor status prospek secara real-time.</li>
             </ul>
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:1rem; margin-top:0.5rem;">
             <div style="padding:1rem; border-radius:0.75rem; background:rgba(37,99,235,0.15); border:1px solid rgba(59,130,246,0.35);">
-              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-blue-light);">92%</div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-blue-light);">95%</div>
               <div style="font-size:0.78rem; color:var(--text-muted);">Pengurangan Waktu Respons</div>
             </div>
             <div style="padding:1rem; border-radius:0.75rem; background:rgba(14,165,233,0.15); border:1px solid rgba(56,189,248,0.35);">
-              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-cyan-light);">+140%</div>
-              <div style="font-size:0.78rem; color:var(--text-muted);">Konversi Closing Sales</div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-cyan-light);">+150%</div>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Efisiensi Penanganan Lead</div>
             </div>
           </div>
         </div>
@@ -458,26 +576,26 @@ document.addEventListener('DOMContentLoaded', () => {
       `
     },
     'documind': {
-      title: 'DocuMind Workflow Sync - Ekstraksi Dokumen & AI',
+      title: 'PyData Extractor & ETL - Scripting Engine Python & MySQL',
       html: `
         <div style="display:flex; flex-direction:column; gap:1.25rem;">
-          <p><strong>Tantangan Klien:</strong> Pengolahan dokumen invoice fisik dan kontrak PDF secara manual membutuhkan 15 staff administrasi dan kerap terjadi human error.</p>
+          <p><strong>Tantangan Klien:</strong> Perusahaan perlu mengumpulkan dan menyaring data katalog produk serta harga dari berbagai sumber web dan file data format CSV/JSON yang berjumlah puluhan ribu baris setiap hari.</p>
           <div style="background:var(--tag-bg); padding:1.25rem; border-radius:1rem; border:1px solid var(--border-medium);">
             <h4 style="color:var(--text-primary); font-weight:700; margin-bottom:0.5rem;">Solusi Teknis yang Dibangun:</h4>
             <ul style="padding-left:1.25rem; display:flex; flex-direction:column; gap:0.4rem; font-size:0.92rem;">
-              <li>Pipa ekstraksi OCR dan struktur JSON berbasis <strong>Claude 3.5 Sonnet & OpenAI</strong> via webhook n8n orkestrasi.</li>
-              <li>Penyimpanan data terstruktur langsung ke relational storage dengan visual audit trail di dashboard aplikasi.</li>
-              <li>Sistem enkripsi end-to-end untuk proteksi kerahasiaan data finansial perusahaan.</li>
+              <li>Script otomasi berbasis <strong>Python 3</strong> dengan library pemrosesan data untuk mengekstrak dan membersihkan format data secara otomatis.</li>
+              <li>Validasi skema dan deduplikasi data secara efisien sebelum disimpan ke relational database <strong>MySQL</strong>.</li>
+              <li>Penjadwalan cron job di server Linux dengan sistem logging status terpusat untuk monitoring berkala tanpa intervensi manual.</li>
             </ul>
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:1rem; margin-top:0.5rem;">
             <div style="padding:1rem; border-radius:0.75rem; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35);">
-              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-indigo-light);">10x Lebih Cepat</div>
-              <div style="font-size:0.78rem; color:var(--text-muted);">Pemrosesan Kontrak</div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-indigo-light);">8x Lebih Cepat</div>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Pengolahan Data Ekstraksi</div>
             </div>
             <div style="padding:1rem; border-radius:0.75rem; background:rgba(14,165,233,0.15); border:1px solid rgba(56,189,248,0.35);">
-              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-cyan-light);">0% Error</div>
-              <div style="font-size:0.78rem; color:var(--text-muted);">Dalam Validasi Format Angka</div>
+              <div style="font-size:1.5rem; font-weight:800; color:var(--brand-cyan-light);">100% Akurat</div>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Integritas Data Relasional</div>
             </div>
           </div>
         </div>

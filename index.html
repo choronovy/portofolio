@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Viryo Fabrellino Kudjinona - Backend Developer</title>
-  <meta name="description" content="Portofolio Viryo Fabrellino Kudjinona - Web Developer & Automation Architect.">
+  <meta name="description" content="Portofolio Viryo Fabrellino Kudjinona - Web Developer & Backend Specialist (PHP, Python, Code Igniter 3).">
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -166,7 +166,7 @@
             <div class="metric-number">
               <span class="counter-val" data-target="100" data-suffix="k+">0</span>
             </div>
-            <span class="metric-label">Tasks Diotomasi</span>
+            <span class="metric-label">Fitur &amp; API Selesai</span>
           </div>
 
           <div class="metric-card">
@@ -194,18 +194,17 @@
           <!-- Bio Narrative -->
           <div class="about-bio reveal-fade-up">
             <p>
-              Saya adalah seorang <strong>Software Engineer &amp; Automation Architect</strong> yang berfokus
-              menciptakan pengalaman web yang cepat, skalabel, serta bebas hambatan operasional. Dengan fondasi kuat di
+              Saya adalah seorang <strong>Backend Developer &amp; Web Specialist</strong> yang berfokus
+              menciptakan sistem web yang cepat, andal, dan terstruktur rapi. Dengan fondasi kuat di
               arsitektur backend <span style="color: var(--brand-cyan-light); font-weight: 600;">PHP &amp;
-                Code Igniter 3</span> dan ketelitian di frontend modern menggunakan <span
-                style="color: var(--brand-blue-light); font-weight: 600;">JavaScript &amp; Tailwind CSS</span>, saya
-              menjembatani visi produk menjadi realitas teknis yang tangguh.
+                Code Igniter 3</span>, scripting dan pengolahan data menggunakan <span
+                style="color: var(--brand-blue-light); font-weight: 600;">Python</span>, serta database <span
+                style="color: var(--brand-cyan-light); font-weight: 600;">MySQL</span>, saya menjembatani
+              kebutuhan fungsional bisnis menjadi solusi digital yang handal.
             </p>
             <p>
-              Ketertarikan mendalam saya pada efisiensi operasional membawa saya menguasai integrasi otomatisasi
-              menggunakan <strong>n8n, Webhooks, dan AI LLM APIs</strong>. Saya menghubungkan CRM, database relasional,
-              dan aplikasi messaging untuk memangkas ratusan jam kerja manual menjadi proses otomatis dalam hitungan
-              milidetik.
+              Saya mengutamakan penulisan kode bersih, implementasi RESTful API terstandar, serta optimasi query database
+              agar sistem mampu menangani beban data besar dengan performa tinggi dan waktu respons stabil.
             </p>
 
             <!-- Key Principles -->
@@ -216,25 +215,24 @@
                 </div>
                 <div>
                   <h4 class="principle-title">Clean &amp; Scalable Code</h4>
-                  <p class="principle-desc">Standar PSR, arsitektur modular, domain-driven design, dan API terstruktur.
+                  <p class="principle-desc">Standar PSR, struktur modular terorganisir, dan arsitektur RESTful API terstruktur.
                   </p>
                 </div>
               </div>
 
               <div class="glass-card principle-item">
                 <div class="principle-icon cyan">
-                  <i class="ri-flashlight-line w-5 h-5"></i>
+                  <i class="ri-database-2-line w-5 h-5"></i>
                 </div>
                 <div>
-                  <h4 class="principle-title">Smart Automation First</h4>
-                  <p class="principle-desc">Mengeliminasi repetisi manual via orchestrator n8n dengan retry &amp;
-                    logging aman.</p>
+                  <h4 class="principle-title">Robust Backend &amp; DB</h4>
+                  <p class="principle-desc">Optimasi query MySQL, integritas relasi data, dan arsitektur backend yang aman.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Interactive Code Terminal -->
+          <!-- Interactive Code Terminal (Ketik PHP & Python) -->
           <div class="reveal-fade-up stagger-2">
             <div class="terminal-window">
               <!-- Window Chrome -->
@@ -245,65 +243,50 @@
                   <span class="terminal-dot dot-green"></span>
                 </div>
 
-                <!-- Clickable File Tabs -->
+                <!-- Clickable File Tabs: PHP & Python -->
                 <div class="terminal-tabs">
-                  <button class="terminal-tab active" data-file="viryo-developer.ts">
-                    <i class="ri-file-code-line w-3.5 h-3.5"></i>
-                    <span>developer.ts</span>
+                  <button class="terminal-tab active" data-file="developer.php" id="tabPhp">
+                    <i class="ri-php-line w-3.5 h-3.5 text-indigo-400"></i>
+                    <span>developer.php</span>
                   </button>
-                  <button class="terminal-tab" data-file="workflow-n8n.json">
-                    <i class="ri-node-tree w-3.5 h-3.5"></i>
-                    <span>n8n-flow.json</span>
-                  </button>
-                  <button class="terminal-tab" data-file="stack-metrics.sh">
-                    <i class="ri-terminal-box-line w-3.5 h-3.5"></i>
-                    <span>diagnostics.sh</span>
+                  <button class="terminal-tab" data-file="developer.py" id="tabPy">
+                    <i class="ri-file-code-line w-3.5 h-3.5 text-yellow-400"></i>
+                    <span>developer.py</span>
                   </button>
                 </div>
 
                 <div class="terminal-actions">
+                  <span class="editor-hint-badge"><i class="ri-edit-2-line"></i> Bisa Diketik</span>
+                  <button id="resetCodeBtn" class="terminal-action-btn" title="Reset Kode ke Default">
+                    <i class="ri-restart-line w-4 h-4"></i>
+                  </button>
                   <button id="copyCodeBtn" class="terminal-action-btn" title="Salin Kode">
                     <i class="ri-file-copy-line w-4 h-4"></i>
                   </button>
                 </div>
               </div>
 
-              <!-- Terminal Code Body -->
-              <div class="terminal-body" id="terminalCodeBody">
-                <p><span class="code-keyword">const</span> <span class="code-var">developer</span> = {</p>
-                <p style="padding-left: 1.25rem;"><span class="code-key">name:</span> <span class="code-string">'Viryo
-                    Fabrellino Kudjinona'</span>,</p>
-                <p style="padding-left: 1.25rem;"><span class="code-key">role:</span> <span class="code-string">'Website
-                    Developer &amp; Automation Architect'</span>,</p>
-                <p style="padding-left: 1.25rem;"><span class="code-key">coreStack:</span> [<span
-                    class="code-string">'Code Igniter 3 '</span>, <span class="code-string">'n8n'</span>, <span
-                    class="code-string">'PostgreSQL'</span>, <span class="code-string">'Docker'</span>],</p>
-                <p style="padding-left: 1.25rem;"><span class="code-key">philosophy:</span> <span
-                    class="code-string">'Automate everything repeatable with high fidelity'</span>,</p>
-                <p style="padding-left: 1.25rem;"><span class="code-key">status:</span> <span
-                    class="code-string">'Available for Projects'</span>,</p>
-                <p style="padding-left: 1.25rem;"><span class="code-var">executeMission</span>: () =&gt; {</p>
-                <p style="padding-left: 2.5rem; color: var(--brand-cyan-light);"><span
-                    class="code-keyword">return</span> <span class="code-string">"10x Business Agility via Robust Code
-                    &amp; AI Automations"</span>;</p>
-                <p style="padding-left: 1.25rem;">}</p>
-                <p>};</p>
+              <!-- Interactive Code Editor Body -->
+              <div class="terminal-body editor-body" id="terminalCodeBody">
+                <div class="editor-container">
+                  <div class="editor-line-numbers" id="editorLineNumbers"></div>
+                  <textarea id="codeEditorInput" class="code-editor-textarea" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Ketik kode PHP atau Python Anda di sini..."></textarea>
+                </div>
               </div>
 
               <!-- Terminal Live Execution Output -->
-              <div style="padding: 0 1.25rem 1rem;">
+              <div style="padding: 0 1.25rem 0.5rem;">
                 <div id="terminalOutput" class="terminal-output"></div>
               </div>
 
               <!-- Terminal Footer / Runner -->
               <div class="terminal-footer">
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span style="color: var(--brand-cyan-light);">$</span>
-                  <span>ready for deployment</span>
+                  <span style="color: var(--brand-cyan-light); font-weight: 700;" id="terminalPromptPrefix">$ php developer.php</span>
                 </div>
                 <button id="runWorkflowBtn" class="terminal-run-btn">
                   <i class="ri-play-fill w-3.5 h-3.5"></i>
-                  <span>Jalankan Workflow</span>
+                  <span>Jalankan Kode</span>
                 </button>
               </div>
             </div>
@@ -345,23 +328,25 @@
             </div>
           </div>
 
-          <!-- Automation & AI -->
+          <!-- Python & Scripting -->
           <div class="glass-card skill-category-card reveal-fade-up stagger-1">
             <div>
               <div class="skill-cat-header">
                 <div class="skill-cat-icon cyan">
-                  <i class="ri-cpu-line w-6 h-6"></i>
+                  <i class="ri-terminal-box-line w-6 h-6"></i>
                 </div>
                 <div>
-                  <h3 class="skill-cat-title">Automation &amp; AI</h3>
-                  <span class="skill-cat-sub">Workflow Synergy</span>
+                  <h3 class="skill-cat-title">Python &amp; Scripting</h3>
+                  <span class="skill-cat-sub">Data, APIs &amp; Tools</span>
                 </div>
               </div>
               <div class="skill-tags-cloud">
-                <span class="skill-tag"><i class="ri-whatsapp-fill w-3.5 h-3.5 text-emerald-400"></i> WhatsApp Gateway</span>
-                <span class="skill-tag"><i class="ri-flow-chart w-3.5 h-3.5 text-rose-400"></i> n8n Automation</span>
-                <span class="skill-tag"><i class="ri-robot-2-line w-3.5 h-3.5 text-cyan-400"></i> AI &amp; LLM APIs</span>
-                <span class="skill-tag"><i class="ri-webhook-line w-3.5 h-3.5 text-amber-400"></i> Webhooks &amp; Cron</span>
+                <span class="skill-tag"><i class="ri-code-box-line w-3.5 h-3.5 text-yellow-400"></i> Python 3</span>
+                <span class="skill-tag"><i class="ri-braces-line w-3.5 h-3.5 text-cyan-400"></i> REST API Integration</span>
+                <span class="skill-tag"><i class="ri-search-eye-line w-3.5 h-3.5 text-emerald-400"></i> Web Scraping</span>
+                <span class="skill-tag"><i class="ri-file-text-line w-3.5 h-3.5 text-blue-400"></i> Data &amp; JSON Parsing</span>
+                <span class="skill-tag"><i class="ri-terminal-line w-3.5 h-3.5 text-amber-400"></i> CLI &amp; Cron Scripts</span>
+                <span class="skill-tag"><i class="ri-git-branch-line w-3.5 h-3.5 text-rose-400"></i> Git Versioning</span>
               </div>
             </div>
           </div>
@@ -419,12 +404,12 @@
                     <i class="ri-star-fill"></i>
                   </div>
                   <p class="testimonial-quote">
-                    "Viryo mengintegrasikan backend Code Igniter 3 kami dengan WhatsApp Gateway dan orkestrasi n8n. Waktu respons CS ke pelanggan berkurang dari 1 jam menjadi hitungan detik. Kodingan rapi, terdokumentasi, dan sistem berjalan sangat stabil."
+                    "Viryo mengintegrasikan backend Code Igniter 3 kami dengan WhatsApp Gateway dan RESTful API. Waktu respons CS ke pelanggan berkurang dari 1 jam menjadi hitungan detik. Kodingan rapi, terdokumentasi, dan sistem berjalan sangat stabil."
                   </p>
                 </div>
                 <div>
                   <span class="testimonial-tag">
-                    <i class="ri-whatsapp-line"></i> WhatsApp &amp; n8n Gateway
+                    <i class="ri-whatsapp-line"></i> CI3 &amp; WhatsApp Integration
                   </span>
                   <div class="testimonial-client">
                     <div class="testimonial-avatar">AP</div>
@@ -475,12 +460,12 @@
                     <i class="ri-star-fill"></i>
                   </div>
                   <p class="testimonial-quote">
-                    "Otomatisasi n8n yang dibangun Viryo memotong lebih dari 80% jam kerja administrasi manual kami. Dari sinkronisasi data kontrak hingga notifikasi instan berjalan lancar. Sangat direkomendasikan untuk proyek backend!"
+                    "Script Python dan optimasi database MySQL yang dirancang Viryo memproses ribuan data transaksi harian dengan sangat cepat dan minim eror. Kinerjanya handal dan solutif. Sangat direkomendasikan!"
                   </p>
                 </div>
                 <div>
                   <span class="testimonial-tag">
-                    <i class="ri-robot-2-line"></i> AI Workflow Automation
+                    <i class="ri-terminal-box-line"></i> Python &amp; Data Processing
                   </span>
                   <div class="testimonial-client">
                     <div class="testimonial-avatar" style="background: linear-gradient(135deg, #4f46e5, #818cf8);">BK</div>
@@ -534,12 +519,12 @@
                     <i class="ri-star-fill"></i>
                   </div>
                   <p class="testimonial-quote">
-                    "Viryo mengintegrasikan backend Code Igniter 3 kami dengan WhatsApp Gateway dan orkestrasi n8n. Waktu respons CS ke pelanggan berkurang dari 1 jam menjadi hitungan detik. Kodingan rapi, terdokumentasi, dan sistem berjalan sangat stabil."
+                    "Viryo mengintegrasikan backend Code Igniter 3 kami dengan WhatsApp Gateway dan RESTful API. Waktu respons CS ke pelanggan berkurang dari 1 jam menjadi hitungan detik. Kodingan rapi, terdokumentasi, dan sistem berjalan sangat stabil."
                   </p>
                 </div>
                 <div>
                   <span class="testimonial-tag">
-                    <i class="ri-whatsapp-line"></i> WhatsApp &amp; n8n Gateway
+                    <i class="ri-whatsapp-line"></i> CI3 &amp; WhatsApp Integration
                   </span>
                   <div class="testimonial-client">
                     <div class="testimonial-avatar">AP</div>
@@ -590,12 +575,12 @@
                     <i class="ri-star-fill"></i>
                   </div>
                   <p class="testimonial-quote">
-                    "Otomatisasi n8n yang dibangun Viryo memotong lebih dari 80% jam kerja administrasi manual kami. Dari sinkronisasi data kontrak hingga notifikasi instan berjalan lancar. Sangat direkomendasikan untuk proyek backend!"
+                    "Script Python dan optimasi database MySQL yang dirancang Viryo memproses ribuan data transaksi harian dengan sangat cepat dan minim eror. Kinerjanya handal dan solutif. Sangat direkomendasikan!"
                   </p>
                 </div>
                 <div>
                   <span class="testimonial-tag">
-                    <i class="ri-robot-2-line"></i> AI Workflow Automation
+                    <i class="ri-terminal-box-line"></i> Python &amp; Data Processing
                   </span>
                   <div class="testimonial-client">
                     <div class="testimonial-avatar" style="background: linear-gradient(135deg, #4f46e5, #818cf8);">BK</div>
@@ -654,37 +639,36 @@
         <!-- Filter Bar -->
         <div class="projects-filter-bar reveal-fade-up">
           <button class="filter-btn active" data-filter="all">Semua Proyek</button>
-          <button class="filter-btn" data-filter="automation">Otomasi n8n</button>
-          <button class="filter-btn" data-filter="web">Web SaaS Code Igniter 3</button>
-          <button class="filter-btn" data-filter="ai">AI Integration</button>
+          <button class="filter-btn" data-filter="ci3">Code Igniter 3</button>
+          <button class="filter-btn" data-filter="python">Python Scripting</button>
+          <button class="filter-btn" data-filter="api">REST API &amp; DB</button>
         </div>
 
         <!-- Projects Grid -->
         <div class="projects-grid">
-          <!-- Card 1: LeadPulse Automation Hub -->
-          <div class="glass-card project-card reveal-fade-up" data-category="automation">
-            <div class="project-banner">
+          <!-- Card 1: LeadPulse CRM Portal -->
+          <div class="glass-card project-card reveal-fade-up" data-category="ci3">
+            <div class="project-banner blue-grad">
               <div class="project-banner-top">
-                <span class="project-category-badge">Full Automation</span>
+                <span class="project-category-badge">Web Application</span>
                 <div class="project-icon-badge">
-                  <i class="ri-flow-chart w-4 h-4"></i>
+                  <i class="ri-fire-fill w-4 h-4"></i>
                 </div>
               </div>
               <div class="project-banner-bottom">
                 <span class="project-domain">CRM &amp; Sales Pipeline</span>
-                <h3 class="project-card-title">LeadPulse Automation Hub</h3>
+                <h3 class="project-card-title">LeadPulse CRM &amp; Notification Portal</h3>
               </div>
             </div>
             <div class="project-body">
               <p class="project-desc">
-                Platform otomatisasi perolehan leads multi-channel yang terhubung ke WhatsApp Gateway, kalkulasi skor
-                lead otomatis via AI, dan integrasi dua arah dengan CRM Code Igniter 3.
+                Platform CRM multi-tenant berbasis Code Igniter 3 dan MySQL yang terhubung langsung ke WhatsApp Gateway API untuk manajemen lead dan notifikasi instan.
               </p>
               <div>
                 <div class="project-tags">
-                  <span class="project-tag">n8n Engine</span>
                   <span class="project-tag">Code Igniter 3</span>
-                  <span class="project-tag">PostgreSQL</span>
+                  <span class="project-tag">PHP 8</span>
+                  <span class="project-tag">MySQL</span>
                   <span class="project-tag">WhatsApp API</span>
                 </div>
                 <div class="project-footer">
@@ -701,7 +685,7 @@
           </div>
 
           <!-- Card 2: PayFlow Invoice Engine -->
-          <div class="glass-card project-card reveal-fade-up stagger-1" data-category="web">
+          <div class="glass-card project-card reveal-fade-up stagger-1" data-category="api">
             <div class="project-banner cyan-grad">
               <div class="project-banner-top">
                 <span class="project-category-badge cyan">SaaS Web App</span>
@@ -739,31 +723,30 @@
             </div>
           </div>
 
-          <!-- Card 3: DocuMind Workflow Sync -->
-          <div class="glass-card project-card reveal-fade-up stagger-2" data-category="ai">
+          <!-- Card 3: PyData Extractor -->
+          <div class="glass-card project-card reveal-fade-up stagger-2" data-category="python">
             <div class="project-banner purple-grad">
               <div class="project-banner-top">
-                <span class="project-category-badge purple">AI Integration</span>
+                <span class="project-category-badge purple">Python Engine</span>
                 <div class="project-icon-badge">
-                  <i class="ri-robot-2-line w-4 h-4"></i>
+                  <i class="ri-terminal-box-line w-4 h-4"></i>
                 </div>
               </div>
               <div class="project-banner-bottom">
-                <span class="project-domain">Knowledge Management</span>
-                <h3 class="project-card-title">DocuMind Workflow Sync</h3>
+                <span class="project-domain">Data Processing &amp; ETL</span>
+                <h3 class="project-card-title">PyData Extractor &amp; ETL Processor</h3>
               </div>
             </div>
             <div class="project-body">
               <p class="project-desc">
-                Sistem ekstraksi data kontrak PDF menggunakan model LLM yang diatur melalui flow n8n, lalu secara instan
-                menyinkronkan data terstruktur ke dashboard operasional tim.
+                Script pengolahan data otomatis dengan Python untuk parsing dokumen terstruktur, ekstraksi data web, validasi format JSON, dan sinkronisasi ke basis data MySQL.
               </p>
               <div>
                 <div class="project-tags">
-                  <span class="project-tag">n8n Self-Hosted</span>
-                  <span class="project-tag">OpenAI API</span>
-                  <span class="project-tag">Code Igniter 3</span>
-                  <span class="project-tag">Docker</span>
+                  <span class="project-tag">Python 3</span>
+                  <span class="project-tag">Data Parsing</span>
+                  <span class="project-tag">MySQL Relational</span>
+                  <span class="project-tag">REST API</span>
                 </div>
                 <div class="project-footer">
                   <button class="project-action-link case-study-trigger" data-study="documind">
@@ -787,7 +770,7 @@
         <div class="section-header reveal-fade-up">
           <span class="section-tag">Hubungi Saya</span>
           <h2 class="section-title">Mari Bangun Sesuatu yang Luar Biasa</h2>
-          <p class="section-subtitle">Punya rencana proyek web Code Igniter 3, kebutuhan integrasi otomatisasi n8n, atau
+          <p class="section-subtitle">Punya rencana proyek web Code Igniter 3, kebutuhan script backend Python, atau
             diskusi kolaborasi? Kirimkan pesan sekarang.</p>
           <div class="section-line"></div>
         </div>
@@ -869,7 +852,7 @@
                   <label for="subject" class="form-label">Topik Kebutuhan</label>
                   <select id="subject" class="form-control">
                     <option value="web-dev">Pengembangan Web Aplikasi Code Igniter 3</option>
-                    <option value="automation">Workflow Automation (n8n / AI Bot)</option>
+                    <option value="python-script">Pengembangan Script &amp; Backend Python</option>
                     <option value="consulting">Konsultasi Arsitektur Digital</option>
                     <option value="other">Peluang Karir / Diskusi Lainnya</option>
                   </select>
