@@ -667,4 +667,192 @@ print(developer.execute_mission())
       }, 1200);
     });
   }
+
+  // -----------------------------------------------------------------
+  // FLOATING TECH BUBBLE CLICK EXPLANATION
+  // -----------------------------------------------------------------
+  const techBubbles = document.querySelectorAll('.tech-scatter-bubble');
+  const techDetailContainer = document.getElementById('techDetailContainer');
+  const detailIcon = document.getElementById('detailIcon');
+  const detailBadge = document.getElementById('detailBadge');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailSubtitle = document.getElementById('detailSubtitle');
+  const detailDesc = document.getElementById('detailDesc');
+  const detailPoints = document.getElementById('detailPoints');
+  const closeTechDetailBtn = document.getElementById('closeTechDetailBtn');
+
+  const techDetailsData = {
+    'ci3': {
+      title: 'Code Igniter 3',
+      subtitle: 'Framework Backend Utama & Arsitektur MVC',
+      badge: 'Primary Framework',
+      badgeClass: 'badge-orange',
+      iconHtml: '<i class="ri-fire-fill text-orange-500"></i>',
+      iconBg: 'linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(234, 88, 12, 0.1))',
+      borderGlow: 'rgba(249, 115, 22, 0.6)',
+      desc: 'Framework PHP favorit yang saya andalkan untuk membangun web aplikasi berkecepatan tinggi dengan footprint ringan. Berpengalaman merancang arsitektur MVC yang bersih, modular controller, query builder teroptimasi, serta integrasi custom library dan RESTful API.',
+      points: [
+        'Arsitektur MVC terstruktur rapi & mudah dirawat',
+        'Query Builder efisien untuk relasi data kompleks',
+        'Proteksi keamanan built-in (CSRF, XSS, SQLi)',
+        'Integrasi fleksibel dengan WhatsApp API & Payment Gateway'
+      ]
+    },
+    'php': {
+      title: 'PHP 8',
+      subtitle: 'Server-Side Core Engine & OOP',
+      badge: 'Core Backend Language',
+      badgeClass: 'badge-indigo',
+      iconHtml: '<i class="ri-php-line text-indigo-400"></i>',
+      iconBg: 'linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(79, 70, 229, 0.1))',
+      borderGlow: 'rgba(99, 102, 241, 0.6)',
+      desc: 'Bahasa pemrograman utama di sisi server yang saya gunakan untuk merancang logika bisnis yang kokoh. Memanfaatkan fitur modern PHP 8 seperti constructor property promotion, match expressions, tipe data ketat (type safety), dan penanganan error yang presisi.',
+      points: [
+        'Pemrograman Berorientasi Objek (OOP) terstandar',
+        'Manajemen sesi aman & autentikasi berbasis role',
+        'Performa eksekusi skrip cepat dengan memori efisien',
+        'Kompatibilitas tinggi dengan berbagai database engine'
+      ]
+    },
+    'tailwind': {
+      title: 'Tailwind CSS',
+      subtitle: 'Modern Utility-First Styling & Responsive UI',
+      badge: 'Frontend Styling',
+      badgeClass: 'badge-sky',
+      iconHtml: '<i class="ri-tailwind-css-fill text-cyan-400"></i>',
+      iconBg: 'linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(2, 132, 199, 0.1))',
+      borderGlow: 'rgba(14, 165, 233, 0.6)',
+      desc: 'Kerangka kerja CSS berbasis utility-first untuk menciptakan tampilan antarmuka yang modern, responsif, dan estetis. Terbiasa membangun komponen UI kompleks, dark & light mode dinamis, serta efek visual glassmorphism modern tanpa beban file CSS berlebih.',
+      points: [
+        'Desain Mobile-First yang adaptif di semua resolusi',
+        'Implementasi Dark Mode dinamis & token warna presisi',
+        'Efek visual Glassmorphism & transisi micro-animation halus',
+        'File CSS akhir super ringan dan optimal untuk produksi'
+      ]
+    },
+    'mysql': {
+      title: 'MySQL',
+      subtitle: 'Relational Database Management System (RDBMS)',
+      badge: 'Relational Database',
+      badgeClass: 'badge-cyan',
+      iconHtml: '<i class="ri-database-2-line text-cyan-400"></i>',
+      iconBg: 'linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(8, 145, 178, 0.1))',
+      borderGlow: 'rgba(6, 182, 212, 0.6)',
+      desc: 'Sistem manajemen basis data relasional andalan saya untuk menyimpan dan mengorganisasi data aplikasi secara konsisten. Mampu merancang skema relasi tabel normalisasi, indexing kunci asing, serta penyusunan query transaksi yang cepat dan andal.',
+      points: [
+        'Normalisasi tabel dengan integritas relasi Foreign Key',
+        'Optimasi indeks query SQL untuk performa baca/tulis tinggi',
+        'Manajemen transaksi ACID untuk konsistensi data finansial',
+        'Struktur data terorganisir untuk meminimalkan redundansi'
+      ]
+    },
+    'javascript': {
+      title: 'JavaScript (ES6+)',
+      subtitle: 'Client-Side Logic & Dynamic Interactivity',
+      badge: 'Interactive Scripting',
+      badgeClass: 'badge-yellow',
+      iconHtml: '<i class="ri-javascript-fill text-yellow-400"></i>',
+      iconBg: 'linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(202, 138, 4, 0.1))',
+      borderGlow: 'rgba(234, 179, 8, 0.6)',
+      desc: 'Fondasi utama dalam menghadirkan interaktivitas modern pada web aplikasi. Berpengalaman dalam manipulasi DOM performan tinggi, komunikasi asynchronous (Fetch API / AJAX) tanpa reload halaman, event handling interaktif, dan state management lokal.',
+      points: [
+        'Komunikasi Asinkron (Async/Await & Fetch) ke Backend API',
+        'Manipulasi DOM vanilla JavaScript yang cepat & tanpa bloat',
+        'State management lokal (Theme switcher, filter, animasi)',
+        'Validasi input pengguna real-time sebelum submit'
+      ]
+    },
+    'git': {
+      title: 'Git & GitHub',
+      subtitle: 'Version Control & Code Management',
+      badge: 'Version Control',
+      badgeClass: 'badge-rose',
+      iconHtml: '<i class="ri-git-branch-line text-rose-400"></i>',
+      iconBg: 'linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(225, 29, 72, 0.1))',
+      borderGlow: 'rgba(244, 63, 94, 0.6)',
+      desc: 'Sistem kontrol versi standar industri yang saya terapkan dalam setiap proyek perangkat lunak. Terbiasa mengelola alur kerja branching yang teratur, histori commit deskriptif, manajemen remote repository GitHub, serta penyusunan rilis kode yang aman dan terkontrol.',
+      points: [
+        'Branching strategy terstruktur (main, feature, hotfix)',
+        'Pelacakan perubahan kode dan histori revisi yang transparan',
+        'Manajemen repository GitHub dan kolaborasi kode yang rapi',
+        'Penyusunan rilis kode dengan rollback safety'
+      ]
+    }
+  };
+
+  let currentlySelectedTech = null;
+
+  function showTechDetail(techKey) {
+    const data = techDetailsData[techKey];
+    if (!data || !techDetailContainer) return;
+
+    currentlySelectedTech = techKey;
+
+    // Update active bubble state
+    techBubbles.forEach(b => {
+      if (b.getAttribute('data-tech') === techKey) {
+        b.classList.add('bubble-selected');
+      } else {
+        b.classList.remove('bubble-selected');
+      }
+    });
+
+    // Populate card
+    detailIcon.innerHTML = data.iconHtml;
+    detailIcon.style.background = data.iconBg;
+    detailBadge.textContent = data.badge;
+    detailBadge.className = `detail-badge ${data.badgeClass}`;
+    detailTitle.textContent = data.title;
+    detailSubtitle.textContent = data.subtitle;
+    detailDesc.textContent = data.desc;
+
+    // Border glow on card
+    const card = document.getElementById('techDetailCard');
+    if (card) {
+      card.style.borderColor = data.borderGlow;
+      card.style.boxShadow = `0 20px 45px -12px rgba(0, 0, 0, 0.6), 0 0 35px -5px ${data.borderGlow}`;
+    }
+
+    // Points
+    detailPoints.innerHTML = data.points.map(pt => `
+      <div class="detail-point-item">
+        <i class="ri-checkbox-circle-fill" style="color:${data.borderGlow};"></i>
+        <span>${pt}</span>
+      </div>
+    `).join('');
+
+    techDetailContainer.classList.remove('hidden');
+    techDetailContainer.classList.add('show');
+
+    // Smooth scroll to card if on small screens
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        techDetailContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }
+
+  function hideTechDetail() {
+    if (!techDetailContainer) return;
+    currentlySelectedTech = null;
+    techBubbles.forEach(b => b.classList.remove('bubble-selected'));
+    techDetailContainer.classList.remove('show');
+    techDetailContainer.classList.add('hidden');
+  }
+
+  techBubbles.forEach(bubble => {
+    bubble.addEventListener('click', () => {
+      const techKey = bubble.getAttribute('data-tech');
+      if (currentlySelectedTech === techKey) {
+        hideTechDetail();
+      } else {
+        showTechDetail(techKey);
+      }
+    });
+  });
+
+  if (closeTechDetailBtn) {
+    closeTechDetailBtn.addEventListener('click', hideTechDetail);
+  }
+
 });
