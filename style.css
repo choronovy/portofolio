@@ -2630,7 +2630,7 @@ i[class*="ri-"] {
 
 
 /* -------------------------------------------------------------------
-   21. ABSOLUTE BULLETPROOF MOBILE NAVBAR FIX
+   21. BALANCED LUXURY NAVBAR (PERFECT DESKTOP & MOBILE LAYOUT)
    ------------------------------------------------------------------- */
 html, body {
     max-width: 100% !important;
@@ -2653,30 +2653,28 @@ html, body {
     width: 100% !important;
     max-width: 80rem !important;
     margin: 0 auto !important;
-    padding: 0 1rem !important;
-    height: 4.25rem !important;
+    padding: 0 1.5rem !important;
+    height: 4.75rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     box-sizing: border-box !important;
-    gap: 0.5rem !important;
+    position: relative !important;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .nav-container {
-        padding: 0 1.5rem !important;
-        height: 4.75rem !important;
-        gap: 1.25rem !important;
+        padding: 0 1rem !important;
+        height: 4.25rem !important;
     }
 }
 
 .brand-link {
     display: flex !important;
     align-items: center !important;
-    gap: 0.65rem !important;
+    gap: 0.75rem !important;
     text-decoration: none !important;
-    min-width: 0 !important;
-    flex-shrink: 1 !important;
+    flex-shrink: 0 !important;
 }
 
 .brand-info {
@@ -2694,16 +2692,37 @@ html, body {
 
 .brand-title {
     font-weight: 700 !important;
-    font-size: 0.92rem !important;
+    font-size: 1.15rem !important;
     color: var(--text-primary) !important;
     white-space: nowrap !important;
     line-height: 1.2 !important;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
     .brand-title {
-        font-size: 1.15rem !important;
+        font-size: 0.95rem !important;
     }
+}
+
+/* Nav Links: Center aligned on desktop */
+.nav-links {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (min-width: 860px) {
+    .nav-links {
+        display: flex !important;
+    }
+}
+
+/* Nav Actions: Right container holding CTA button & Theme toggle */
+.nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    flex-shrink: 0 !important;
 }
 
 .desktop-cta-btn,
@@ -2711,29 +2730,20 @@ html, body {
     display: none !important;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 860px) {
     .desktop-cta-btn,
     .nav-cta-btn {
         display: inline-flex !important;
-        margin-left: auto !important;
+        margin: 0 !important;
     }
 }
 
-/* Nav Actions: strictly holds Theme Toggle + Hamburger on mobile */
-.nav-actions {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-    flex-shrink: 0 !important;
-}
-
-.theme-toggle-btn,
-.mobile-menu-btn {
+.theme-toggle-btn {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 2.35rem !important;
-    height: 2.35rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
     border-radius: 0.75rem !important;
     background: var(--bg-surface-elevated) !important;
     border: 1px solid var(--border-medium) !important;
@@ -2750,17 +2760,27 @@ html, body {
     line-height: 1 !important;
 }
 
-@media (min-width: 768px) {
+.mobile-menu-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+    border-radius: 0.75rem !important;
+    background: var(--bg-surface-elevated) !important;
+    border: 1px solid var(--border-medium) !important;
+    color: var(--text-primary) !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    font-size: 1.15rem !important;
+    padding: 0 !important;
+}
+
+@media (min-width: 860px) {
     .mobile-menu-btn {
         display: none !important;
     }
-
-    .theme-toggle-btn {
-        width: 2.5rem !important;
-        height: 2.5rem !important;
-    }
 }
-
 
 /* -------------------------------------------------------------------
    22. SYNCHRONOUS THEME SWITCHING (SERENTAK & ZERO LAG)
