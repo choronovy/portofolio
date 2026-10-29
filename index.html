@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viryo Fabrellino Kudjinona - Backend Developer</title>
+  <meta name="description" content="Portofolio Viryo Fabrellino Kudjinona - Web Developer & Automation Architect.">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icon CDN & Local Fallback -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="./node_modules/remixicon/fonts/remixicon.css">
+
+  <!-- External Luxury CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=3.4">
+</head>
+
+<body>
+
+  <!-- Dynamic Cursor Halo Spotlight -->
+  <div class="cursor-spotlight"></div>
+
+  <!-- Ambient Glowing Background Mesh & Floating Orbs -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar-wrapper" id="navbar">
+    <div class="nav-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-link">
+        <div class="brand-badge">
+          &lt;/&gt;
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">
+            <span>Viryo Fabrellino</span><span class="desktop-name-part"> Kudjinona</span>
+          </div>
+          <div class="brand-subtitle">Backend Developer</div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-links">
+        <a href="#about" class="nav-link">Tentang Saya</a>
+        <a href="#skills" class="nav-link">Keahlian</a>
+        <a href="#testimonials" class="nav-link">Testimoni</a>
+        <a href="#projects" class="nav-link">Portofolio</a>
+        <a href="#contact" class="nav-link">Kontak</a>
+      </nav>
+
+      <!-- Desktop Only WhatsApp CTA -->
+      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm desktop-cta-btn">
+        <i class="ri-whatsapp-line icon-whatsapp"></i>
+        <span>Hubungi Saya</span>
+      </a>
+
+      <!-- Actions (Theme Switcher & Mobile Menu Toggle) -->
+      <div class="nav-actions">
+        <!-- Luxury Theme Switcher (Dark & Light) -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Ganti Tema Gelap / Terang" title="Beralih Tema">
+          <i class="ri-sun-line icon-sun text-amber-400"></i>
+          <i class="ri-moon-line icon-moon text-blue-400"></i>
+        </button>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Buka Menu Navigasi">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Drawer -->
+    <div id="mobileDrawer" class="mobile-drawer">
+      <a href="#about">
+        <span>Tentang Saya</span>
+        <i class="ri-user-3-line w-4 h-4 text-cyan-400"></i>
+      </a>
+      <a href="#skills">
+        <span>Keahlian &amp; Tools</span>
+        <i class="ri-code-box-line w-4 h-4 text-blue-400"></i>
+      </a>
+      <a href="#testimonials">
+        <span>Testimoni Klien</span>
+        <i class="ri-star-line w-4 h-4 text-amber-400"></i>
+      </a>
+      <a href="#projects">
+        <span>Proyek Unggulan</span>
+        <i class="ri-folder-open-line w-4 h-4 text-purple-400"></i>
+      </a>
+      <a href="#contact">
+        <span>Hubungi Saya</span>
+        <i class="ri-mail-line w-4 h-4 text-emerald-400"></i>
+      </a>
+      <div style="padding-top: 0.85rem;">
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
+          <i class="ri-whatsapp-line w-4 h-4"></i>
+          <span>Mulai Kolaborasi WhatsApp</span>
+          <i class="ri-arrow-right-line w-4 h-4" style="margin-left: auto;"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <!-- Status Badge -->
+        <div class="status-badge reveal-fade-up">
+          <span class="pulse-dot"></span>
+          <span>Tersedia untuk Pekerjaan Freelance</span>
+        </div>
+
+        <!-- Main Title with Neon Modern Gradient -->
+        <h1 class="hero-title reveal-fade-up stagger-1">
+          Membangun Website Digital Cerdas <br>
+          Untuk <span class="neon-gradient-text">Kegabutan Anda</span>
+        </h1>
+
+        <!-- Subtitle & Role Description -->
+        <p class="hero-subtitle reveal-fade-up stagger-2">
+          Halo, saya <span class="highlight-white">Viryo Fabrellino Kudjinona</span> — <span
+            class="highlight-blue">Backend Developer</span> &amp; <span class="highlight-cyan">Creator</span>.
+            Jika seseorang melemparmu dengan sebuah batu, balas mereka dengan senyuman jangan lupa dengan potnya sekalian.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta reveal-fade-up stagger-3">
+          <a href="#projects" class="btn btn-primary">
+            <span>Jelajahi Proyek</span>
+            <i class="ri-arrow-right-down-line w-5 h-5"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <i class="ri-mail-send-line w-5 h-5" style="color: var(--brand-cyan-light);"></i>
+            <span>Konsultasi Proyek</span>
+          </a>
+        </div>
+
+        <!-- Metrics / Counters Section -->
+        <div class="metrics-container reveal-fade-up stagger-4">
+          <div class="metric-card">
+            <div class="metric-number">
+              <span class="counter-val" data-target="1" data-suffix="+">0</span>
+            </div>
+            <span class="metric-label">Tahun Pengalaman</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number">
+              <span class="counter-val" data-target="8" data-suffix="+">0</span>
+            </div>
+            <span class="metric-label">Proyek Selesai</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number">
+              <span class="counter-val" data-target="100" data-suffix="k+">0</span>
+            </div>
+            <span class="metric-label">Tasks Diotomasi</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number">
+              <span class="counter-val" data-target="96.8" data-suffix="%" data-float="true">0</span>
+            </div>
+            <span class="metric-label">Kepuasan Klien</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. About Me Section with Interactive Code Terminal -->
+    <section id="about" class="section">
+      <div class="section-container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Profil Profesional</span>
+          <h2 class="section-title">Tentang Saya</h2>
+          <p class="section-subtitle">Menggabungkan logika rekayasa perangkat lunak solid dengan orkestrasi otomatisasi
+            bisnis modern.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Bio Narrative -->
+          <div class="about-bio reveal-fade-up">
+            <p>
+              Saya adalah seorang <strong>Software Engineer &amp; Automation Architect</strong> yang berfokus
+              menciptakan pengalaman web yang cepat, skalabel, serta bebas hambatan operasional. Dengan fondasi kuat di
+              arsitektur backend <span style="color: var(--brand-cyan-light); font-weight: 600;">PHP &amp;
+                Code Igniter 3</span> dan ketelitian di frontend modern menggunakan <span
+                style="color: var(--brand-blue-light); font-weight: 600;">JavaScript &amp; Tailwind CSS</span>, saya
+              menjembatani visi produk menjadi realitas teknis yang tangguh.
+            </p>
+            <p>
+              Ketertarikan mendalam saya pada efisiensi operasional membawa saya menguasai integrasi otomatisasi
+              menggunakan <strong>n8n, Webhooks, dan AI LLM APIs</strong>. Saya menghubungkan CRM, database relasional,
+              dan aplikasi messaging untuk memangkas ratusan jam kerja manual menjadi proses otomatis dalam hitungan
+              milidetik.
+            </p>
+
+            <!-- Key Principles -->
+            <div class="principles-grid">
+              <div class="glass-card principle-item">
+                <div class="principle-icon">
+                  <i class="ri-code-s-slash-line w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="principle-title">Clean &amp; Scalable Code</h4>
+                  <p class="principle-desc">Standar PSR, arsitektur modular, domain-driven design, dan API terstruktur.
+                  </p>
+                </div>
+              </div>
+
+              <div class="glass-card principle-item">
+                <div class="principle-icon cyan">
+                  <i class="ri-flashlight-line w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="principle-title">Smart Automation First</h4>
+                  <p class="principle-desc">Mengeliminasi repetisi manual via orchestrator n8n dengan retry &amp;
+                    logging aman.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Code Terminal -->
+          <div class="reveal-fade-up stagger-2">
+            <div class="terminal-window">
+              <!-- Window Chrome -->
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="terminal-dot dot-red"></span>
+                  <span class="terminal-dot dot-yellow"></span>
+                  <span class="terminal-dot dot-green"></span>
+                </div>
+
+                <!-- Clickable File Tabs -->
+                <div class="terminal-tabs">
+                  <button class="terminal-tab active" data-file="viryo-developer.ts">
+                    <i class="ri-file-code-line w-3.5 h-3.5"></i>
+                    <span>developer.ts</span>
+                  </button>
+                  <button class="terminal-tab" data-file="workflow-n8n.json">
+                    <i class="ri-node-tree w-3.5 h-3.5"></i>
+                    <span>n8n-flow.json</span>
+                  </button>
+                  <button class="terminal-tab" data-file="stack-metrics.sh">
+                    <i class="ri-terminal-box-line w-3.5 h-3.5"></i>
+                    <span>diagnostics.sh</span>
+                  </button>
+                </div>
+
+                <div class="terminal-actions">
+                  <button id="copyCodeBtn" class="terminal-action-btn" title="Salin Kode">
+                    <i class="ri-file-copy-line w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Terminal Code Body -->
+              <div class="terminal-body" id="terminalCodeBody">
+                <p><span class="code-keyword">const</span> <span class="code-var">developer</span> = {</p>
+                <p style="padding-left: 1.25rem;"><span class="code-key">name:</span> <span class="code-string">'Viryo
+                    Fabrellino Kudjinona'</span>,</p>
+                <p style="padding-left: 1.25rem;"><span class="code-key">role:</span> <span class="code-string">'Website
+                    Developer &amp; Automation Architect'</span>,</p>
+                <p style="padding-left: 1.25rem;"><span class="code-key">coreStack:</span> [<span
+                    class="code-string">'Code Igniter 3 '</span>, <span class="code-string">'n8n'</span>, <span
+                    class="code-string">'PostgreSQL'</span>, <span class="code-string">'Docker'</span>],</p>
+                <p style="padding-left: 1.25rem;"><span class="code-key">philosophy:</span> <span
+                    class="code-string">'Automate everything repeatable with high fidelity'</span>,</p>
+                <p style="padding-left: 1.25rem;"><span class="code-key">status:</span> <span
+                    class="code-string">'Available for Projects'</span>,</p>
+                <p style="padding-left: 1.25rem;"><span class="code-var">executeMission</span>: () =&gt; {</p>
+                <p style="padding-left: 2.5rem; color: var(--brand-cyan-light);"><span
+                    class="code-keyword">return</span> <span class="code-string">"10x Business Agility via Robust Code
+                    &amp; AI Automations"</span>;</p>
+                <p style="padding-left: 1.25rem;">}</p>
+                <p>};</p>
+              </div>
+
+              <!-- Terminal Live Execution Output -->
+              <div style="padding: 0 1.25rem 1rem;">
+                <div id="terminalOutput" class="terminal-output"></div>
+              </div>
+
+              <!-- Terminal Footer / Runner -->
+              <div class="terminal-footer">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: var(--brand-cyan-light);">$</span>
+                  <span>ready for deployment</span>
+                </div>
+                <button id="runWorkflowBtn" class="terminal-run-btn">
+                  <i class="ri-play-fill w-3.5 h-3.5"></i>
+                  <span>Jalankan Workflow</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Skills & Tech Stack Section -->
+    <section id="skills" class="section">
+      <div class="section-container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Keahlian &amp; Perkakas</span>
+          <h2 class="section-title">Tech Stack &amp; Tools</h2>
+          <p class="section-subtitle">Kombinasi teknologi handal untuk menghadirkan web aplikasi cepat, tangguh, dan
+            otomatis tanpa kompromi.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Backend & Database -->
+          <div class="glass-card skill-category-card reveal-fade-up">
+            <div>
+              <div class="skill-cat-header">
+                <div class="skill-cat-icon">
+                  <i class="ri-server-line w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="skill-cat-title">Backend &amp; DB</h3>
+                  <span class="skill-cat-sub">Robust Architecture</span>
+                </div>
+              </div>
+              <div class="skill-tags-cloud">
+                <span class="skill-tag"><i class="ri-fire-fill w-3.5 h-3.5 text-orange-500"></i> Code Igniter 3</span>
+                <span class="skill-tag"><i class="ri-php-line w-3.5 h-3.5 text-indigo-400"></i> PHP 8.3</span>
+                <span class="skill-tag"><i class="ri-database-2-line w-3.5 h-3.5 text-cyan-400"></i> MySQL</span>
+                <span class="skill-tag"><i class="ri-braces-line w-3.5 h-3.5 text-blue-400"></i> RESTful API</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Automation & AI -->
+          <div class="glass-card skill-category-card reveal-fade-up stagger-1">
+            <div>
+              <div class="skill-cat-header">
+                <div class="skill-cat-icon cyan">
+                  <i class="ri-cpu-line w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="skill-cat-title">Automation &amp; AI</h3>
+                  <span class="skill-cat-sub">Workflow Synergy</span>
+                </div>
+              </div>
+              <div class="skill-tags-cloud">
+                <span class="skill-tag"><i class="ri-whatsapp-fill w-3.5 h-3.5 text-emerald-400"></i> WhatsApp Gateway</span>
+                <span class="skill-tag"><i class="ri-flow-chart w-3.5 h-3.5 text-rose-400"></i> n8n Automation</span>
+                <span class="skill-tag"><i class="ri-robot-2-line w-3.5 h-3.5 text-cyan-400"></i> AI &amp; LLM APIs</span>
+                <span class="skill-tag"><i class="ri-webhook-line w-3.5 h-3.5 text-amber-400"></i> Webhooks &amp; Cron</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frontend & UI/UX -->
+          <div class="glass-card skill-category-card reveal-fade-up stagger-2">
+            <div>
+              <div class="skill-cat-header">
+                <div class="skill-cat-icon purple">
+                  <i class="ri-layout-masonry-line w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="skill-cat-title">Frontend &amp; UI</h3>
+                  <span class="skill-cat-sub">Modern &amp; Responsive</span>
+                </div>
+              </div>
+              <div class="skill-tags-cloud">
+                <span class="skill-tag"><i class="ri-tailwind-css-fill w-3.5 h-3.5 text-cyan-400"></i> Tailwind CSS</span>
+                <span class="skill-tag"><i class="ri-javascript-fill w-3.5 h-3.5 text-yellow-400"></i> JavaScript (ES6+)</span>
+                <span class="skill-tag"><i class="ri-file-code-line w-3.5 h-3.5 text-blue-400"></i> TypeScript</span>
+                <span class="skill-tag"><i class="ri-vuejs-fill w-3.5 h-3.5 text-emerald-400"></i> Vue.js / Alpine</span>
+                <span class="skill-tag"><i class="ri-flashlight-line w-3.5 h-3.5 text-yellow-400"></i> Vite Tooling</span>
+                <span class="skill-tag"><i class="ri-figma-line w-3.5 h-3.5 text-purple-400"></i> Figma to HTML</span>
+                <span class="skill-tag"><i class="ri-palette-line w-3.5 h-3.5 text-indigo-400"></i> Glassmorphism UI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Testimonials / Client Reviews Section -->
+    <section id="testimonials" class="section">
+      <div class="section-container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Ulasan &amp; Reputasi</span>
+          <h2 class="section-title">Testimoni Klien &amp; Rekan Kerja</h2>
+          <p class="section-subtitle">Penilaian langsung dari founder, tech lead, dan rekan bisnis yang telah mempercayakan arsitektur backend dan otomatisasi mereka kepada saya.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <!-- Continuous Infinite Marquee Track (Moving to the left) -->
+        <div class="testimonials-marquee-wrapper">
+          <div class="testimonials-track" id="testimonialsTrack">
+            <!-- Group 1 -->
+            <div class="testimonials-group">
+              <!-- Card 1 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Viryo mengintegrasikan backend Code Igniter 3 kami dengan WhatsApp Gateway dan orkestrasi n8n. Waktu respons CS ke pelanggan berkurang dari 1 jam menjadi hitungan detik. Kodingan rapi, terdokumentasi, dan sistem berjalan sangat stabil."
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-whatsapp-line"></i> WhatsApp &amp; n8n Gateway
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar">AP</div>
+                    <div>
+                      <h4 class="testimonial-name">Andi Pratama</h4>
+                      <p class="testimonial-role">Founder, Logistik Nusa Express</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Sangat puas dengan arsitektur RESTful API dan database relational yang dirancang Viryo. Penanganan antrian webhook pembayaran otomatisnya tahan banting dan zero-downtime. Rekan kerja yang proaktif dan solutif."
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-database-2-line"></i> REST API &amp; Fintech Billing
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #0284c7, #38bdf8);">JW</div>
+                    <div>
+                      <h4 class="testimonial-name">Jessica Wijaya</h4>
+                      <p class="testimonial-role">Head of Product, FinConnect Asia</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Otomatisasi n8n yang dibangun Viryo memotong lebih dari 80% jam kerja administrasi manual kami. Dari sinkronisasi data kontrak hingga notifikasi instan berjalan lancar. Sangat direkomendasikan untuk proyek backend!"
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-robot-2-line"></i> AI Workflow Automation
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #4f46e5, #818cf8);">BK</div>
+                    <div>
+                      <h4 class="testimonial-name">Bambang Kusumo</h4>
+                      <p class="testimonial-role">Operational Director, Sentra Digital</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Kolaborasi teknis yang sangat memuaskan. Skalabilitas database MySQL dan query optimization yang dilakukan Viryo berhasil mengatasi bottleneck di sistem transaksi kami saat traffic pengguna melonjak tinggi."
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-fire-fill"></i> CI3 &amp; DB Optimization
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">RG</div>
+                    <div>
+                      <h4 class="testimonial-name">Rian Gunawan</h4>
+                      <p class="testimonial-role">Lead Engineer, Solusi Finansial</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Group 2 (Duplicate for Seamless Infinite Leftward Scroll) -->
+            <div class="testimonials-group" aria-hidden="true">
+              <!-- Card 1 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Viryo mengintegrasikan backend Code Igniter 3 kami dengan WhatsApp Gateway dan orkestrasi n8n. Waktu respons CS ke pelanggan berkurang dari 1 jam menjadi hitungan detik. Kodingan rapi, terdokumentasi, dan sistem berjalan sangat stabil."
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-whatsapp-line"></i> WhatsApp &amp; n8n Gateway
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar">AP</div>
+                    <div>
+                      <h4 class="testimonial-name">Andi Pratama</h4>
+                      <p class="testimonial-role">Founder, Logistik Nusa Express</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Sangat puas dengan arsitektur RESTful API dan database relational yang dirancang Viryo. Penanganan antrian webhook pembayaran otomatisnya tahan banting dan zero-downtime. Rekan kerja yang proaktif dan solutif."
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-database-2-line"></i> REST API &amp; Fintech Billing
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #0284c7, #38bdf8);">JW</div>
+                    <div>
+                      <h4 class="testimonial-name">Jessica Wijaya</h4>
+                      <p class="testimonial-role">Head of Product, FinConnect Asia</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Otomatisasi n8n yang dibangun Viryo memotong lebih dari 80% jam kerja administrasi manual kami. Dari sinkronisasi data kontrak hingga notifikasi instan berjalan lancar. Sangat direkomendasikan untuk proyek backend!"
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-robot-2-line"></i> AI Workflow Automation
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #4f46e5, #818cf8);">BK</div>
+                    <div>
+                      <h4 class="testimonial-name">Bambang Kusumo</h4>
+                      <p class="testimonial-role">Operational Director, Sentra Digital</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="glass-card testimonial-card">
+                <div>
+                  <div class="testimonial-rating">
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                    <i class="ri-star-fill"></i>
+                  </div>
+                  <p class="testimonial-quote">
+                    "Kolaborasi teknis yang sangat memuaskan. Skalabilitas database MySQL dan query optimization yang dilakukan Viryo berhasil mengatasi bottleneck di sistem transaksi kami saat traffic pengguna melonjak tinggi."
+                  </p>
+                </div>
+                <div>
+                  <span class="testimonial-tag">
+                    <i class="ri-fire-fill"></i> CI3 &amp; DB Optimization
+                  </span>
+                  <div class="testimonial-client">
+                    <div class="testimonial-avatar" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">RG</div>
+                    <div>
+                      <h4 class="testimonial-name">Rian Gunawan</h4>
+                      <p class="testimonial-role">Lead Engineer, Solusi Finansial</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Featured Projects Section with Interactive Filters & Case Study Modal -->
+    <section id="projects" class="section">
+      <div class="section-container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Portofolio Pilihan</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">Koleksi karya nyata yang menggabungkan backend Code Igniter 3 berkinerja tinggi dan
+            otomatisasi alur kerja mutakhir.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="projects-filter-bar reveal-fade-up">
+          <button class="filter-btn active" data-filter="all">Semua Proyek</button>
+          <button class="filter-btn" data-filter="automation">Otomasi n8n</button>
+          <button class="filter-btn" data-filter="web">Web SaaS Code Igniter 3</button>
+          <button class="filter-btn" data-filter="ai">AI Integration</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+          <!-- Card 1: LeadPulse Automation Hub -->
+          <div class="glass-card project-card reveal-fade-up" data-category="automation">
+            <div class="project-banner">
+              <div class="project-banner-top">
+                <span class="project-category-badge">Full Automation</span>
+                <div class="project-icon-badge">
+                  <i class="ri-flow-chart w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="project-banner-bottom">
+                <span class="project-domain">CRM &amp; Sales Pipeline</span>
+                <h3 class="project-card-title">LeadPulse Automation Hub</h3>
+              </div>
+            </div>
+            <div class="project-body">
+              <p class="project-desc">
+                Platform otomatisasi perolehan leads multi-channel yang terhubung ke WhatsApp Gateway, kalkulasi skor
+                lead otomatis via AI, dan integrasi dua arah dengan CRM Code Igniter 3.
+              </p>
+              <div>
+                <div class="project-tags">
+                  <span class="project-tag">n8n Engine</span>
+                  <span class="project-tag">Code Igniter 3</span>
+                  <span class="project-tag">PostgreSQL</span>
+                  <span class="project-tag">WhatsApp API</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-action-link case-study-trigger" data-study="leadpulse">
+                    <span>Studi Kasus</span>
+                    <i class="ri-arrow-right-line w-3.5 h-3.5"></i>
+                  </button>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-repo-link">
+                    Repository <i class="ri-github-fill w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: PayFlow Invoice Engine -->
+          <div class="glass-card project-card reveal-fade-up stagger-1" data-category="web">
+            <div class="project-banner cyan-grad">
+              <div class="project-banner-top">
+                <span class="project-category-badge cyan">SaaS Web App</span>
+                <div class="project-icon-badge">
+                  <i class="ri-bank-card-line w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="project-banner-bottom">
+                <span class="project-domain">Fintech &amp; Billing</span>
+                <h3 class="project-card-title">PayFlow Invoice Engine</h3>
+              </div>
+            </div>
+            <div class="project-body">
+              <p class="project-desc">
+                Aplikasi tagihan otomatis multi-tenant untuk bisnis UMKM dan agency, dilengkapi rekonsiliasi payment
+                gateway otomatis, pengiriman invoice PDF ke Telegram, dan reminder tempo.
+              </p>
+              <div>
+                <div class="project-tags">
+                  <span class="project-tag">Code Igniter 3</span>
+                  <span class="project-tag">Tailwind CSS</span>
+                  <span class="project-tag">Redis Queues</span>
+                  <span class="project-tag">Midtrans API</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-action-link case-study-trigger" data-study="payflow">
+                    <span>Studi Kasus</span>
+                    <i class="ri-arrow-right-line w-3.5 h-3.5"></i>
+                  </button>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-repo-link">
+                    Repository <i class="ri-github-fill w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: DocuMind Workflow Sync -->
+          <div class="glass-card project-card reveal-fade-up stagger-2" data-category="ai">
+            <div class="project-banner purple-grad">
+              <div class="project-banner-top">
+                <span class="project-category-badge purple">AI Integration</span>
+                <div class="project-icon-badge">
+                  <i class="ri-robot-2-line w-4 h-4"></i>
+                </div>
+              </div>
+              <div class="project-banner-bottom">
+                <span class="project-domain">Knowledge Management</span>
+                <h3 class="project-card-title">DocuMind Workflow Sync</h3>
+              </div>
+            </div>
+            <div class="project-body">
+              <p class="project-desc">
+                Sistem ekstraksi data kontrak PDF menggunakan model LLM yang diatur melalui flow n8n, lalu secara instan
+                menyinkronkan data terstruktur ke dashboard operasional tim.
+              </p>
+              <div>
+                <div class="project-tags">
+                  <span class="project-tag">n8n Self-Hosted</span>
+                  <span class="project-tag">OpenAI API</span>
+                  <span class="project-tag">Code Igniter 3</span>
+                  <span class="project-tag">Docker</span>
+                </div>
+                <div class="project-footer">
+                  <button class="project-action-link case-study-trigger" data-study="documind">
+                    <span>Studi Kasus</span>
+                    <i class="ri-arrow-right-line w-3.5 h-3.5"></i>
+                  </button>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-repo-link">
+                    Repository <i class="ri-github-fill w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact Section & Interactive Form -->
+    <section id="contact" class="section">
+      <div class="section-container">
+        <div class="section-header reveal-fade-up">
+          <span class="section-tag">Hubungi Saya</span>
+          <h2 class="section-title">Mari Bangun Sesuatu yang Luar Biasa</h2>
+          <p class="section-subtitle">Punya rencana proyek web Code Igniter 3, kebutuhan integrasi otomatisasi n8n, atau
+            diskusi kolaborasi? Kirimkan pesan sekarang.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Channels Info -->
+          <div class="contact-channels reveal-fade-up">
+            <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem;">Informasi Kontak Langsung</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem;">
+              Saya siap merespons pertanyaan teknis dan peluang kerja sama dalam 1x24 jam kerja.
+            </p>
+
+            <!-- Email -->
+            <a href="mailto:viryo.kudjinona@example.com" class="glass-card channel-card">
+              <div class="channel-icon">
+                <i class="ri-mail-send-fill w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="channel-label">Email Utama</span>
+                <div class="channel-val">viryo.kudjinona@example.com</div>
+              </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6283871821218" target="_blank" rel="noopener noreferrer"
+              class="glass-card channel-card">
+              <div class="channel-icon whatsapp">
+                <i class="ri-whatsapp-fill w-5 h-5 text-emerald-400"></i>
+              </div>
+              <div>
+                <span class="channel-label">WhatsApp / Kontak Langsung</span>
+                <div class="channel-val">+62 838-7182-1218</div>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="glass-card channel-card">
+              <div class="channel-icon cyan">
+                <i class="ri-linkedin-fill w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="channel-label">LinkedIn Jaringan</span>
+                <div class="channel-val">linkedin.com/in/viryofabrellino</div>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="glass-card channel-card">
+              <div class="channel-icon purple">
+                <i class="ri-github-fill w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="channel-label">Repositori Kode</span>
+                <div class="channel-val">github.com/viryofabrellino</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Interactive Message Form -->
+          <div class="reveal-fade-up stagger-1">
+            <div class="glass-card contact-form-card">
+              <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.35rem;">Kirimkan Pesan Langsung</h3>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.75rem;">Isi formulir berikut
+                untuk mendiskusikan kebutuhan sistem Anda.</p>
+
+              <form id="contactForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="name" class="form-label">Nama Lengkap</label>
+                    <input type="text" id="name" required placeholder="Contoh: Budi Santoso" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="form-label">Alamat Email</label>
+                    <input type="email" id="email" required placeholder="budi@example.com" class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="subject" class="form-label">Topik Kebutuhan</label>
+                  <select id="subject" class="form-control">
+                    <option value="web-dev">Pengembangan Web Aplikasi Code Igniter 3</option>
+                    <option value="automation">Workflow Automation (n8n / AI Bot)</option>
+                    <option value="consulting">Konsultasi Arsitektur Digital</option>
+                    <option value="other">Peluang Karir / Diskusi Lainnya</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label">Pesan Anda</label>
+                  <textarea id="message" required
+                    placeholder="Ceritakan detail kebutuhan proyek atau garis besar ide yang ingin diotomasi..."
+                    class="form-control"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%;">
+                  <span>Kirim Pesan Sekarang</span>
+                  <i class="ri-send-plane-fill w-4 h-4"></i>
+                </button>
+
+                <!-- Feedback alert on submission -->
+                <div id="formSuccessAlert" class="form-alert">
+                  <i class="ri-checkbox-circle-line w-5 h-5 text-cyan-400"></i>
+                  <span>Terima kasih! Pesan Anda telah terkirim dan saya akan segera menghubungi Anda kembali.</span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Clean Luxury Footer -->
+  <footer class="footer-wrapper">
+    <div class="footer-container">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div
+          style="width: 2rem; height: 2rem; border-radius: 0.5rem; background: var(--gradient-brand); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; color: #ffffff;">
+          &lt;/&gt;
+        </div>
+        <span style="font-weight: 600; font-size: 0.95rem;">Viryo Fabrellino Kudjinona &copy; <span
+            id="currentYear"></span></span>
+      </div>
+
+      <p
+        style="font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; text-align: center;">
+        Handcrafted with Vanilla HTML, CSS &amp; JS. Ultra-Performance Architecture.
+      </p>
+
+      <div class="footer-socials">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="GitHub">
+          <i class="ri-github-fill w-4 h-4"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+          title="LinkedIn">
+          <i class="ri-linkedin-fill w-4 h-4"></i>
+        </a>
+        <a href="mailto:viryo.kudjinona@example.com" class="social-icon-btn" title="Email">
+          <i class="ri-mail-line w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Case Study Modal Dialog -->
+  <div id="projectModal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalProjectTitle" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">Studi Kasus
+        </h3>
+        <button id="modalCloseBtn" class="modal-close-btn" aria-label="Tutup Modal">
+          <i class="ri-close-line w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modalProjectBody">
+        <!-- Content populated via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top with Circular SVG Scroll Progress -->
+  <button id="backToTopBtn" class="back-to-top" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <svg class="progress-ring" width="48" height="48">
+      <circle class="progress-ring__circle" stroke-width="2.5" fill="transparent" r="21" cx="24" cy="24" />
+    </svg>
+    <i class="ri-arrow-up-s-line w-4 h-4"></i>
+  </button>
+
+  <!-- External JavaScript Controller -->
+  <script src="script.js?v=3.4"></script>
+</body>
+
+</html>
