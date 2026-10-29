@@ -2951,3 +2951,354 @@ html, body {
     align-items: center;
     gap: 0.3rem;
 }
+
+/* -------------------------------------------------------------------
+   25. FLOATING TECH STACK & CODE IGNITER 3 SHOWCASE
+   ------------------------------------------------------------------- */
+.ci3-spotlight-card {
+    padding: 2.25rem 2.5rem;
+    border-radius: 1.5rem;
+    margin-bottom: 2.25rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(16, 26, 50, 0.85) 0%, rgba(10, 15, 30, 0.95) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 35px -5px rgba(249, 115, 22, 0.18);
+}
+
+[data-theme="light"] .ci3-spotlight-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    box-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.08), 0 0 30px -5px rgba(249, 115, 22, 0.15);
+}
+
+.ci3-spotlight-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+@media (min-width: 960px) {
+    .ci3-spotlight-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.ci3-badge-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 36rem;
+}
+
+.ci3-flame-orbit {
+    position: relative;
+    width: 4.5rem;
+    height: 4.5rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ci3-flame-glow {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.45) 0%, transparent 70%);
+    filter: blur(10px);
+    animation: flamePulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes flamePulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.18); opacity: 1; }
+}
+
+.ci3-flame-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1.15rem;
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 60%, #fb923c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 2.15rem;
+    box-shadow: 0 8px 25px -4px rgba(249, 115, 22, 0.6);
+    position: relative;
+    z-index: 2;
+}
+
+.ci3-tag-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 0.5rem;
+    background: rgba(249, 115, 22, 0.15);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+}
+
+.ci3-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+}
+
+.ci3-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.ci3-floating-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    max-width: 32rem;
+}
+
+.floating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: 0.85rem;
+    font-size: 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    cursor: default;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.floating-pill:hover {
+    transform: translateY(-6px) scale(1.05) !important;
+}
+
+.pill-ci3 {
+    background: rgba(249, 115, 22, 0.15);
+    color: #fdba74;
+    border: 1px solid rgba(249, 115, 22, 0.45);
+    box-shadow: 0 4px 15px -3px rgba(249, 115, 22, 0.25);
+}
+
+.pill-php {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.45);
+    box-shadow: 0 4px 15px -3px rgba(99, 102, 241, 0.25);
+}
+
+.pill-mysql {
+    background: rgba(6, 182, 212, 0.15);
+    color: #67e8f9;
+    border: 1px solid rgba(6, 182, 212, 0.45);
+    box-shadow: 0 4px 15px -3px rgba(6, 182, 212, 0.25);
+}
+
+.pill-api {
+    background: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    box-shadow: 0 4px 15px -3px rgba(16, 185, 129, 0.25);
+}
+
+.pill-mvc {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.45);
+    box-shadow: 0 4px 15px -3px rgba(59, 130, 246, 0.25);
+}
+
+.pill-security {
+    background: rgba(244, 63, 94, 0.15);
+    color: #fda4af;
+    border: 1px solid rgba(244, 63, 94, 0.45);
+    box-shadow: 0 4px 15px -3px rgba(244, 63, 94, 0.25);
+}
+
+/* Secondary Floating Hub Cards */
+.skills-floating-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+}
+
+@media (min-width: 860px) {
+    .skills-floating-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.skill-hub-card {
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1.25rem;
+    transition: transform var(--trans-normal), border-color var(--trans-normal), box-shadow var(--trans-normal);
+}
+
+.skill-hub-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--brand-cyan-light);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px var(--accent-glow);
+}
+
+.hub-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.hub-icon {
+    width: 3.15rem;
+    height: 3.15rem;
+    border-radius: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    flex-shrink: 0;
+}
+
+.hub-icon.blue {
+    background: rgba(37, 99, 235, 0.2);
+    color: var(--brand-blue-light);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+}
+
+.hub-icon.cyan {
+    background: rgba(6, 182, 212, 0.2);
+    color: var(--brand-cyan-light);
+    border: 1px solid rgba(6, 182, 212, 0.35);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+}
+
+.hub-icon.purple {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--brand-indigo-light);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.25);
+}
+
+.hub-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.hub-subtitle {
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+}
+
+.hub-floating-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.floating-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 0.75rem;
+    background: var(--tag-bg);
+    border: 1px solid var(--border-subtle);
+    color: var(--tag-text);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    cursor: default;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-tag:hover {
+    transform: translateY(-5px) scale(1.05) !important;
+    border-color: var(--brand-cyan-light);
+    box-shadow: 0 4px 15px -3px var(--accent-glow);
+}
+
+/* ZERO-GRAVITY FLOATING KEYFRAMES */
+.float-1 {
+    animation: floating-anim-1 3.6s ease-in-out infinite alternate;
+}
+
+.float-2 {
+    animation: floating-anim-2 4.4s ease-in-out infinite alternate;
+}
+
+.float-3 {
+    animation: floating-anim-3 4.0s ease-in-out infinite alternate;
+}
+
+.float-4 {
+    animation: floating-anim-1 4.8s ease-in-out infinite alternate 0.5s;
+}
+
+.float-5 {
+    animation: floating-anim-2 4.2s ease-in-out infinite alternate 1.0s;
+}
+
+.float-6 {
+    animation: floating-anim-3 4.6s ease-in-out infinite alternate 1.5s;
+}
+
+@keyframes floating-anim-1 {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+
+@keyframes floating-anim-2 {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(1.2deg); }
+}
+
+@keyframes floating-anim-3 {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-7px) rotate(-1.2deg); }
+}
+
+@media (max-width: 640px) {
+    .ci3-spotlight-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .ci3-badge-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .ci3-title {
+        font-size: 1.25rem;
+    }
+
+    .ci3-flame-orbit {
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+
+    .ci3-flame-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.85rem;
+    }
+}
