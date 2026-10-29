@@ -782,7 +782,9 @@ print(developer.execute_mission())
 
   let currentlySelectedTech = null;
 
-  function showTechDetail(techKey) {
+  const techDetailPlaceholder = document.getElementById('techDetailPlaceholder');
+
+  function showTechDetail(techKey, shouldScroll = true) {
     const data = techDetailsData[techKey];
     if (!data || !techDetailContainer) return;
 
@@ -821,11 +823,15 @@ print(developer.execute_mission())
       </div>
     `).join('');
 
+    if (techDetailPlaceholder) {
+      techDetailPlaceholder.classList.add('hidden');
+    }
+
     techDetailContainer.classList.remove('hidden');
     techDetailContainer.classList.add('show');
 
-    // Smooth scroll to card if on small screens
-    if (window.innerWidth < 768) {
+    // Smooth scroll to card only on mobile and when user deliberately taps
+    if (shouldScroll && window.innerWidth < 992) {
       setTimeout(() => {
         techDetailContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 100);
@@ -838,6 +844,10 @@ print(developer.execute_mission())
     techBubbles.forEach(b => b.classList.remove('bubble-selected'));
     techDetailContainer.classList.remove('show');
     techDetailContainer.classList.add('hidden');
+
+    if (techDetailPlaceholder) {
+      techDetailPlaceholder.classList.remove('hidden');
+    }
   }
 
   techBubbles.forEach(bubble => {
@@ -846,7 +856,7 @@ print(developer.execute_mission())
       if (currentlySelectedTech === techKey) {
         hideTechDetail();
       } else {
-        showTechDetail(techKey);
+        showTechDetail(techKey, true);
       }
     });
   });
@@ -854,5 +864,8 @@ print(developer.execute_mission())
   if (closeTechDetailBtn) {
     closeTechDetailBtn.addEventListener('click', hideTechDetail);
   }
+
+  // Pre-load Code Igniter 3 by default so the left column is beautifully populated
+  showTechDetail('ci3', false);
 
 });

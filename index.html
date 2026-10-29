@@ -305,70 +305,91 @@
           <div class="section-line"></div>
         </div>
 
-        <!-- Free Floating Tech Bubbles (No Enclosing Card - Organic Random Scatter) -->
-        <div class="floating-tech-stage reveal-fade-up">
-          <!-- 1. Code Igniter 3 -->
-          <div class="tech-scatter-bubble bubble-ci3 bubble-stagger-1 float-rnd-1" data-tech="ci3" title="Klik untuk melihat penjelasan Code Igniter 3">
-            <div class="scatter-bubble-icon"><i class="ri-fire-fill"></i></div>
-            <span class="scatter-bubble-text">Code Igniter 3</span>
-          </div>
+        <!-- Interactive Side-by-Side Showcase (Left: Detail Penjelasan, Right: Floating Bubbles) -->
+        <div class="skills-showcase-layout reveal-fade-up">
 
-          <!-- 2. PHP -->
-          <div class="tech-scatter-bubble bubble-php bubble-stagger-2 float-rnd-2" data-tech="php" title="Klik untuk melihat penjelasan PHP 8">
-            <div class="scatter-bubble-icon"><i class="ri-php-line"></i></div>
-            <span class="scatter-bubble-text">PHP 8</span>
-          </div>
-
-          <!-- 3. Tailwind CSS -->
-          <div class="tech-scatter-bubble bubble-tailwind bubble-stagger-3 float-rnd-3" data-tech="tailwind" title="Klik untuk melihat penjelasan Tailwind CSS">
-            <div class="scatter-bubble-icon"><i class="ri-tailwind-css-fill"></i></div>
-            <span class="scatter-bubble-text">Tailwind CSS</span>
-          </div>
-
-          <!-- 4. MySQL -->
-          <div class="tech-scatter-bubble bubble-mysql bubble-stagger-4 float-rnd-4" data-tech="mysql" title="Klik untuk melihat penjelasan MySQL">
-            <div class="scatter-bubble-icon"><i class="ri-database-2-line"></i></div>
-            <span class="scatter-bubble-text">MySQL</span>
-          </div>
-
-          <!-- 5. JavaScript -->
-          <div class="tech-scatter-bubble bubble-js bubble-stagger-5 float-rnd-5" data-tech="javascript" title="Klik untuk melihat penjelasan JavaScript">
-            <div class="scatter-bubble-icon"><i class="ri-javascript-fill"></i></div>
-            <span class="scatter-bubble-text">JavaScript</span>
-          </div>
-
-          <!-- 6. Git -->
-          <div class="tech-scatter-bubble bubble-git bubble-stagger-6 float-rnd-6" data-tech="git" title="Klik untuk melihat penjelasan Git">
-            <div class="scatter-bubble-icon"><i class="ri-git-branch-line"></i></div>
-            <span class="scatter-bubble-text">Git</span>
-          </div>
-        </div>
-
-        <!-- Hint to click -->
-        <div class="bubble-click-hint reveal-fade-up">
-          <i class="ri-cursor-line"></i>
-          <span>Klik salah satu gelembung teknologi di atas untuk melihat penjelasan</span>
-        </div>
-
-        <!-- Dynamic Tech Detail Card (Reveals on Click) -->
-        <div id="techDetailContainer" class="tech-detail-wrapper hidden">
-          <div class="glass-card tech-detail-card" id="techDetailCard">
-            <button id="closeTechDetailBtn" class="detail-close-btn" aria-label="Tutup Penjelasan">
-              <i class="ri-close-line"></i>
-            </button>
-            <div class="tech-detail-header">
-              <div class="detail-icon" id="detailIcon">
-                <i class="ri-fire-fill"></i>
-              </div>
-              <div>
-                <span class="detail-badge" id="detailBadge">Primary Framework</span>
-                <h3 class="detail-title" id="detailTitle">Code Igniter 3</h3>
-                <span class="detail-subtitle" id="detailSubtitle">Framework Backend Utama</span>
+          <!-- LEFT COLUMN: Detail Penjelasan (Disamping Kiri) -->
+          <div class="skills-detail-col">
+            <!-- Dynamic Tech Detail Card (Active / Selected) -->
+            <div id="techDetailContainer" class="tech-detail-wrapper">
+              <div class="glass-card tech-detail-card" id="techDetailCard">
+                <button id="closeTechDetailBtn" class="detail-close-btn" aria-label="Tutup Penjelasan">
+                  <i class="ri-close-line"></i>
+                </button>
+                <div class="tech-detail-header">
+                  <div class="detail-icon" id="detailIcon">
+                    <i class="ri-fire-fill"></i>
+                  </div>
+                  <div>
+                    <span class="detail-badge badge-orange" id="detailBadge">Primary Framework</span>
+                    <h3 class="detail-title" id="detailTitle">Code Igniter 3</h3>
+                    <span class="detail-subtitle" id="detailSubtitle">Framework Backend Utama &amp; Arsitektur MVC</span>
+                  </div>
+                </div>
+                <p class="detail-desc" id="detailDesc"></p>
+                <div class="detail-points" id="detailPoints"></div>
               </div>
             </div>
-            <p class="detail-desc" id="detailDesc"></p>
-            <div class="detail-points" id="detailPoints"></div>
+
+            <!-- Minimalist Placeholder when user closes card -->
+            <div id="techDetailPlaceholder" class="tech-detail-placeholder hidden">
+              <div class="placeholder-icon-wrap">
+                <i class="ri-cursor-line"></i>
+              </div>
+              <h4>Pilih Gelembung Teknologi</h4>
+              <p>Klik salah satu gelembung teknologi di sebelah kanan untuk membaca penjelasan spesifik mengenai keahlian dan implementasi teknologinya.</p>
+            </div>
           </div>
+
+          <!-- RIGHT COLUMN: Floating Bubbles Stage (Disamping Kanan) -->
+          <div class="skills-bubbles-col">
+            <!-- Hint to click -->
+            <div class="bubble-click-hint">
+              <i class="ri-cursor-line"></i>
+              <span class="desktop-hint-text">Klik gelembung untuk melihat penjelasan di samping kiri</span>
+              <span class="mobile-hint-text">Klik gelembung untuk melihat penjelasan di bawah</span>
+            </div>
+
+            <!-- Free Floating Tech Bubbles (Organic Random Scatter) -->
+            <div class="floating-tech-stage">
+              <!-- 1. Code Igniter 3 -->
+              <div class="tech-scatter-bubble bubble-ci3 bubble-stagger-1 float-rnd-1 bubble-selected" data-tech="ci3" title="Klik untuk melihat penjelasan Code Igniter 3">
+                <div class="scatter-bubble-icon"><i class="ri-fire-fill"></i></div>
+                <span class="scatter-bubble-text">Code Igniter 3</span>
+              </div>
+
+              <!-- 2. PHP -->
+              <div class="tech-scatter-bubble bubble-php bubble-stagger-2 float-rnd-2" data-tech="php" title="Klik untuk melihat penjelasan PHP 8">
+                <div class="scatter-bubble-icon"><i class="ri-php-line"></i></div>
+                <span class="scatter-bubble-text">PHP 8</span>
+              </div>
+
+              <!-- 3. Tailwind CSS -->
+              <div class="tech-scatter-bubble bubble-tailwind bubble-stagger-3 float-rnd-3" data-tech="tailwind" title="Klik untuk melihat penjelasan Tailwind CSS">
+                <div class="scatter-bubble-icon"><i class="ri-tailwind-css-fill"></i></div>
+                <span class="scatter-bubble-text">Tailwind CSS</span>
+              </div>
+
+              <!-- 4. MySQL -->
+              <div class="tech-scatter-bubble bubble-mysql bubble-stagger-4 float-rnd-4" data-tech="mysql" title="Klik untuk melihat penjelasan MySQL">
+                <div class="scatter-bubble-icon"><i class="ri-database-2-line"></i></div>
+                <span class="scatter-bubble-text">MySQL</span>
+              </div>
+
+              <!-- 5. JavaScript -->
+              <div class="tech-scatter-bubble bubble-js bubble-stagger-5 float-rnd-5" data-tech="javascript" title="Klik untuk melihat penjelasan JavaScript">
+                <div class="scatter-bubble-icon"><i class="ri-javascript-fill"></i></div>
+                <span class="scatter-bubble-text">JavaScript</span>
+              </div>
+
+              <!-- 6. Git -->
+              <div class="tech-scatter-bubble bubble-git bubble-stagger-6 float-rnd-6" data-tech="git" title="Klik untuk melihat penjelasan Git">
+                <div class="scatter-bubble-icon"><i class="ri-git-branch-line"></i></div>
+                <span class="scatter-bubble-text">Git</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

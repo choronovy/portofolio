@@ -3199,8 +3199,69 @@ html, body {
 }
 
 /* -------------------------------------------------------------------
-   26. CLICK-TO-EXPLAIN TECH BUBBLE DETAIL CARD
+   26. SKILLS INTERACTIVE SHOWCASE (SIDE-BY-SIDE: LEFT DETAILS, RIGHT BUBBLES)
    ------------------------------------------------------------------- */
+.skills-showcase-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 991px) {
+    .skills-bubbles-col {
+        order: 1;
+        width: 100%;
+    }
+    .skills-detail-col {
+        order: 2;
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .skills-showcase-layout {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 3.5rem;
+        align-items: center;
+        margin-top: 1.5rem;
+    }
+
+    .skills-detail-col {
+        order: 1;
+        width: 100%;
+    }
+
+    .skills-bubbles-col {
+        order: 2;
+        width: 100%;
+    }
+}
+
+/* Bubbles Column & Cluster Alignment */
+.skills-bubbles-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-bubbles-col .bubble-click-hint {
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+}
+
+.skills-bubbles-col .floating-tech-stage {
+    min-height: auto;
+    max-width: 34rem;
+    padding: 1.5rem 0.5rem;
+    gap: 1.6rem 1.35rem;
+    margin: 0 auto;
+}
+
+/* Hint text toggles */
 .bubble-click-hint {
     display: flex;
     align-items: center;
@@ -3209,13 +3270,29 @@ html, body {
     font-size: 0.85rem;
     color: var(--text-muted);
     font-family: 'JetBrains Mono', monospace;
-    margin-top: 1rem;
     text-align: center;
 }
 
 .bubble-click-hint i {
     color: var(--brand-cyan-light);
     animation: bounceCursor 2s infinite ease-in-out;
+}
+
+.desktop-hint-text {
+    display: none;
+}
+
+.mobile-hint-text {
+    display: inline;
+}
+
+@media (min-width: 992px) {
+    .desktop-hint-text {
+        display: inline;
+    }
+    .mobile-hint-text {
+        display: none;
+    }
 }
 
 @keyframes bounceCursor {
@@ -3225,34 +3302,40 @@ html, body {
 
 /* Selected Bubble State */
 .tech-scatter-bubble.bubble-selected {
-    transform: scale(1.15) translateY(-14px) !important;
+    transform: scale(1.12) translateY(-10px) !important;
     border-color: #ffffff !important;
     box-shadow: 0 0 35px rgba(56, 189, 248, 0.75), 0 14px 40px -5px rgba(0, 0, 0, 0.7) !important;
     z-index: 25;
 }
 
-/* Detail Card Display */
+/* Detail Card Display (Left Column) */
+.skills-detail-col {
+    position: relative;
+    width: 100%;
+}
+
 .tech-detail-wrapper {
-    max-width: 48rem;
-    margin: 2.25rem auto 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .tech-detail-wrapper.hidden {
     display: none !important;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
 }
 
 .tech-detail-wrapper.show {
     display: block !important;
-    animation: detailCardSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: detailCardSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes detailCardSlideIn {
     from {
         opacity: 0;
-        transform: translateY(25px) scale(0.97);
+        transform: translateY(20px) scale(0.98);
     }
     to {
         opacity: 1;
@@ -3273,6 +3356,53 @@ html, body {
 [data-theme="light"] .tech-detail-card {
     background: #ffffff;
     box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.1), 0 0 25px -5px rgba(37, 99, 235, 0.12);
+}
+
+/* Minimalist Placeholder when detail card is closed */
+.tech-detail-placeholder {
+    padding: 3rem 2rem;
+    border-radius: 1.5rem;
+    background: var(--bg-surface-elevated);
+    border: 1px dashed var(--border-medium);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.tech-detail-placeholder.hidden {
+    display: none !important;
+}
+
+.placeholder-icon-wrap {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    background: var(--tag-bg);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: var(--brand-cyan-light);
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.tech-detail-placeholder h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.tech-detail-placeholder p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 24rem;
+    line-height: 1.6;
 }
 
 .detail-close-btn {
