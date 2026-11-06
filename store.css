@@ -1168,3 +1168,401 @@
 .store-toast.error {
     border-left: 4px solid #ef4444;
 }
+
+
+
+/* -------------------------------------------------------------------
+   9. DARK LUXURY "WEKITA" STYLE HERO & 3D SMARTPHONE SHOWCASE
+   ------------------------------------------------------------------- */
+.undangan-hero-wrapper {
+    padding: 3.5rem 1rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Background Soft Neon Waves */
+.hero-glow-wave {
+    position: absolute;
+    width: 600px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(244, 63, 94, 0.12) 50%, transparent 70%);
+    filter: blur(80px);
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.undangan-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 38rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.undangan-hero-title {
+    font-size: 3.25rem;
+    font-weight: 900;
+    line-height: 1.08;
+    margin: 0 0 0.85rem;
+    letter-spacing: -0.03em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 640px) {
+    .undangan-hero-title {
+        font-size: 4.25rem;
+    }
+}
+
+.title-emerald {
+    color: #10b981;
+    text-shadow: 0 0 35px rgba(16, 185, 129, 0.4);
+}
+
+.title-coral {
+    background: linear-gradient(135deg, #fb923c 0%, #f43f5e 50%, #fb7185 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.35));
+}
+
+.undangan-hero-subtitle {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0 0 1.85rem;
+    line-height: 1.5;
+}
+
+.undangan-hero-subtitle strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.btn-hero-catalog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2.25rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #f43f5e 100%);
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 30px -5px rgba(249, 115, 22, 0.5), 0 0 25px rgba(244, 63, 94, 0.4);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.btn-hero-catalog:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 40px -5px rgba(249, 115, 22, 0.7), 0 0 35px rgba(244, 63, 94, 0.6);
+}
+
+/* -------------------------------------------------------------------
+   10. DUAL 3D FLOATING SMARTPHONE MOCKUPS
+   ------------------------------------------------------------------- */
+.phones-showcase-stage {
+    position: relative;
+    width: 100%;
+    max-width: 32rem;
+    height: 420px;
+    margin: 2.5rem auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 640px) {
+    .phones-showcase-stage {
+        height: 480px;
+        max-width: 38rem;
+    }
+}
+
+.mockup-phone {
+    position: absolute;
+    width: 200px;
+    height: 380px;
+    border-radius: 2.25rem;
+    background: #0f172a;
+    border: 4px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px -5px rgba(56, 189, 248, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    will-change: transform;
+}
+
+@media (min-width: 640px) {
+    .mockup-phone {
+        width: 230px;
+        height: 430px;
+    }
+}
+
+/* Phone 1 (Left Tilted) */
+.mockup-phone-left {
+    transform: rotate(-9deg) translateX(-60px) translateY(-10px);
+    animation: floatPhoneLeft 6s ease-in-out infinite alternate;
+    border-color: rgba(244, 63, 94, 0.4);
+    box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(244, 63, 94, 0.35);
+    z-index: 6;
+}
+
+/* Phone 2 (Right Tilted) */
+.mockup-phone-right {
+    transform: rotate(8deg) translateX(65px) translateY(15px);
+    animation: floatPhoneRight 7s ease-in-out infinite alternate;
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(16, 185, 129, 0.35);
+    z-index: 4;
+}
+
+@keyframes floatPhoneLeft {
+    0% { transform: rotate(-9deg) translateX(-60px) translateY(-10px); }
+    100% { transform: rotate(-7deg) translateX(-60px) translateY(8px); }
+}
+
+@keyframes floatPhoneRight {
+    0% { transform: rotate(8deg) translateX(65px) translateY(15px); }
+    100% { transform: rotate(10deg) translateX(65px) translateY(-5px); }
+}
+
+/* Phone Bezel Notch */
+.phone-notch {
+    width: 65px;
+    height: 14px;
+    background: #000000;
+    border-radius: 9999px;
+    margin: 8px auto 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.phone-lens {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #1e293b;
+}
+
+/* Phone Inner Screen Contents */
+.phone-screen {
+    flex: 1;
+    background: linear-gradient(180deg, #1e1b2e 0%, #110e1c 100%);
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.phone-screen-floral {
+    background: linear-gradient(180deg, #2b1820 0%, #160c14 100%);
+}
+
+.phone-screen-emerald {
+    background: linear-gradient(180deg, #0f241d 0%, #071510 100%);
+}
+
+.phone-ornament-top {
+    font-size: 1.5rem;
+    color: #fb7185;
+    margin-bottom: 0.25rem;
+}
+
+.phone-couple-badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #fda4af;
+    margin-bottom: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.phone-couple-photo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 2px solid #fda4af;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+    background: #471927;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fda4af;
+}
+
+.phone-couple-names {
+    font-family: 'Inter', serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffe4e6;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.phone-event-date {
+    font-size: 0.65rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #94a3b8;
+    margin-bottom: 0.75rem;
+}
+
+.phone-action-pill {
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #fb923c, #f43f5e);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.5);
+}
+
+.phone-countdown-box {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 0.6rem;
+}
+
+.phone-countdown-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.35rem;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* -------------------------------------------------------------------
+   11. "FITUR TERLENGKAP" & SOCIAL PROOF BAR
+   ------------------------------------------------------------------- */
+.features-proof-section {
+    padding: 2rem 0 3rem;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 2.5rem;
+}
+
+.features-proof-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #10b981;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.features-proof-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem;
+}
+
+.proof-avatars-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.avatar-bubble {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    border: 3px solid var(--bg-base);
+    background: var(--bg-surface-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: var(--brand-cyan-light);
+    margin-left: -0.85rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: transform 0.2s ease, z-index 0.2s ease;
+    cursor: default;
+}
+
+.avatar-bubble:first-child {
+    margin-left: 0;
+}
+
+.avatar-bubble:hover {
+    transform: translateY(-4px) scale(1.15);
+    z-index: 10;
+}
+
+.avatar-wa-float {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: #25d366;
+    border: 3px solid var(--bg-base);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    margin-left: -0.75rem;
+    z-index: 12;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.avatar-wa-float:hover {
+    transform: scale(1.15) rotate(8deg);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.7);
+}
+
+/* Wekita pill order button in navbar */
+.btn-nav-order {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1.15rem;
+    border-radius: 9999px;
+    background: rgba(249, 115, 22, 0.12);
+    border: 1.5px solid #f97316;
+    color: #fb923c !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-nav-order:hover {
+    background: #f97316;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+    transform: translateY(-2px);
+}
