@@ -140,6 +140,17 @@ const INITIAL_SETTINGS = {
   currency: 'IDR'
 };
 
+function normalizeWaNumber(phone) {
+  if (!phone) return '6283871821218';
+  let cleaned = phone.toString().replace(/[^0-9]/g, '');
+  if (cleaned.startsWith('0')) {
+    cleaned = '62' + cleaned.slice(1);
+  } else if (cleaned.startsWith('8')) {
+    cleaned = '62' + cleaned;
+  }
+  return cleaned;
+}
+
 // -------------------------------------------------------------------
 // 2. STORAGE REPOSITORY
 // -------------------------------------------------------------------
@@ -188,13 +199,23 @@ const StoreStorage = {
       return INITIAL_SETTINGS;
     }
     try {
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      if (!parsed.whatsappNumber || parsed.whatsappNumber === '6281234567890') {
+        parsed.whatsappNumber = '6283871821218';
+        localStorage.setItem('VIRYO_STORE_SETTINGS', JSON.stringify(parsed));
+      } else {
+        parsed.whatsappNumber = normalizeWaNumber(parsed.whatsappNumber);
+      }
+      return parsed;
     } catch (_) {
       return INITIAL_SETTINGS;
     }
   },
 
   saveSettings(settings) {
+    if (settings && settings.whatsappNumber) {
+      settings.whatsappNumber = normalizeWaNumber(settings.whatsappNumber);
+    }
     localStorage.setItem('VIRYO_STORE_SETTINGS', JSON.stringify(settings));
     window.dispatchEvent(new Event('store_data_updated'));
   },
