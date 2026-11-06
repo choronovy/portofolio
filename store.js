@@ -9,81 +9,81 @@
 const INITIAL_PRODUCTS = [
   {
     id: 'prod-001',
-    name: 'Undangan Digital Wedding - Luxury Floral Gold',
-    category: 'wedding',
-    price: 85000,
-    origPrice: 150000,
-    stock: 999,
-    badge: 'Terlaris',
-    promo: 'Diskon 43%',
-    icon: 'ri-hearts-fill',
-    desc: 'Tema undangan pernikahan digital bernuansa floral emas mewah. Dilengkapi kustomisasi nama tamu otomatis tanpa batas, musik latar autoplay, countdown timer menuju hari H, dan navigasi Google Maps presisi.',
-    features: ['Custom Nama Tamu Unlimited', 'Musik Latar Autoplay', 'Countdown Timer Hari H', 'Navigasi Google Maps', 'Buku Tamu & RSVP Online', 'Amplop Digital & QRIS']
+    name: 'Source Code POS & Kasir Pintar (CI3 + MySQL)',
+    category: 'source-code',
+    price: 350000,
+    origPrice: 500000,
+    stock: 99,
+    badge: 'Best Seller',
+    promo: 'Diskon 30%',
+    icon: 'ri-store-3-line',
+    desc: 'Aplikasi kasir web responsif berbasis Code Igniter 3 & MySQL. Dilengkapi fitur multi-user kasir, cetak struk thermal 58/80mm, barcode scanner, manajemen stok otomatis, dan laporan laba-rugi terperinci.',
+    features: ['Code Igniter 3 Core', 'MySQL Relasional 3NF', 'Cetak Struk Thermal', 'Multi-User & Hak Akses', 'Export Excel & PDF']
   },
   {
     id: 'prod-002',
-    name: 'Undangan Digital Wedding - Modern Minimalist Dark',
-    category: 'wedding',
-    price: 95000,
-    origPrice: 175000,
-    stock: 850,
-    badge: 'Trending',
-    promo: 'Diskon 45%',
-    icon: 'ri-sparkling-fill',
-    desc: 'Desain undangan digital modern dengan tema dark glassmorphism estetis. Cocok untuk pasangan modern yang menginginkan tampilan elegan, galeri foto & video sinematik, serta cerita cinta (love story timeline).',
-    features: ['Tema Dark & Light Mode', 'Galeri Foto & Video Sinematik', 'Love Story Timeline Interaktif', 'Live Streaming YouTube Embed', 'Konfirmasi RSVP ke WhatsApp']
+    name: 'RESTful API Starter Kit (PHP 8.3 + JWT)',
+    category: 'api-backend',
+    price: 175000,
+    origPrice: 250000,
+    stock: 120,
+    badge: 'Popular',
+    promo: 'Diskon 30%',
+    icon: 'ri-server-line',
+    desc: 'Boilerplate RESTful API siap pakai dengan PHP 8.3 murni. Menyediakan autentikasi JWT token, middleware rate-limiting, CORS, standard response JSON, validasi input, dan dokumentasi Postman Collection.',
+    features: ['PHP 8.3 Engine', 'JWT Authentication', 'Rate Limiting Guard', 'Input Sanitization', 'Postman Collection']
   },
   {
     id: 'prod-003',
-    name: 'Undangan Digital Aqiqah & Tasyakuran Anak',
-    category: 'aqiqah',
-    price: 50000,
-    origPrice: 85000,
-    stock: 500,
-    badge: 'Best Value',
-    promo: 'Hemat 40%',
-    icon: 'ri-cake-2-line',
-    desc: 'Undangan tasyakuran kelahiran dan aqiqah buah hati dengan ilustrasi pastel yang ceria. Mendukung doa dan harapan keluarga, foto sang buah hati, serta kolom ucapan selamat dari para tamu.',
-    features: ['Desain Pastel Ceria', 'Doa & Ayat Suci', 'Galeri Foto Buah Hati', 'Petunjuk Lokasi Acara', 'Rekening Hadiah / Kado']
+    name: 'Sistem Informasi Manajemen Dokumen & Arsip',
+    category: 'source-code',
+    price: 275000,
+    origPrice: 400000,
+    stock: 65,
+    badge: 'Recommended',
+    promo: 'Diskon 31%',
+    icon: 'ri-file-shield-line',
+    desc: 'Sistem manajemen arsip surat masuk dan keluar berbasis Code Igniter 3 & Tailwind CSS. Mendukung upload berkas PDF terenkripsi, tracking disposisi surat berjenjang, dan notifikasi status via WhatsApp.',
+    features: ['Code Igniter 3 + Tailwind', 'Tracking Disposisi', 'Enkripsi Berkas Dokumen', 'Pencarian Cepat OCR/Tags', 'Responsif Mobile']
   },
   {
     id: 'prod-004',
-    name: 'Undangan Digital Walimatul Khitanan / Sunatan',
-    category: 'khitan',
-    price: 50000,
-    origPrice: 85000,
-    stock: 450,
-    badge: 'Popular',
-    promo: 'Hemat 40%',
-    icon: 'ri-user-star-line',
-    desc: 'Template undangan khitanan islami yang sopan dan berwibawa. Dilengkapi informasi acara syukuran, sambutan orang tua, peta digital, dan form ucapan doa restu.',
-    features: ['Nuansa Islami Elegan', 'Informasi Acara Lengkap', 'Peta Lokasi Google Maps', 'Form Doa Restu Digital', 'Fast Load & Ringan']
+    name: 'Jasa Integrasi WhatsApp Gateway & Notifikasi',
+    category: 'service',
+    price: 450000,
+    origPrice: 650000,
+    stock: 15,
+    badge: 'Service',
+    promo: 'Hemat Rp 200k',
+    icon: 'ri-whatsapp-line',
+    desc: 'Layanan integrasi API WhatsApp resmi atau gateway pihak ketiga ke aplikasi web Anda. Berguna untuk mengirimkan notifikasi OTP, invoice pembayaran, status pesanan, dan konfirmasi otomatis tanpa delay.',
+    features: ['Kirim OTP Instan', 'Notifikasi Invoice Otomatis', 'Webhook Pesan Masuk', 'Dukungan Multi-Device', 'Garansi Setup 30 Hari']
   },
   {
     id: 'prod-005',
-    name: 'Undangan Digital Birthday Party - Neon Vibe',
-    category: 'birthday',
-    price: 45000,
-    origPrice: 75000,
-    stock: 600,
-    badge: 'Special Promo',
-    promo: 'Diskon 40%',
-    icon: 'ri-gift-line',
-    desc: 'Undangan pesta ulang tahun kekinian dengan efek neon yang atraktif. Lengkap dengan dress code info, playlist musik pesta, dan RSVP kehadiran teman-teman.',
-    features: ['Efek Neon Interaktif', 'Info Dress Code & Venue', 'Konfirmasi Kehadiran Teman', 'Integrasi Google Calendar', 'Responsif di Semua HP']
+    name: 'Skema Database Relasional E-Commerce (MySQL)',
+    category: 'database',
+    price: 95000,
+    origPrice: 150000,
+    stock: 250,
+    badge: 'Hot Item',
+    promo: 'Diskon 36%',
+    icon: 'ri-database-2-line',
+    desc: 'Rancangan arsitektur database relasional lengkap untuk platform e-commerce dan marketplace. Terdiri dari 38 tabel normalisasi 3NF, query view optimasi laporan, indexing performa tinggi, dan file SQL dump 10.000 sample data.',
+    features: ['38 Tabel Normalisasi 3NF', 'Diagram ERD Lengkap (PNG/PDF)', 'Query Stored Procedure & Views', 'Optimasi B-Tree Indexing', 'Dummy Data 10k Record']
   },
   {
     id: 'prod-006',
-    name: 'Source Code Web Undangan Digital Multi-Tenant (CI3 + MySQL)',
-    category: 'source-code',
-    price: 450000,
-    origPrice: 750000,
-    stock: 100,
-    badge: 'Full Source Code',
-    promo: 'Diskon 40%',
-    icon: 'ri-code-box-line',
-    desc: 'Source code lengkap platform bisnis undangan digital SaaS siap pakai. Memiliki dashboard admin, sistem reseller, 20+ tema undangan siap pakai, manajemen pesanan, dan integrasi WhatsApp Gateway.',
-    features: ['Platform SaaS Multi-User', '20+ Tema Undangan Siap Pakai', 'Dashboard Admin & Reseller', 'Code Igniter 3 & MySQL', 'Export Data & Invoice Otomatis']
+    name: 'Dashboard Admin Glassmorphism UI (HTML + Tailwind)',
+    category: 'template',
+    price: 120000,
+    origPrice: 180000,
+    stock: 80,
+    badge: 'Modern UI',
+    promo: 'Diskon 33%',
+    icon: 'ri-dashboard-3-line',
+    desc: 'Template dashboard antarmuka admin bernuansa modern dark glassmorphism. Dilengkapi grafik interaktif Chart.js, 15+ widget metrik responsif, data tables dengan filter, form elements, dan dark/light theme switchable.',
+    features: ['HTML5 & Tailwind CSS', 'Mode Terang & Gelap', 'Grafik Chart.js Interaktif', '15+ Widget Metrik Siap Pakai', 'Zero Build Tool Needed']
   }
 ];
 
@@ -134,7 +134,7 @@ const INITIAL_ORDERS = [
 ];
 
 const INITIAL_SETTINGS = {
-  storeName: 'Viryo Tech Store',
+  storeName: 'Infix Store',
   storeTagline: 'Source Code & Layanan Backend Berkualitas Tinggi',
   whatsappNumber: '6281234567890',
   currency: 'IDR'
@@ -146,8 +146,8 @@ const INITIAL_SETTINGS = {
 const StoreStorage = {
   getProducts() {
     const raw = localStorage.getItem('VIRYO_STORE_PRODUCTS');
-    // If empty or older non-undangan seed, refresh with latest catalog
-    if (!raw || !raw.includes('Undangan Digital')) {
+    // If empty or has invitation seed, refresh with Infix developer catalog
+    if (!raw || raw.includes('Undangan Digital')) {
       localStorage.setItem('VIRYO_STORE_PRODUCTS', JSON.stringify(INITIAL_PRODUCTS));
       return INITIAL_PRODUCTS;
     }

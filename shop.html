@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Digital - Toko Online Resmi Viryo &amp; Wekita</title>
-  <meta name="description" content="Platform dan toko online pembuatan undangan pernikahan digital, khitan, aqiqah, dan source code web berkualitas tinggi dengan harga murah.">
+  <title>Infix Store - Source Code, API &amp; Backend Solutions</title>
+  <meta name="description" content="Toko online resmi Infix. Beli source code Code Igniter 3, boilerplate RESTful API PHP 8, skema database MySQL, dan jasa web development siap pakai.">
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
   <!-- Inherit Luxury Core Stylesheet & Store Extension -->
   <link rel="stylesheet" href="style.css?v=3.7">
-  <link rel="stylesheet" href="store.css?v=1.1">
+  <link rel="stylesheet" href="store.css?v=1.2">
 </head>
 
 <body class="store-body">
@@ -35,21 +35,21 @@
   <header class="store-navbar">
     <div class="store-container">
       <div class="store-nav-inner">
-        <!-- Brand Logo (Wekita style) -->
+        <!-- Brand Logo: Infix -->
         <a href="shop.html" class="store-brand">
-          <div class="store-brand-badge" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%);">
-            <span style="font-weight:900; font-size:1.4rem; letter-spacing:-1px;">W</span>
+          <div class="store-brand-badge">
+            <span style="font-weight:900; font-family:'JetBrains Mono',monospace; font-size:1.15rem;">&lt;/&gt;</span>
           </div>
           <div class="store-brand-text">
-            <h1 style="color:var(--text-primary);">wekita<span style="color:#10b981;">.id</span></h1>
-            <span style="color:#fb923c;">Undangan Digital</span>
+            <h1>infix<span style="color:var(--brand-cyan-light);">.id</span></h1>
+            <span>Source Code &amp; Backend</span>
           </div>
         </a>
 
         <!-- Search Bar (Desktop) -->
         <div class="store-search-bar">
           <i class="ri-search-line"></i>
-          <input type="text" id="storeSearchInput" placeholder="Cari tema wedding, aqiqah, khitan..." autocomplete="off">
+          <input type="text" id="storeSearchInput" placeholder="Cari source code, API, database..." autocomplete="off">
         </div>
 
         <!-- Actions -->
@@ -61,7 +61,7 @@
 
           <a href="admin.html" class="store-nav-link" style="color:var(--brand-cyan-light);" title="Halaman Pengelola Toko">
             <i class="ri-dashboard-line"></i>
-            <span class="desktop-only-text">Admin</span>
+            <span class="desktop-only-text">Kelola Toko</span>
           </a>
 
           <!-- Luxury Theme Switcher -->
@@ -70,7 +70,7 @@
             <i class="ri-moon-line icon-moon text-blue-400"></i>
           </button>
 
-          <!-- Top-Right Order Pill Button (Like Screenshot) -->
+          <!-- Top-Right Order Button with Badge Counter -->
           <button id="cartToggleBtn" class="btn-nav-order" aria-label="Lihat Keranjang Pesanan">
             <i class="ri-shopping-cart-2-line"></i>
             <span>Pesan</span>
@@ -83,123 +83,34 @@
 
   <!-- Main Store Content -->
   <main class="store-container" style="flex:1;">
-
-    <!-- 1. HERO SHOWCASE (WEKITA DARK LUXURY VERSION) -->
-    <section class="undangan-hero-wrapper">
-      <div class="hero-glow-wave"></div>
-
-      <div class="undangan-hero-content">
-        <!-- Big Two-Tone Headline -->
-        <h1 class="undangan-hero-title">
-          <span class="title-emerald">Undangan</span>
-          <span class="title-coral">Digital</span>
-        </h1>
-
-        <!-- Subtitle -->
-        <p class="undangan-hero-subtitle">
-          Berbagi Momen Spesial Dengan <strong style="color:#fb923c;">Murah!</strong>
-        </p>
-
-        <!-- CTA Button -->
-        <a href="#katalog" class="btn-hero-catalog">
-          <span>&rarr; Lihat Katalog</span>
-        </a>
-      </div>
-
-      <!-- Dual 3D Floating Smartphone Mockups -->
-      <div class="phones-showcase-stage">
-        <!-- Left Phone (Tilted -9deg, Wedding Cover Theme) -->
-        <div class="mockup-phone mockup-phone-left">
-          <div class="phone-notch">
-            <div class="phone-lens"></div>
-          </div>
-          <div class="phone-screen phone-screen-floral">
-            <div class="phone-ornament-top"><i class="ri-flower-line"></i></div>
-            <div class="phone-couple-badge">The Wedding of</div>
-            
-            <div class="phone-couple-photo">
-              <i class="ri-hearts-fill"></i>
-            </div>
-
-            <div class="phone-couple-names">Habib &amp; Adiba</div>
-            <div class="phone-event-date">Minggu, 20 Desember 2026</div>
-
-            <div class="phone-action-pill">
-              <i class="ri-mail-open-line"></i> Buka Undangan
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Phone (Tilted +8deg, Event RSVP & Details Theme) -->
-        <div class="mockup-phone mockup-phone-right">
-          <div class="phone-notch">
-            <div class="phone-lens"></div>
-          </div>
-          <div class="phone-screen phone-screen-emerald">
-            <div class="phone-ornament-top" style="color:#34d399;"><i class="ri-sparkling-fill"></i></div>
-            <div class="phone-couple-badge" style="color:#6ee7b7;">Waktu Menuju Acara</div>
-
-            <div class="phone-countdown-box">
-              <div class="phone-countdown-item"><strong>12</strong><br>Hari</div>
-              <div class="phone-countdown-item"><strong>08</strong><br>Jam</div>
-              <div class="phone-countdown-item"><strong>45</strong><br>Mnt</div>
-              <div class="phone-countdown-item"><strong>20</strong><br>Dtk</div>
-            </div>
-
-            <div style="margin: 0.85rem 0 0.5rem; font-size:0.75rem; color:#d1fae5; line-height:1.4;">
-              <i class="ri-map-pin-2-fill" style="color:#34d399;"></i><br>
-              Grand Ballroom Hotel<br>Jakarta Selatan
-            </div>
-
-            <div class="phone-action-pill" style="background:linear-gradient(135deg, #10b981, #059669); box-shadow:0 4px 12px rgba(16,185,129,0.5);">
-              <i class="ri-check-line"></i> Konfirmasi Kehadiran
-            </div>
-          </div>
+    <!-- Hero Showcase Banner (Restored Developer & Backend Version) -->
+    <section class="store-hero">
+      <div class="store-hero-card">
+        <span class="store-hero-badge">
+          <i class="ri-flashlight-line"></i> Produk Digital &amp; Jasa Terverifikasi
+        </span>
+        <h2 class="store-hero-title">Source Code Berkualitas &amp; Solusi Backend Siap Pakai</h2>
+        <p class="store-hero-desc">Dapatkan source code web aplikasi siap pakai berbasis Code Igniter 3, boilerplate RESTful API PHP 8, skema database MySQL teroptimasi, serta layanan integrasi sistem profesional.</p>
+        <div class="store-hero-tags">
+          <span class="store-hero-tag"><i class="ri-shield-check-line text-emerald-400"></i> Garansi Bebas Bug</span>
+          <span class="store-hero-tag"><i class="ri-download-cloud-line text-cyan-400"></i> Pengiriman Instan Digital</span>
+          <span class="store-hero-tag"><i class="ri-customer-service-2-line text-blue-400"></i> Dukungan WhatsApp Langsung</span>
+          <span class="store-hero-tag"><i class="ri-lock-line text-purple-400"></i> Pembayaran Aman (QRIS &amp; Transfer)</span>
         </div>
       </div>
     </section>
 
-    <!-- 2. "FITUR TERLENGKAP" & SOCIAL PROOF BAR (LIKE SCREENSHOT) -->
-    <section class="features-proof-section">
-      <h2 class="features-proof-title">Fitur Terlengkap</h2>
-      <p class="features-proof-subtitle">Dipercaya lebih dari 4.000+ pasangan &amp; pelanggan setiap bulannya</p>
-
-      <div class="proof-avatars-row">
-        <!-- 5 Client Avatar Bubbles -->
-        <div class="avatar-bubble" title="Klien Terverifikasi">
-          <i class="ri-user-smile-line" style="color:#fb7185;"></i>
-        </div>
-        <div class="avatar-bubble" title="Klien Terverifikasi">
-          <i class="ri-user-heart-line" style="color:#38bdf8;"></i>
-        </div>
-        <div class="avatar-bubble" title="Klien Terverifikasi">
-          <i class="ri-user-star-line" style="color:#fbbf24;"></i>
-        </div>
-        <div class="avatar-bubble" title="Klien Terverifikasi">
-          <i class="ri-user-follow-line" style="color:#a78bfa;"></i>
-        </div>
-        <div class="avatar-bubble" title="Klien Terverifikasi">
-          <i class="ri-shield-user-line" style="color:#34d399;"></i>
-        </div>
-
-        <!-- Floating Green WhatsApp Chat Button (Exact position as screenshot) -->
-        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Wekita,%20saya%20ingin%20tanya%20pembuatan%20Undangan%20Digital" target="_blank" rel="noopener noreferrer" class="avatar-wa-float" title="Chat WhatsApp Langsung">
-          <i class="ri-whatsapp-fill"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- 3. KATALOG PRODUK & UNDANGAN SECTION -->
-    <section id="katalog" style="scroll-margin-top: 5rem;">
+    <!-- Filter & Category Section -->
+    <section id="katalog" style="margin-top: 1rem; scroll-margin-top: 5rem;">
       <div class="store-filter-bar">
         <!-- Category Chips -->
         <div class="category-chips">
-          <button class="category-chip active" data-category="all">Semua Template</button>
-          <button class="category-chip" data-category="wedding">Wedding (Pernikahan)</button>
-          <button class="category-chip" data-category="aqiqah">Aqiqah &amp; Syukuran</button>
-          <button class="category-chip" data-category="khitan">Khitanan / Sunatan</button>
-          <button class="category-chip" data-category="birthday">Ulang Tahun</button>
-          <button class="category-chip" data-category="source-code">Source Code Web</button>
+          <button class="category-chip active" data-category="all">Semua Produk</button>
+          <button class="category-chip" data-category="source-code">Source Code</button>
+          <button class="category-chip" data-category="api-backend">API &amp; Backend</button>
+          <button class="category-chip" data-category="database">Database</button>
+          <button class="category-chip" data-category="service">Layanan</button>
+          <button class="category-chip" data-category="template">Template UI</button>
         </div>
 
         <!-- Sort Select -->
@@ -226,9 +137,9 @@
     <div class="store-container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
       <div>
         <div style="font-weight:800; font-size:1.15rem; color:var(--text-primary); margin-bottom:0.25rem;">
-          wekita<span style="color:#10b981;">.id</span> &times; Viryo Store
+          infix<span style="color:var(--brand-cyan-light);">.id</span> &bull; Infix Store
         </div>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Platform undangan digital profesional, elegan, dan hemat biaya.</p>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Solusi perangkat lunak, source code, dan arsitektur backend tangguh.</p>
       </div>
       <div style="display:flex; align-items:center; gap:1rem;">
         <a href="index.html" style="font-size:0.88rem; color:var(--text-secondary); text-decoration:none;">Portofolio</a>
@@ -246,7 +157,7 @@
   <div id="cartOverlay" class="cart-overlay"></div>
   <aside id="cartDrawer" class="cart-drawer">
     <div class="cart-header">
-      <h3><i class="ri-shopping-cart-2-fill text-cyan-400"></i> Keranjang Pesanan</h3>
+      <h3><i class="ri-shopping-cart-2-fill text-cyan-400"></i> Keranjang Belanja</h3>
       <button id="cartCloseBtn" class="cart-close-btn" aria-label="Tutup Keranjang">
         <i class="ri-close-line"></i>
       </button>
@@ -268,7 +179,7 @@
         <span id="cartTotal" class="cart-total-price">Rp 0</span>
       </div>
       <button id="openCheckoutBtn" class="btn-checkout">
-        <i class="ri-secure-payment-line"></i> Lanjut Isi Data Pemesanan
+        <i class="ri-secure-payment-line"></i> Lanjut ke Pembayaran
       </button>
     </div>
   </aside>
@@ -277,7 +188,7 @@
   <div id="productDetailModal" class="store-modal-overlay">
     <div class="store-modal-card">
       <div class="modal-header">
-        <h3 style="font-size:1.15rem; font-weight:700;"><i class="ri-information-line text-cyan-400"></i> Detail Tema Undangan</h3>
+        <h3 style="font-size:1.15rem; font-weight:700;"><i class="ri-information-line text-cyan-400"></i> Detail Spesifikasi Produk</h3>
         <button id="closeDetailBtn" class="cart-close-btn" onclick="document.getElementById('productDetailModal').classList.remove('open')">
           <i class="ri-close-line"></i>
         </button>
@@ -292,7 +203,7 @@
   <div id="checkoutModal" class="store-modal-overlay">
     <div class="store-modal-card">
       <div class="modal-header">
-        <h3 style="font-size:1.15rem; font-weight:700;"><i class="ri-shield-check-line text-emerald-400"></i> Formulir Pemesanan Undangan</h3>
+        <h3 style="font-size:1.15rem; font-weight:700;"><i class="ri-shield-check-line text-emerald-400"></i> Formulir Pembayaran &amp; Checkout</h3>
         <button id="closeCheckoutBtn" class="cart-close-btn">
           <i class="ri-close-line"></i>
         </button>
@@ -300,21 +211,21 @@
       <form id="checkoutForm" class="modal-body">
         <!-- Order Items Summary Box -->
         <div style="background:var(--bg-card); padding:1rem; border-radius:0.85rem; border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
-          <div style="font-weight:700; font-size:0.88rem; color:var(--text-primary); margin-bottom:0.6rem;">Item yang Dipesan:</div>
+          <div style="font-weight:700; font-size:0.88rem; color:var(--text-primary); margin-bottom:0.6rem;">Ringkasan Belanja:</div>
           <div id="checkoutItemsSummary"></div>
           <div style="border-top:1px dashed var(--border-medium); padding-top:0.65rem; margin-top:0.65rem; display:flex; justify-content:space-between; font-weight:800; font-size:1rem; color:var(--text-primary);">
             <span>Total Tagihan:</span>
-            <span id="checkoutGrandTotal" style="color:#fb923c; font-family:'JetBrains Mono',monospace;">Rp 0</span>
+            <span id="checkoutGrandTotal" style="color:var(--brand-cyan-light); font-family:'JetBrains Mono',monospace;">Rp 0</span>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="custName">Nama Pemesan / Pasangan *</label>
-            <input type="text" id="custName" class="form-control" required placeholder="Contoh: Habib &amp; Adiba">
+            <label class="form-label" for="custName">Nama Lengkap *</label>
+            <input type="text" id="custName" class="form-control" required placeholder="Contoh: Budi Santoso">
           </div>
           <div class="form-group">
-            <label class="form-label" for="custPhone">Nomor WhatsApp Aktif *</label>
+            <label class="form-label" for="custPhone">Nomor WhatsApp *</label>
             <input type="tel" id="custPhone" class="form-control" required placeholder="Contoh: 08123456789">
           </div>
         </div>
@@ -322,33 +233,33 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="custEmail">Alamat Email *</label>
-            <input type="email" id="custEmail" class="form-control" required placeholder="email@contoh.com">
+            <input type="email" id="custEmail" class="form-control" required placeholder="budi@example.com">
           </div>
           <div class="form-group">
             <label class="form-label" for="custPayment">Metode Pembayaran *</label>
             <select id="custPayment" class="form-control" required>
               <option value="QRIS (Instant Otomatis)">QRIS (Semua E-Wallet / M-Banking)</option>
               <option value="Transfer Bank BCA">Transfer Bank BCA</option>
-              <option value="Transfer Bank Mandiri / BRI">Transfer Bank Mandiri / BRI</option>
-              <option value="DANA / GoPay / ShopeePay">E-Wallet (DANA, GoPay, ShopeePay)</option>
-              <option value="WhatsApp Direct">Konfirmasi Langsung via WhatsApp</option>
+              <option value="Transfer Bank Mandiri">Transfer Bank Mandiri</option>
+              <option value="DANA / GoPay / OVO">E-Wallet (DANA, GoPay, OVO)</option>
+              <option value="WhatsApp Direct (Konsultasi)">Konfirmasi via WhatsApp</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="custNotes">Catatan Tanggal Acara / Permintaan Khusus</label>
-          <textarea id="custNotes" class="form-control" rows="2" placeholder="Contoh: Tanggal resepsi 20 Des 2026, request lagu latar tertentu..."></textarea>
+          <label class="form-label" for="custNotes">Catatan Tambahan (Opsional)</label>
+          <textarea id="custNotes" class="form-control" rows="2" placeholder="Catatan kustomisasi, permintaan link Google Drive, dll."></textarea>
         </div>
 
         <div style="font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
-          <i class="ri-information-line"></i> Pesanan akan langsung diteruskan ke WhatsApp Admin untuk proses pembuatan draft undangan digital Anda dengan kilat.
+          <i class="ri-information-line"></i> Setelah menekan tombol konfirmasi, pesanan Anda akan tersimpan di sistem toko dan format pesan pesanan otomatis terbuka di WhatsApp untuk verifikasi cepat.
         </div>
 
         <div class="modal-footer" style="padding:0; background:transparent; border:none;">
           <button type="button" id="cancelCheckoutBtn" class="btn-detail" style="padding:0.75rem 1.25rem;">Batal</button>
-          <button type="submit" class="btn-checkout" style="width:auto; padding:0.75rem 1.75rem; background:linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow:0 4px 15px rgba(16,185,129,0.4);">
-            <i class="ri-whatsapp-fill"></i> Kirim Pesanan via WhatsApp
+          <button type="submit" class="btn-checkout" style="width:auto; padding:0.75rem 1.75rem;">
+            <i class="ri-whatsapp-fill"></i> Konfirmasi Pesanan Sekarang
           </button>
         </div>
       </form>
@@ -356,7 +267,7 @@
   </div>
 
   <!-- Store JavaScript Logic -->
-  <script src="store.js?v=1.1"></script>
+  <script src="store.js?v=1.2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       initShopPage();
