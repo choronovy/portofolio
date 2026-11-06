@@ -136,7 +136,7 @@ const INITIAL_ORDERS = [
 const INITIAL_SETTINGS = {
   storeName: 'Infix Store',
   storeTagline: 'Source Code & Layanan Backend Berkualitas Tinggi',
-  whatsappNumber: '6281234567890',
+  whatsappNumber: '6283871821218',
   currency: 'IDR'
 };
 
@@ -366,6 +366,15 @@ function initSharedTheme() {
 function initShopPage() {
   initSharedTheme();
   CartManager.updateBadge();
+
+  // Floating WhatsApp button setup
+  const floatingWaBtn = document.getElementById('floatingWaBtn');
+  if (floatingWaBtn) {
+    const settings = StoreStorage.getSettings();
+    if (settings && settings.whatsappNumber) {
+      floatingWaBtn.href = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent('Halo Admin Infix, saya tertarik dengan produk di Infix Store.')}`;
+    }
+  }
 
   const productGrid = document.getElementById('productGrid');
   const categoryChips = document.querySelectorAll('.category-chip');
