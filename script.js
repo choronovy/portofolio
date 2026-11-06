@@ -431,6 +431,239 @@ print(developer.execute_mission())
     });
   }
 
+  // HTML escape helper
+  function escapeHtml(str) {
+    if (typeof str !== 'string') str = String(str);
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Realistic PHP Execution Engine (Client-Side)
+  function executePhpCode(code) {
+    const output = [];
+    try {
+      let clean = code.replace(/<\?php/gi, '').replace(/\?>/gi, '').trim();
+      if (!clean) return { success: true, output: '(Program selesai dieksekusi tanpa output)' };
+
+      // Semicolon syntax check on statements
+      const lines = clean.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line || line.startsWith('//') || line.startsWith('#') || line.startsWith('/*') || line.endsWith('*/')) continue;
+        if (line.endsWith('{') || line.endsWith('}') || line.startsWith('}') || line.startsWith('{')) continue;
+        if (line.startsWith('class ') || line.startsWith('public ') || line.startsWith('private ') || line.startsWith('function ')) {
+          if (line.endsWith('{')) continue;
+        }
+        if ((line.startsWith('echo ') || line.startsWith('$') || line.startsWith('print ') || line.startsWith('return ')) && !line.endsWith(';') && !line.endsWith('{') && !line.endsWith('}')) {
+          return {
+            success: false,
+            error: `PHP Parse error: syntax error, unexpected token on line ${i + 1} (missing semicolon ';')`
+          };
+        }
+      }
+
+      let jsCode = clean;
+
+      // 1. Convert PHP string concatenation dot (.) outside quotes to plus (+)
+      let quoteSegments = jsCode.split(/("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/);
+      for (let i = 0; i < quoteSegments.length; i += 2) {
+        quoteSegments[i] = quoteSegments[i].replace(/(\d+)\.(\d+)/g, '__FLOAT_$1_$2__');
+        quoteSegments[i] = quoteSegments[i].replace(/\s*\.\s*/g, ' + ');
+        quoteSegments[i] = quoteSegments[i].replace(/__FLOAT_(\d+)_(\d+)__/g, '$1.$2');
+      }
+      jsCode = quoteSegments.join('');
+
+      // 2. Convert string interpolation in double quotes: "Halo $nama!" -> `Halo ${var_nama}!`
+      jsCode = jsCode.replace(/"((?:[^"\\\r\n]|\\.)*)"/g, (match, inner) => {
+        if (inner.includes('$')) {
+          let template = inner.replace(/\$([a-zA-Z0-9_]+)/g, '${typeof var_$1 !== "undefined" ? var_$1 : ""}');
+          return '`' + template + '`';
+        }
+        return match;
+      });
+
+      // 3. Convert PHP class definitions, member variables and property types
+      jsCode = jsCode.replace(/(?:public|private|protected)\s+(?:[a-zA-Z0-9_|]+\s+)?\$([a-zA-Z0-9_]+)\s*=/g, '$1 =');
+      jsCode = jsCode.replace(/(?:public|private|protected)?\s*function\s+([a-zA-Z0-9_]+)\s*\(([^)]*)\)(?:\s*:\s*[a-zA-Z0-9_|]+)?\s*\{/g, '$1($2) {');
+
+      // 4. Object arrow -> to dot .
+      jsCode = jsCode.replace(/\$this->/g, 'this.');
+      jsCode = jsCode.replace(/->/g, '.');
+
+      // 5. Array syntax
+      jsCode = jsCode.replace(/\barray\s*\(/g, '[');
+
+      // 6. Echo and print statements to echo(...) function call
+      jsCode = jsCode.replace(/\becho\s+([^;\n]+);/g, 'echo($1);');
+      jsCode = jsCode.replace(/\bprint\s*\(([^;\n]+)\);/g, 'echo($1);');
+      jsCode = jsCode.replace(/\bprint\s+([^;\n]+);/g, 'echo($1);');
+
+      // 7. var_dump and print_r
+      jsCode = jsCode.replace(/\bvar_dump\s*\(([^;\n]+)\);/g, 'var_dump($1);');
+      jsCode = jsCode.replace(/\bprint_r\s*\(([^;\n]+)\);/g, 'print_r($1);');
+
+      // 8. Extract all variable names starting with $
+      let varNames = new Set();
+      let varMatches = jsCode.match(/\$([a-zA-Z0-9_]+)/g);
+      if (varMatches) {
+        varMatches.forEach(v => varNames.add(v.slice(1)));
+      }
+
+      // Replace $variable with var_variable
+      jsCode = jsCode.replace(/\$([a-zA-Z0-9_]+)/g, 'var_$1');
+
+      // Declare all variables at the top of scope
+      let varDeclarations = Array.from(varNames).map(v => `let var_${v};`).join(' ');
+
+      let fullScript = `
+        ${varDeclarations}
+
+        function echo(...args) {
+          for (let a of args) {
+            __print(a);
+          }
+        }
+
+        function var_dump(val) {
+          if (typeof val === 'string') {
+            __print('string(' + val.length + ') "' + val + '"\n');
+          } else if (typeof val === 'number') {
+            __print(Number.isInteger(val) ? 'int(' + val + ')\n' : 'float(' + val + ')\n');
+          } else if (typeof val === 'boolean') {
+            __print('bool(' + val + ')\n');
+          } else if (Array.isArray(val)) {
+            let res = 'array(' + val.length + ') {\n';
+            val.forEach((item, idx) => {
+              res += '  [' + idx + ']=>\n  ';
+              if (typeof item === 'string') res += 'string(' + item.length + ') "' + item + '"\n';
+              else res += item + '\n';
+            });
+            res += '}\n';
+            __print(res);
+          } else {
+            __print(JSON.stringify(val, null, 2) + '\n');
+          }
+        }
+
+        function print_r(val) {
+          if (Array.isArray(val)) {
+            let res = 'Array\n(\n';
+            val.forEach((item, idx) => {
+              res += '    [' + idx + '] => ' + item + '\n';
+            });
+            res += ')\n';
+            __print(res);
+          } else if (typeof val === 'object') {
+            __print(JSON.stringify(val, null, 2) + '\n');
+          } else {
+            __print(String(val) + '\n');
+          }
+        }
+
+        ${jsCode}
+      `;
+
+      let runner = new Function('__print', fullScript);
+
+      runner(function(val) {
+        output.push(val !== undefined && val !== null ? String(val) : '');
+      });
+
+      return {
+        success: true,
+        output: output.join('') || '(Program selesai dieksekusi tanpa output)'
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: `PHP Parse error / Fatal error: ${err.message} in developer.php`
+      };
+    }
+  }
+
+  // Realistic Python Execution Engine (Client-Side)
+  function executePythonCode(code) {
+    const output = [];
+    try {
+      let clean = code.trim();
+      if (!clean) return { success: true, output: '(Program selesai dieksekusi tanpa output)' };
+
+      // Handle default OOP snippet
+      if (clean.includes('class BackendDeveloper') && clean.includes('execute_mission')) {
+        const retMatch = clean.match(/def\s+execute_mission\s*\(self\)[^:]*:\s*(?:(?:#.*?\n)|\s)*return\s+(?:f)?(["'])(.*?)\1/s);
+        if (retMatch) {
+          let msg = retMatch[2];
+          msg = msg.replace('{self.tech_stack[0]}', 'Python 3');
+          return { success: true, output: msg };
+        }
+      }
+
+      // Extract print statements
+      const printRegex = /print\s*\((.*?)\)/gs;
+      let printMatches = [];
+      let m;
+      while ((m = printRegex.exec(clean)) !== null) {
+        printMatches.push(m[1]);
+      }
+
+      if (printMatches.length > 0) {
+        for (let p of printMatches) {
+          let arg = p.trim();
+
+          // f-string
+          const fMatch = arg.match(/^f(["'])(.*?)\1$/s);
+          if (fMatch) {
+            let inner = fMatch[2];
+            inner = inner.replace(/\{([a-zA-Z0-9_]+)\}/g, (_, varName) => {
+              const vRegex = new RegExp(`\\b${varName}\\s*=\\s*(["'])(.*?)\\1`);
+              const vMatch = clean.match(vRegex);
+              return vMatch ? vMatch[2] : `{${varName}}`;
+            });
+            output.push(inner);
+            continue;
+          }
+
+          // Regular string
+          const sMatch = arg.match(/^(["'])(.*?)\1$/s);
+          if (sMatch) {
+            output.push(sMatch[2]);
+            continue;
+          }
+
+          // Simple math
+          try {
+            if (/^[\d\s+\-*/%().]+$/.test(arg)) {
+              output.push(String(Function(`'use strict'; return (${arg})`)()));
+              continue;
+            }
+          } catch (_) {}
+
+          // Variable lookup
+          const vRegex = new RegExp(`\\b${arg}\\s*=\\s*(["'])(.*?)\\1`);
+          const vMatch = clean.match(vRegex);
+          if (vMatch) {
+            output.push(vMatch[2]);
+            continue;
+          }
+
+          output.push(arg.replace(/^["']|["']$/g, ''));
+        }
+        return { success: true, output: output.join('\n') };
+      }
+
+      return { success: true, output: '(Program selesai dieksekusi tanpa output)' };
+    } catch (err) {
+      return {
+        success: false,
+        error: `Traceback (most recent call last):\n  File "developer.py", line 1\nSyntaxError: ${err.message}`
+      };
+    }
+  }
+
   // Run Code Simulation
   if (runWorkflowBtn && terminalOutput && codeEditorInput) {
     runWorkflowBtn.addEventListener('click', () => {
@@ -442,43 +675,45 @@ print(developer.execute_mission())
 
       setTimeout(() => {
         const currentCode = codeEditorInput.value;
-        let outputText = '';
+        const result = isPhp ? executePhpCode(currentCode) : executePythonCode(currentCode);
 
-        // Extract any custom print / echo statements if typed by user
-        const echoMatch = currentCode.match(/echo\s+(["'])(.*?)\1/i);
-        const printMatch = currentCode.match(/print\s*\((["'])(.*?)\1\)/i);
+        const latency = (0.015 + Math.random() * 0.03).toFixed(3);
+        const mem = (2.1 + Math.random() * 0.5).toFixed(1);
 
-        if (isPhp) {
-          if (echoMatch) {
-            outputText = echoMatch[2];
-          } else {
-            outputText = "Membangun sistem backend tangguh, RESTful API cepat, & database terstruktur!";
-          }
+        if (result.success) {
+          terminalOutput.innerHTML = `
+            <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.6;">
+              <div style="color:#10b981; font-weight:700; margin-bottom:0.25rem;">
+                ✔ [EXECUTION SUCCESSFUL] Process finished with exit code 0
+              </div>
+              <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:0.4rem;">
+                Runtime: ${isPhp ? 'PHP 8.3.6 (Zend Engine)' : 'Python 3.12.3'} | Memory: ${mem} MB | Latency: ${latency}s
+              </div>
+              <div class="terminal-result-box">
+${escapeHtml(result.output)}
+              </div>
+            </div>
+          `;
         } else {
-          if (printMatch) {
-            outputText = printMatch[2];
-          } else {
-            outputText = "Mengembangkan script otomasi data, web scraping, & backend handal dengan Python 3!";
-          }
+          terminalOutput.innerHTML = `
+            <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.6;">
+              <div style="color:#ef4444; font-weight:700; margin-bottom:0.25rem;">
+                ✖ [EXECUTION FAILED] Process finished with exit code 255
+              </div>
+              <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:0.4rem;">
+                Runtime: ${isPhp ? 'PHP 8.3.6 (Zend Engine)' : 'Python 3.12.3'} | Error on execution
+              </div>
+              <div class="terminal-result-box error">
+${escapeHtml(result.error)}
+              </div>
+            </div>
+          `;
         }
 
-        terminalOutput.innerHTML = `
-          <div style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.6;">
-            <div style="color:#10b981; font-weight:700; margin-bottom:0.25rem;">
-              ✔ [EXECUTION SUCCESSFUL] Process finished with exit code 0
-            </div>
-            <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:0.4rem;">
-              Runtime: ${isPhp ? 'PHP 8.3.6 (Zend Engine)' : 'Python 3.12.3'} | Memory: 2.4 MB | Latency: 0.038s
-            </div>
-            <div style="padding:0.5rem 0.75rem; border-radius:0.4rem; background:rgba(255,255,255,0.06); color:#f8fafc; border-left: 3px solid var(--brand-cyan-light);">
-              ${outputText}
-            </div>
-          </div>
-        `;
         terminalOutput.classList.add('show');
         runWorkflowBtn.disabled = false;
         runWorkflowBtn.innerHTML = `<i class="ri-play-fill w-3.5 h-3.5"></i> <span>Jalankan Kode</span>`;
-      }, 800);
+      }, 500);
     });
   }
 
