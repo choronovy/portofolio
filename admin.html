@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Kelola Toko Online Viryo Store</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icon CDN & Local Fallback -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="./node_modules/remixicon/fonts/remixicon.css">
+
+  <!-- Inherit Core Theme & Store Styling -->
+  <link rel="stylesheet" href="style.css?v=3.7">
+  <link rel="stylesheet" href="store.css?v=1.0">
+</head>
+
+<body class="store-body">
+
+  <!-- Ambient Glowing Background Mesh -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="admin-layout">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+      <div>
+        <!-- Brand -->
+        <a href="shop.html" class="store-brand" style="margin-bottom:1.5rem;">
+          <div class="store-brand-badge">
+            <i class="ri-shield-keyhole-line"></i>
+          </div>
+          <div class="store-brand-text">
+            <h1>Admin Panel</h1>
+            <span>Viryo Tech Store</span>
+          </div>
+        </a>
+
+        <!-- Menu Navigation -->
+        <nav class="admin-sidebar-menu">
+          <a href="#overview" class="admin-nav-item active" data-section="overview">
+            <i class="ri-dashboard-line"></i>
+            <span>Ringkasan Dashboard</span>
+          </a>
+          <a href="#products" class="admin-nav-item" data-section="products">
+            <i class="ri-shopping-bag-3-line"></i>
+            <span>Katalog Produk</span>
+          </a>
+          <a href="#orders" class="admin-nav-item" data-section="orders">
+            <i class="ri-file-list-3-line"></i>
+            <span>Kelola Pesanan</span>
+          </a>
+          <a href="#settings" class="admin-nav-item" data-section="settings">
+            <i class="ri-settings-4-line"></i>
+            <span>Pengaturan Toko</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Bottom Sidebar Links -->
+      <div style="border-top:1px solid var(--border-subtle); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
+        <a href="shop.html" target="_blank" class="admin-nav-item" style="color:var(--brand-cyan-light);">
+          <i class="ri-external-link-line"></i>
+          <span>Buka Toko Publik</span>
+        </a>
+        <a href="index.html" class="admin-nav-item">
+          <i class="ri-arrow-left-line"></i>
+          <span>Kembali ke Portofolio</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Admin Main Body -->
+    <div class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <h2 style="font-size:1.25rem; font-weight:800; margin:0;" id="adminPageHeading">Kelola Toko &amp; Penjualan</h2>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.85rem;">
+          <!-- Quick Add Product Button -->
+          <button class="btn-add-cart" onclick="openAddProductModal()" style="padding:0.55rem 1rem;">
+            <i class="ri-add-line"></i> Tambah Produk
+          </button>
+
+          <!-- Theme Switcher -->
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Ganti Tema">
+            <i class="ri-sun-line icon-sun text-amber-400"></i>
+            <i class="ri-moon-line icon-moon text-blue-400"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Admin Content Sections -->
+      <div class="admin-content">
+
+        <!-- 1. SECTION: OVERVIEW -->
+        <section id="secOverview">
+          <!-- Stats Grid -->
+          <div class="admin-stats-grid">
+            <!-- Stat 1: Pendapatan -->
+            <div class="admin-stat-card">
+              <div class="stat-icon-wrap green">
+                <i class="ri-money-dollar-circle-line"></i>
+              </div>
+              <div class="stat-info-wrap">
+                <h4>Total Pendapatan</h4>
+                <div id="statTotalRevenue" class="stat-number">Rp 0</div>
+              </div>
+            </div>
+
+            <!-- Stat 2: Total Pesanan -->
+            <div class="admin-stat-card">
+              <div class="stat-icon-wrap blue">
+                <i class="ri-shopping-cart-2-line"></i>
+              </div>
+              <div class="stat-info-wrap">
+                <h4>Total Pesanan</h4>
+                <div id="statTotalOrders" class="stat-number">0</div>
+              </div>
+            </div>
+
+            <!-- Stat 3: Pesanan Menunggu -->
+            <div class="admin-stat-card">
+              <div class="stat-icon-wrap amber">
+                <i class="ri-time-line"></i>
+              </div>
+              <div class="stat-info-wrap">
+                <h4>Menunggu Bayar</h4>
+                <div id="statPendingOrders" class="stat-number">0</div>
+              </div>
+            </div>
+
+            <!-- Stat 4: Total Produk -->
+            <div class="admin-stat-card">
+              <div class="stat-icon-wrap purple">
+                <i class="ri-box-3-line"></i>
+              </div>
+              <div class="stat-info-wrap">
+                <h4>Total Produk</h4>
+                <div id="statTotalProducts" class="stat-number">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Overview Card -->
+          <div class="admin-table-card">
+            <div class="admin-table-header">
+              <h3 style="font-size:1.05rem; font-weight:700;"><i class="ri-flashlight-line text-cyan-400"></i> Status Cepat Toko</h3>
+              <a href="shop.html" target="_blank" style="font-size:0.85rem; color:var(--brand-cyan-light); text-decoration:none;">
+                Kunjungi Toko <i class="ri-arrow-right-line"></i>
+              </a>
+            </div>
+            <div style="padding:1.5rem; color:var(--text-secondary); font-size:0.92rem; line-height:1.7;">
+              <p>Selamat datang di <strong>Admin Dashboard Viryo Tech Store</strong>. Sistem ini mengelola katalog produk digital, mendata pesanan pelanggan, serta melacak konfirmasi pembayaran secara instan.</p>
+              <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1rem;">
+                <button class="btn-detail" onclick="openAddProductModal()">
+                  <i class="ri-add-circle-line"></i> Tambah Produk Baru
+                </button>
+                <button class="btn-detail" onclick="document.querySelector('[data-section=\'orders\']').click()">
+                  <i class="ri-file-list-3-line"></i> Lihat Semua Pesanan
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. SECTION: PRODUCTS -->
+        <section id="secProducts" style="display:none;">
+          <div class="admin-table-card">
+            <div class="admin-table-header">
+              <div>
+                <h3 style="font-size:1.1rem; font-weight:700;">Daftar Katalog Produk</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin:0.2rem 0 0;">Kelola judul, harga, kategori, dan ketersediaan lisensi produk digital.</p>
+              </div>
+              <button class="btn-add-cart" onclick="openAddProductModal()">
+                <i class="ri-add-line"></i> Tambah Produk Baru
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Produk</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Badge</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminProductsTbody">
+                  <!-- Populated dynamically via store.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. SECTION: ORDERS -->
+        <section id="secOrders" style="display:none;">
+          <div class="admin-table-card">
+            <div class="admin-table-header">
+              <div>
+                <h3 style="font-size:1.1rem; font-weight:700;">Kelola Pesanan Masuk</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin:0.2rem 0 0;">Pantau riwayat checkout, kontak pembeli, dan status pemrosesan pesanan.</p>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>No. Pesanan</th>
+                    <th>Pelanggan</th>
+                    <th>Produk Dipesan</th>
+                    <th>Total</th>
+                    <th>Pembayaran</th>
+                    <th>Status Pesanan</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="adminOrdersTbody">
+                  <!-- Populated dynamically via store.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. SECTION: SETTINGS -->
+        <section id="secSettings" style="display:none;">
+          <div class="admin-table-card" style="max-width:44rem;">
+            <div class="admin-table-header">
+              <h3 style="font-size:1.1rem; font-weight:700;">Pengaturan Umum Toko</h3>
+            </div>
+            <form id="adminSettingsForm" style="padding:1.75rem;">
+              <div class="form-group">
+                <label class="form-label" for="setStoreName">Nama Toko *</label>
+                <input type="text" id="setStoreName" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="setStoreTagline">Tagline Toko</label>
+                <input type="text" id="setStoreTagline" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="setStoreWa">Nomor WhatsApp Admin (Untuk Menerima Pesanan) *</label>
+                <input type="text" id="setStoreWa" class="form-control" required placeholder="6281234567890">
+                <small style="color:var(--text-muted); font-size:0.75rem; margin-top:0.25rem; display:block;">Gunakan format kode negara tanpa spasi atau strip (contoh: 6281234567890).</small>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border-subtle);">
+                <button type="button" id="resetDemoDataBtn" class="btn-detail" style="color:#ef4444; border-color:rgba(239,68,68,0.3);">
+                  <i class="ri-restart-line"></i> Reset Data Demo Default
+                </button>
+                <button type="submit" class="btn-checkout" style="width:auto; padding:0.65rem 1.75rem;">
+                  <i class="ri-save-line"></i> Simpan Pengaturan
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Add / Edit Product -->
+  <div id="productFormModal" class="store-modal-overlay">
+    <div class="store-modal-card">
+      <div class="modal-header">
+        <h3 id="modalFormTitle" style="font-size:1.15rem; font-weight:700;">Tambah Produk Baru</h3>
+        <button class="cart-close-btn" onclick="document.getElementById('productFormModal').classList.remove('open')">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <form id="productAdminForm" onsubmit="saveProductFromModal(event)" class="modal-body">
+        <input type="hidden" id="prodId">
+
+        <div class="form-group">
+          <label class="form-label" for="prodName">Nama Produk *</label>
+          <input type="text" id="prodName" class="form-control" required placeholder="Contoh: Source Code POS Kasir Modern">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="prodCategory">Kategori *</label>
+            <select id="prodCategory" class="form-control" required>
+              <option value="source-code">Source Code</option>
+              <option value="api-backend">API &amp; Backend</option>
+              <option value="database">Database</option>
+              <option value="service">Layanan</option>
+              <option value="template">Template UI</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodPrice">Harga Jual (Rp) *</label>
+            <input type="number" id="prodPrice" class="form-control" required placeholder="350000">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="prodOrigPrice">Harga Coret / Asli (Opsional)</label>
+            <input type="number" id="prodOrigPrice" class="form-control" placeholder="500000">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodStock">Stok / Lisensi *</label>
+            <input type="number" id="prodStock" class="form-control" required placeholder="99">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="prodBadge">Badge Promosi (Opsional)</label>
+            <input type="text" id="prodBadge" class="form-control" placeholder="Contoh: Best Seller, Hot Item">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="prodIcon">Ikon Remixicon</label>
+            <input type="text" id="prodIcon" class="form-control" placeholder="ri-store-3-line" value="ri-code-box-line">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prodDesc">Deskripsi Produk *</label>
+          <textarea id="prodDesc" class="form-control" rows="3" required placeholder="Deskripsi lengkap tentang kegunaan produk digital ini..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prodFeatures">Fitur Utama (Satu fitur per baris)</label>
+          <textarea id="prodFeatures" class="form-control" rows="3" placeholder="Code Igniter 3 Core&#10;MySQL 3NF&#10;Cetak Struk"></textarea>
+        </div>
+
+        <div class="modal-footer" style="padding:0; margin-top:1.5rem; background:transparent; border:none;">
+          <button type="button" class="btn-detail" onclick="document.getElementById('productFormModal').classList.remove('open')">Batal</button>
+          <button type="submit" class="btn-checkout" style="width:auto; padding:0.65rem 1.5rem;">
+            <i class="ri-save-line"></i> Simpan Produk
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Store JavaScript Logic -->
+  <script src="store.js?v=1.0"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initAdminPage();
+    });
+  </script>
+</body>
+
+</html>

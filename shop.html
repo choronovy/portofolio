@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Online - Viryo Tech Store (Source Code & Backend)</title>
+  <meta name="description" content="Toko online resmi Viryo Fabrellino. Beli source code Code Igniter 3, script backend PHP, skema database MySQL, dan jasa integrasi API siap pakai.">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Remix Icon CDN & Local Fallback -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="./node_modules/remixicon/fonts/remixicon.css">
+
+  <!-- Inherit Luxury Core Stylesheet & Store Extension -->
+  <link rel="stylesheet" href="style.css?v=3.7">
+  <link rel="stylesheet" href="store.css?v=1.0">
+</head>
+
+<body class="store-body">
+
+  <!-- Ambient Glowing Background Mesh -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Store Navigation Bar -->
+  <header class="store-navbar">
+    <div class="store-container">
+      <div class="store-nav-inner">
+        <!-- Brand -->
+        <a href="shop.html" class="store-brand">
+          <div class="store-brand-badge">
+            <i class="ri-shopping-bag-3-fill"></i>
+          </div>
+          <div class="store-brand-text">
+            <h1>Viryo Store</h1>
+            <span>Digital Assets &amp; Code</span>
+          </div>
+        </a>
+
+        <!-- Search Bar (Desktop) -->
+        <div class="store-search-bar">
+          <i class="ri-search-line"></i>
+          <input type="text" id="storeSearchInput" placeholder="Cari source code, API, database..." autocomplete="off">
+        </div>
+
+        <!-- Actions -->
+        <div class="store-nav-actions">
+          <a href="index.html" class="store-nav-link" title="Kembali ke Portofolio">
+            <i class="ri-user-line"></i>
+            <span class="desktop-only-text">Portofolio</span>
+          </a>
+
+          <a href="admin.html" class="store-nav-link" style="color:var(--brand-cyan-light);" title="Halaman Pengelola Toko">
+            <i class="ri-dashboard-line"></i>
+            <span class="desktop-only-text">Kelola Toko</span>
+          </a>
+
+          <!-- Luxury Theme Switcher -->
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Ganti Tema Gelap / Terang" title="Beralih Tema">
+            <i class="ri-sun-line icon-sun text-amber-400"></i>
+            <i class="ri-moon-line icon-moon text-blue-400"></i>
+          </button>
+
+          <!-- Cart Button -->
+          <button id="cartToggleBtn" class="cart-toggle-btn" aria-label="Buka Keranjang Belanja">
+            <i class="ri-shopping-cart-2-line"></i>
+            <span id="cartCounterBadge" class="cart-badge-counter" style="display:none;">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Store Content -->
+  <main class="store-container" style="flex:1;">
+    <!-- Hero Showcase Banner -->
+    <section class="store-hero">
+      <div class="store-hero-card">
+        <span class="store-hero-badge">
+          <i class="ri-flashlight-line"></i> Produk Digital &amp; Jasa Terverifikasi
+        </span>
+        <h2 class="store-hero-title">Source Code Berkualitas &amp; Solusi Backend Siap Pakai</h2>
+        <p class="store-hero-desc">Dapatkan source code web aplikasi siap pakai berbasis Code Igniter 3, boilerplate RESTful API PHP 8, skema database MySQL teroptimasi, serta layanan integrasi sistem profesional.</p>
+        <div class="store-hero-tags">
+          <span class="store-hero-tag"><i class="ri-shield-check-line text-emerald-400"></i> Garansi Bebas Bug</span>
+          <span class="store-hero-tag"><i class="ri-download-cloud-line text-cyan-400"></i> Pengiriman Instan Digital</span>
+          <span class="store-hero-tag"><i class="ri-customer-service-2-line text-blue-400"></i> Dukungan WhatsApp Langsung</span>
+          <span class="store-hero-tag"><i class="ri-lock-line text-purple-400"></i> Pembayaran Aman (QRIS &amp; Transfer)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter & Category Section -->
+    <section style="margin-top: 1rem;">
+      <div class="store-filter-bar">
+        <!-- Category Chips -->
+        <div class="category-chips">
+          <button class="category-chip active" data-category="all">Semua Produk</button>
+          <button class="category-chip" data-category="source-code">Source Code</button>
+          <button class="category-chip" data-category="api-backend">API &amp; Backend</button>
+          <button class="category-chip" data-category="database">Database</button>
+          <button class="category-chip" data-category="service">Layanan</button>
+          <button class="category-chip" data-category="template">Template UI</button>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="sort-select-wrapper">
+          <label for="storeSortSelect"><i class="ri-sort-desc"></i> Urutkan:</label>
+          <select id="storeSortSelect" class="sort-select">
+            <option value="latest">Terbaru</option>
+            <option value="price-low">Harga: Rendah ke Tinggi</option>
+            <option value="price-high">Harga: Tinggi ke Rendah</option>
+            <option value="name">Nama (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid (Populated via store.js) -->
+      <div id="productGrid" class="product-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Store Footer -->
+  <footer style="background:var(--bg-surface-elevated); border-top:1px solid var(--border-medium); padding:2.5rem 0; margin-top:3rem;">
+    <div class="store-container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-weight:800; font-size:1.15rem; color:var(--text-primary); margin-bottom:0.25rem;">Viryo Tech Store</div>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin:0;">Solusi perangkat lunak dan backend tangguh untuk bisnis Anda.</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <a href="index.html" style="font-size:0.88rem; color:var(--text-secondary); text-decoration:none;">Portofolio</a>
+        <span style="color:var(--border-subtle);">&bull;</span>
+        <a href="admin.html" style="font-size:0.88rem; color:var(--brand-cyan-light); text-decoration:none;">Halaman Admin</a>
+        <span style="color:var(--border-subtle);">&bull;</span>
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" style="font-size:0.88rem; color:#10b981; text-decoration:none; display:flex; align-items:center; gap:0.3rem;">
+          <i class="ri-whatsapp-line"></i> Hubungi Penjual
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Slide-in Drawer -->
+  <div id="cartOverlay" class="cart-overlay"></div>
+  <aside id="cartDrawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3><i class="ri-shopping-cart-2-fill text-cyan-400"></i> Keranjang Belanja</h3>
+      <button id="cartCloseBtn" class="cart-close-btn" aria-label="Tutup Keranjang">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <!-- Items list -->
+    <div id="cartItemsList" class="cart-items-body">
+      <!-- Populated via CartManager -->
+    </div>
+
+    <!-- Footer checkout summary -->
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal" style="font-family:'JetBrains Mono',monospace;">Rp 0</span>
+      </div>
+      <div class="cart-summary-total">
+        <span>Total Tagihan</span>
+        <span id="cartTotal" class="cart-total-price">Rp 0</span>
+      </div>
+      <button id="openCheckoutBtn" class="btn-checkout">
+        <i class="ri-secure-payment-line"></i> Lanjut ke Pembayaran
+      </button>
+    </div>
+  </aside>
+
+  <!-- Product Detail Modal -->
+  <div id="productDetailModal" class="store-modal-overlay">
+    <div class="store-modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:700;"><i class="ri-information-line text-cyan-400"></i> Detail Spesifikasi Produk</h3>
+        <button id="closeDetailBtn" class="cart-close-btn" onclick="document.getElementById('productDetailModal').classList.remove('open')">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div id="productDetailBody" class="modal-body">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout & WhatsApp Confirmation Modal -->
+  <div id="checkoutModal" class="store-modal-overlay">
+    <div class="store-modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:1.15rem; font-weight:700;"><i class="ri-shield-check-line text-emerald-400"></i> Formulir Pembayaran &amp; Checkout</h3>
+        <button id="closeCheckoutBtn" class="cart-close-btn">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <form id="checkoutForm" class="modal-body">
+        <!-- Order Items Summary Box -->
+        <div style="background:var(--bg-card); padding:1rem; border-radius:0.85rem; border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
+          <div style="font-weight:700; font-size:0.88rem; color:var(--text-primary); margin-bottom:0.6rem;">Ringkasan Belanja:</div>
+          <div id="checkoutItemsSummary"></div>
+          <div style="border-top:1px dashed var(--border-medium); padding-top:0.65rem; margin-top:0.65rem; display:flex; justify-content:space-between; font-weight:800; font-size:1rem; color:var(--text-primary);">
+            <span>Total Tagihan:</span>
+            <span id="checkoutGrandTotal" style="color:var(--brand-cyan-light); font-family:'JetBrains Mono',monospace;">Rp 0</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="custName">Nama Lengkap *</label>
+            <input type="text" id="custName" class="form-control" required placeholder="Contoh: Budi Santoso">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="custPhone">Nomor WhatsApp *</label>
+            <input type="tel" id="custPhone" class="form-control" required placeholder="Contoh: 08123456789">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="custEmail">Alamat Email *</label>
+            <input type="email" id="custEmail" class="form-control" required placeholder="budi@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="custPayment">Metode Pembayaran *</label>
+            <select id="custPayment" class="form-control" required>
+              <option value="QRIS (Instant Otomatis)">QRIS (Semua E-Wallet / M-Banking)</option>
+              <option value="Transfer Bank BCA">Transfer Bank BCA</option>
+              <option value="Transfer Bank Mandiri">Transfer Bank Mandiri</option>
+              <option value="DANA / GoPay / OVO">E-Wallet (DANA, GoPay, OVO)</option>
+              <option value="WhatsApp Direct (Konsultasi)">Konfirmasi via WhatsApp</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="custNotes">Catatan Tambahan (Opsional)</label>
+          <textarea id="custNotes" class="form-control" rows="2" placeholder="Catatan kustomisasi, permintaan link Google Drive, dll."></textarea>
+        </div>
+
+        <div style="font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
+          <i class="ri-information-line"></i> Setelah menekan tombol konfirmasi, pesanan Anda akan tersimpan di sistem toko dan format pesan pesanan otomatis terbuka di WhatsApp untuk verifikasi cepat.
+        </div>
+
+        <div class="modal-footer" style="padding:0; background:transparent; border:none;">
+          <button type="button" id="cancelCheckoutBtn" class="btn-detail" style="padding:0.75rem 1.25rem;">Batal</button>
+          <button type="submit" class="btn-checkout" style="width:auto; padding:0.75rem 1.75rem;">
+            <i class="ri-whatsapp-fill"></i> Konfirmasi Pesanan Sekarang
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Store JavaScript Logic -->
+  <script src="store.js?v=1.0"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initShopPage();
+    });
+  </script>
+</body>
+
+</html>
