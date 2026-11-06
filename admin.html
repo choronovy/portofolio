@@ -35,30 +35,39 @@
     <aside class="admin-sidebar">
       <div>
         <!-- Brand -->
-        <a href="shop.html" class="store-brand" style="margin-bottom:1.5rem;">
+        <a href="shop.html" class="store-brand" style="margin-bottom:1.5rem; text-decoration:none;">
           <div class="store-brand-badge">
             <i class="ri-shield-keyhole-line"></i>
           </div>
           <div class="store-brand-text">
-            <h1>Admin Panel</h1>
-            <span>Infix Store</span>
+            <h1>infix<span style="color:var(--brand-cyan-light);">.id</span></h1>
+            <span style="display:flex; align-items:center; gap:0.35rem;">
+              Admin Control <span class="badge-mini-version">v2.4</span>
+            </span>
           </div>
         </a>
 
-        <!-- Menu Navigation -->
+        <!-- Menu Navigation with Category Headers -->
         <nav class="admin-sidebar-menu">
+          <div class="admin-menu-header">MENU UTAMA</div>
           <a href="#overview" class="admin-nav-item active" data-section="overview">
             <i class="ri-dashboard-line"></i>
             <span>Ringkasan Dashboard</span>
           </a>
+
+          <div class="admin-menu-header" style="margin-top:0.85rem;">MANAJEMEN TOKO</div>
           <a href="#products" class="admin-nav-item" data-section="products">
             <i class="ri-shopping-bag-3-line"></i>
             <span>Katalog Produk</span>
+            <span id="badgeTotalProducts" class="sidebar-counter-pill">6</span>
           </a>
           <a href="#orders" class="admin-nav-item" data-section="orders">
             <i class="ri-file-list-3-line"></i>
             <span>Kelola Pesanan</span>
+            <span id="badgePendingOrders" class="sidebar-counter-pill warn">1</span>
           </a>
+
+          <div class="admin-menu-header" style="margin-top:0.85rem;">SISTEM &amp; PENGATURAN</div>
           <a href="#settings" class="admin-nav-item" data-section="settings">
             <i class="ri-settings-4-line"></i>
             <span>Pengaturan Toko</span>
@@ -66,8 +75,8 @@
         </nav>
       </div>
 
-      <!-- Bottom Sidebar Links -->
-      <div style="border-top:1px solid var(--border-subtle); padding-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
+      <!-- Bottom Sidebar Links & Profile -->
+      <div style="border-top:1px solid var(--border-subtle); padding-top:1.15rem; display:flex; flex-direction:column; gap:0.5rem;">
         <a href="shop.html" target="_blank" class="admin-nav-item" style="color:var(--brand-cyan-light);">
           <i class="ri-external-link-line"></i>
           <span>Buka Toko Publik</span>
@@ -76,6 +85,18 @@
           <i class="ri-arrow-left-line"></i>
           <span>Kembali ke Portofolio</span>
         </a>
+
+        <!-- User Profile Card -->
+        <div class="sidebar-user-card">
+          <div class="user-avatar-dot">
+            <span>VF</span>
+            <span class="user-online-pip"></span>
+          </div>
+          <div class="user-info">
+            <div class="user-name">Viryo Fabrellino</div>
+            <div class="user-email">Superadmin &bull; Owner</div>
+          </div>
+        </div>
       </div>
     </aside>
 
@@ -83,14 +104,34 @@
     <div class="admin-main">
       <!-- Topbar -->
       <header class="admin-topbar">
-        <div style="display:flex; align-items:center; gap:0.75rem;">
-          <h2 style="font-size:1.25rem; font-weight:800; margin:0;" id="adminPageHeading">Kelola Toko &amp; Penjualan</h2>
+        <div style="display:flex; align-items:center; gap:1.25rem;">
+          <div>
+            <h2 style="font-size:1.25rem; font-weight:800; margin:0; line-height:1.2;" id="adminPageHeading">Kelola Toko &amp; Penjualan</h2>
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.15rem;">
+              Ringkasan Performa &bull; Infix Store Admin v2.4
+            </div>
+          </div>
+          <div class="admin-topbar-status-pill">
+            <span class="pulse-green-dot"></span> Toko Online: Aktif
+          </div>
         </div>
 
         <div style="display:flex; align-items:center; gap:0.85rem;">
+          <!-- Topbar Search -->
+          <div class="admin-search-wrap">
+            <i class="ri-search-line"></i>
+            <input type="text" id="adminGlobalSearch" placeholder="Cari pesanan, produk, pembeli..." oninput="handleAdminGlobalSearch(this.value)">
+          </div>
+
           <!-- Quick Add Product Button -->
-          <button class="btn-add-cart" onclick="openAddProductModal()" style="padding:0.55rem 1rem;">
+          <button class="btn-add-cart" onclick="openAddProductModal()" style="padding:0.55rem 1.15rem;">
             <i class="ri-add-line"></i> Tambah Produk
+          </button>
+
+          <!-- Notification Bell -->
+          <button class="admin-icon-btn" title="Notifikasi Baru" onclick="showToast('Semua pesanan baru tersinkronisasi!', 'info')">
+            <i class="ri-notification-3-line"></i>
+            <span class="notification-badge-dot"></span>
           </button>
 
           <!-- Theme Switcher -->
@@ -98,6 +139,15 @@
             <i class="ri-sun-line icon-sun text-amber-400"></i>
             <i class="ri-moon-line icon-moon text-blue-400"></i>
           </button>
+
+          <!-- Admin User Profile Chip -->
+          <div class="admin-profile-chip">
+            <div class="admin-avatar">VF</div>
+            <div class="admin-profile-meta">
+              <span class="admin-name">Viryo F.</span>
+              <span class="admin-role">Superadmin</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -116,6 +166,9 @@
               <div class="stat-info-wrap">
                 <h4>Total Pendapatan</h4>
                 <div id="statTotalRevenue" class="stat-number">Rp 0</div>
+                <div class="stat-trend-badge up">
+                  <i class="ri-arrow-up-line"></i> +24.8% <span style="opacity:0.7; font-weight:400;">bln ini</span>
+                </div>
               </div>
             </div>
 
@@ -127,6 +180,9 @@
               <div class="stat-info-wrap">
                 <h4>Total Pesanan</h4>
                 <div id="statTotalOrders" class="stat-number">0</div>
+                <div class="stat-trend-badge info">
+                  <i class="ri-check-line"></i> Terverifikasi
+                </div>
               </div>
             </div>
 
@@ -138,6 +194,9 @@
               <div class="stat-info-wrap">
                 <h4>Menunggu Bayar</h4>
                 <div id="statPendingOrders" class="stat-number">0</div>
+                <div class="stat-trend-badge warn">
+                  <i class="ri-alert-line"></i> Butuh Konfirmasi
+                </div>
               </div>
             </div>
 
@@ -149,29 +208,243 @@
               <div class="stat-info-wrap">
                 <h4>Total Produk</h4>
                 <div id="statTotalProducts" class="stat-number">0</div>
+                <div class="stat-trend-badge purple">
+                  <i class="ri-shield-check-line"></i> Siap Jual
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Quick Overview Card -->
-          <div class="admin-table-card">
-            <div class="admin-table-header">
-              <h3 style="font-size:1.05rem; font-weight:700;"><i class="ri-flashlight-line text-cyan-400"></i> Status Cepat Toko</h3>
-              <a href="shop.html" target="_blank" style="font-size:0.85rem; color:var(--brand-cyan-light); text-decoration:none;">
-                Kunjungi Toko <i class="ri-arrow-right-line"></i>
-              </a>
-            </div>
-            <div style="padding:1.5rem; color:var(--text-secondary); font-size:0.92rem; line-height:1.7;">
-              <p>Selamat datang di <strong>Admin Dashboard Infix Store</strong>. Sistem ini mengelola katalog produk digital, mendata pesanan pelanggan, serta melacak konfirmasi pembayaran secara instan.</p>
-              <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1rem;">
-                <button class="btn-detail" onclick="openAddProductModal()">
-                  <i class="ri-add-circle-line"></i> Tambah Produk Baru
-                </button>
-                <button class="btn-detail" onclick="document.querySelector('[data-section=\'orders\']').click()">
-                  <i class="ri-file-list-3-line"></i> Lihat Semua Pesanan
-                </button>
+          <!-- Main Analytics & Content Grid (2 Columns on Desktop) -->
+          <div class="dashboard-analytics-grid">
+            
+            <!-- Left Column: Sales Trend Chart & Recent Orders Table -->
+            <div style="display:flex; flex-direction:column; gap:1.75rem;">
+              
+              <!-- Sales & Revenue Performance Chart Card -->
+              <div class="admin-table-card">
+                <div class="admin-table-header" style="align-items:flex-start;">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                      <h3 style="font-size:1.15rem; font-weight:800; margin:0;">Tren Penjualan &amp; Omset</h3>
+                      <span class="stat-trend-badge up" style="margin:0;"><i class="ri-arrow-up-line"></i> +18.4%</span>
+                    </div>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">Aktivitas transaksi 7 hari terakhir (Rp 1.450.000 omset akumulatif)</p>
+                  </div>
+                  <div class="chart-period-tabs">
+                    <button class="chart-tab-btn active" onclick="switchChartTab(this, '7d')">7 Hari</button>
+                    <button class="chart-tab-btn" onclick="switchChartTab(this, '30d')">30 Hari</button>
+                    <button class="chart-tab-btn" onclick="switchChartTab(this, '1y')">Tahun Ini</button>
+                  </div>
+                </div>
+
+                <!-- SVG Interactive Trend Area Chart -->
+                <div class="admin-chart-stage">
+                  <svg viewBox="0 0 700 220" class="admin-chart-svg" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45" />
+                        <stop offset="70%" stop-color="#2563eb" stop-opacity="0.08" />
+                        <stop offset="100%" stop-color="#2563eb" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#38bdf8" />
+                        <stop offset="50%" stop-color="#2563eb" />
+                        <stop offset="100%" stop-color="#10b981" />
+                      </linearGradient>
+                    </defs>
+
+                    <!-- Horizontal Grid lines -->
+                    <line x1="40" y1="30" x2="680" y2="30" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+                    <line x1="40" y1="80" x2="680" y2="80" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+                    <line x1="40" y1="130" x2="680" y2="130" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4" />
+                    <line x1="40" y1="180" x2="680" y2="180" stroke="rgba(255,255,255,0.06)" />
+
+                    <!-- Y-Axis Values -->
+                    <text x="5" y="35" fill="rgba(255,255,255,0.3)" font-size="10" font-family="'JetBrains Mono',monospace">600K</text>
+                    <text x="5" y="85" fill="rgba(255,255,255,0.3)" font-size="10" font-family="'JetBrains Mono',monospace">400K</text>
+                    <text x="5" y="135" fill="rgba(255,255,255,0.3)" font-size="10" font-family="'JetBrains Mono',monospace">200K</text>
+                    <text x="25" y="185" fill="rgba(255,255,255,0.3)" font-size="10" font-family="'JetBrains Mono',monospace">0</text>
+
+                    <!-- Area Fill -->
+                    <path d="M 50 160 C 130 140, 170 90, 240 100 C 310 110, 360 50, 430 65 C 500 80, 560 30, 660 40 L 660 180 L 50 180 Z" fill="url(#chartGrad)"></path>
+
+                    <!-- Smooth Curved Line -->
+                    <path d="M 50 160 C 130 140, 170 90, 240 100 C 310 110, 360 50, 430 65 C 500 80, 560 30, 660 40" fill="none" stroke="url(#lineGrad)" stroke-width="3.5" stroke-linecap="round"></path>
+
+                    <!-- Interactive Data Points -->
+                    <g class="chart-point">
+                      <circle cx="50" cy="160" r="5" fill="#38bdf8" stroke="#0f172a" stroke-width="2.5" />
+                    </g>
+                    <g class="chart-point">
+                      <circle cx="150" cy="115" r="5" fill="#38bdf8" stroke="#0f172a" stroke-width="2.5" />
+                    </g>
+                    <g class="chart-point">
+                      <circle cx="240" cy="100" r="5" fill="#38bdf8" stroke="#0f172a" stroke-width="2.5" />
+                    </g>
+                    <g class="chart-point">
+                      <circle cx="340" cy="75" r="5" fill="#3b82f6" stroke="#0f172a" stroke-width="2.5" />
+                    </g>
+                    <g class="chart-point">
+                      <circle cx="430" cy="65" r="5" fill="#3b82f6" stroke="#0f172a" stroke-width="2.5" />
+                    </g>
+                    <g class="chart-point">
+                      <circle cx="540" cy="45" r="5" fill="#10b981" stroke="#0f172a" stroke-width="2.5" />
+                    </g>
+                    <g class="chart-point">
+                      <circle cx="660" cy="40" r="6.5" fill="#10b981" stroke="#ffffff" stroke-width="2" />
+                    </g>
+                  </svg>
+
+                  <!-- X-Axis Labels -->
+                  <div class="chart-x-labels">
+                    <span>Sen</span>
+                    <span>Sel</span>
+                    <span>Rab</span>
+                    <span>Kam</span>
+                    <span>Jum</span>
+                    <span>Sab</span>
+                    <span style="color:var(--brand-cyan-light); font-weight:700;">Minggu (Hari Ini)</span>
+                  </div>
+                </div>
+
+                <!-- Chart KPI Footer Row -->
+                <div class="chart-kpi-footer">
+                  <div class="chart-kpi-item">
+                    <span class="chart-kpi-label">Rata-Rata Order</span>
+                    <span id="kpiAvgOrder" class="chart-kpi-val">Rp 235.000</span>
+                  </div>
+                  <div class="chart-kpi-item">
+                    <span class="chart-kpi-label">Conversion Rate</span>
+                    <span class="chart-kpi-val" style="color:#10b981;">4.85%</span>
+                  </div>
+                  <div class="chart-kpi-item">
+                    <span class="chart-kpi-label">Unit Terjual</span>
+                    <span id="kpiUnitsSold" class="chart-kpi-val">12 Produk</span>
+                  </div>
+                  <div class="chart-kpi-item">
+                    <span class="chart-kpi-label">Metode Terpopuler</span>
+                    <span class="chart-kpi-val" style="color:var(--brand-cyan-light);">QRIS Instant</span>
+                  </div>
+                </div>
               </div>
+
+              <!-- Recent Orders Table Card (Latest Orders) -->
+              <div class="admin-table-card">
+                <div class="admin-table-header">
+                  <div>
+                    <h3 style="font-size:1.1rem; font-weight:700; margin:0;"><i class="ri-history-line text-blue-400"></i> Pesanan Terbaru</h3>
+                    <p style="font-size:0.82rem; color:var(--text-muted); margin:0.2rem 0 0;">Transaksi terbaru yang memerlukan konfirmasi dan verifikasi lisensi.</p>
+                  </div>
+                  <button class="btn-detail" onclick="document.querySelector('[data-section=\'orders\']').click()" style="font-size:0.82rem; padding:0.45rem 0.95rem;">
+                    Buka Semua Pesanan <i class="ri-arrow-right-line"></i>
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Pelanggan</th>
+                        <th>Produk</th>
+                        <th>Total</th>
+                        <th>Metode</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminRecentOrdersTbody">
+                      <!-- Rendered dynamically via store.js -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </div>
+
+            <!-- Right Column: Top Products, Payment Breakdown & Quick Actions -->
+            <div style="display:flex; flex-direction:column; gap:1.75rem;">
+
+              <!-- Top Products Card -->
+              <div class="admin-table-card">
+                <div class="admin-table-header">
+                  <h3 style="font-size:1.05rem; font-weight:700; margin:0;"><i class="ri-fire-fill text-amber-400"></i> Produk Paling Diminati</h3>
+                  <span style="font-size:0.75rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">Berdasarkan Omset</span>
+                </div>
+                <div id="adminTopProductsList" style="padding:1.25rem; display:flex; flex-direction:column; gap:0.85rem;">
+                  <!-- Rendered dynamically via store.js -->
+                </div>
+              </div>
+
+              <!-- Payment Method Distribution Breakdown -->
+              <div class="admin-table-card">
+                <div class="admin-table-header">
+                  <h3 style="font-size:1.05rem; font-weight:700; margin:0;"><i class="ri-pie-chart-2-line text-emerald-400"></i> Saluran Pembayaran</h3>
+                  <span class="stat-trend-badge up" style="margin:0;">100% Aktif</span>
+                </div>
+                <div style="padding:1.25rem;">
+                  <!-- Multi-color Progress Segment -->
+                  <div class="payment-dist-bar">
+                    <div style="width:55%; background:#38bdf8;" title="QRIS: 55%"></div>
+                    <div style="width:30%; background:#10b981;" title="Bank BCA/Mandiri: 30%"></div>
+                    <div style="width:15%; background:#f59e0b;" title="WhatsApp Direct: 15%"></div>
+                  </div>
+
+                  <div class="payment-dist-legends">
+                    <div class="payment-legend-item">
+                      <div class="payment-legend-left">
+                        <span class="legend-color" style="background:#38bdf8;"></span>
+                        <span>QRIS Instant</span>
+                      </div>
+                      <span class="legend-val">55%</span>
+                    </div>
+                    <div class="payment-legend-item">
+                      <div class="payment-legend-left">
+                        <span class="legend-color" style="background:#10b981;"></span>
+                        <span>Transfer Bank (BCA / Mandiri)</span>
+                      </div>
+                      <span class="legend-val">30%</span>
+                    </div>
+                    <div class="payment-legend-item">
+                      <div class="payment-legend-left">
+                        <span class="legend-color" style="background:#f59e0b;"></span>
+                        <span>WhatsApp Direct Chat</span>
+                      </div>
+                      <span class="legend-val">15%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Shortcuts & System Status -->
+              <div class="admin-table-card" style="background:linear-gradient(135deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));">
+                <div style="padding:1.5rem;">
+                  <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+                    <span class="store-online-badge">
+                      <span class="pulse-green-dot"></span> Online &amp; Terbuka
+                    </span>
+                    <span style="font-size:0.78rem; color:var(--text-muted);">Sistem Siap</span>
+                  </div>
+                  <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-primary); margin:0 0 0.5rem;">Akses Pintas &amp; Manajemen</h4>
+                  <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5; margin:0 0 1.25rem;">
+                    Katalog dan gateway pesanan sinkron secara real-time dengan toko publik.
+                  </p>
+                  
+                  <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                    <button class="btn-add-cart" onclick="openAddProductModal()" style="width:100%; justify-content:center; padding:0.65rem 1rem;">
+                      <i class="ri-add-circle-line"></i> Tambah Produk Baru
+                    </button>
+                    <a href="https://wa.me/6283871821218" target="_blank" rel="noopener noreferrer" class="btn-detail" style="width:100%; justify-content:center; text-decoration:none; padding:0.6rem 1rem; color:#25d366; border-color:rgba(37,211,102,0.3); display:flex; align-items:center; gap:0.4rem;">
+                      <i class="ri-whatsapp-fill"></i> WhatsApp CS Toko (+62 838-7182-1218)
+                    </a>
+                    <a href="shop.html" target="_blank" class="btn-detail" style="width:100%; justify-content:center; text-decoration:none; padding:0.6rem 1rem; display:flex; align-items:center; gap:0.4rem;">
+                      <i class="ri-external-link-line"></i> Kunjungi Toko Publik
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </section>
 

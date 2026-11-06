@@ -1863,3 +1863,511 @@
         font-size: 1.9rem;
     }
 }
+
+/* -------------------------------------------------------------------
+   13. MODERN LUXURY ADMIN DASHBOARD SUITE
+   ------------------------------------------------------------------- */
+.stat-trend-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border-radius: 9999px;
+    margin-top: 0.4rem;
+}
+
+.stat-trend-badge.up { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.25); }
+.stat-trend-badge.warn { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.25); }
+.stat-trend-badge.info { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25); }
+.stat-trend-badge.purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.25); }
+
+/* Analytics 2-Column Grid */
+.dashboard-analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (min-width: 1100px) {
+    .dashboard-analytics-grid {
+        grid-template-columns: 1.9fr 1.1fr;
+    }
+}
+
+/* Chart Component */
+.chart-period-tabs {
+    display: inline-flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-radius: 0.65rem;
+    padding: 0.2rem;
+    gap: 0.25rem;
+}
+
+.chart-tab-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chart-tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.chart-tab-btn.active {
+    background: var(--gradient-brand);
+    color: #ffffff;
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.admin-chart-stage {
+    position: relative;
+    padding: 1.25rem 1.5rem 0.5rem;
+    background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.04), transparent 60%);
+}
+
+.admin-chart-svg {
+    width: 100%;
+    height: 200px;
+    display: block;
+    overflow: visible;
+}
+
+.chart-point circle {
+    transition: r 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+}
+
+.chart-point:hover circle {
+    r: 8;
+    filter: drop-shadow(0 0 8px #38bdf8);
+}
+
+.chart-x-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0.75rem 0.5rem 0;
+}
+
+.chart-kpi-footer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-surface-elevated);
+}
+
+@media (min-width: 640px) {
+    .chart-kpi-footer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.chart-kpi-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.chart-kpi-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.chart-kpi-val {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Payment Method Breakdown Widget */
+.payment-dist-bar {
+    height: 0.75rem;
+    border-radius: 9999px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+}
+
+.payment-dist-legends {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.payment-legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+}
+
+.payment-legend-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.legend-color {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Top Products Mini Widget */
+.top-product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    gap: 0.75rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.top-product-item:hover {
+    transform: translateX(4px);
+    border-color: var(--brand-cyan-light);
+}
+
+.top-product-rank {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.45rem;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--brand-cyan-light);
+    flex-shrink: 0;
+}
+
+.top-product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.top-product-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-product-meta {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.top-product-sales {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.top-product-price {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--brand-cyan-light);
+}
+
+.top-product-qty {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* Status Pill & Pulse Indicator */
+.store-online-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-size: 0.74rem;
+    font-weight: 700;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pulse-green-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    display: inline-block;
+    animation: greenPulse 2s infinite;
+}
+
+@keyframes greenPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Topbar Components */
+.admin-topbar-status-pill {
+    display: none;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+@media (min-width: 900px) {
+    .admin-topbar-status-pill {
+        display: inline-flex;
+    }
+}
+
+.admin-search-wrap {
+    position: relative;
+    display: none;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .admin-search-wrap {
+        display: flex;
+    }
+}
+
+.admin-search-wrap i {
+    position: absolute;
+    left: 0.85rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.admin-search-wrap input {
+    width: 220px;
+    padding: 0.5rem 0.85rem 0.5rem 2.25rem;
+    border-radius: 0.65rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.82rem;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.admin-search-wrap input:focus {
+    width: 280px;
+    border-color: var(--brand-cyan-light);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.admin-icon-btn {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.65rem;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-medium);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.15rem;
+    transition: all 0.2s ease;
+}
+
+.admin-icon-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--brand-cyan-light);
+}
+
+.notification-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    box-shadow: 0 0 6px #ef4444;
+}
+
+.admin-profile-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.35rem;
+    border-radius: 9999px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-medium);
+}
+
+.admin-avatar {
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: var(--gradient-brand);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-profile-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.admin-role {
+    font-size: 0.62rem;
+    color: var(--brand-cyan-light);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Sidebar Groups & Profile Card */
+.admin-menu-header {
+    font-size: 0.64rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: 0 0.75rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+}
+
+.sidebar-counter-pill {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.sidebar-counter-pill.warn {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.badge-mini-version {
+    font-size: 0.62rem;
+    padding: 0.08rem 0.35rem;
+    border-radius: 0.25rem;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--brand-cyan-light);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.sidebar-user-card {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    margin-top: 0.65rem;
+}
+
+.user-avatar-dot {
+    position: relative;
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 50%;
+    background: var(--gradient-brand);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.user-online-pip {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 1.5px solid var(--bg-card);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-email {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

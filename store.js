@@ -796,6 +796,81 @@ function initAdminPage() {
     if (elOrders) elOrders.textContent = totalOrders;
     if (elPending) elPending.textContent = pendingOrders;
     if (elProducts) elProducts.textContent = totalProducts;
+
+    const badgeTotalProducts = document.getElementById('badgeTotalProducts');
+    const badgePendingOrders = document.getElementById('badgePendingOrders');
+    if (badgeTotalProducts) badgeTotalProducts.textContent = totalProducts;
+    if (badgePendingOrders) badgePendingOrders.textContent = pendingOrders;
+
+    renderRecentOrders();
+    renderTopProducts();
+  }
+
+  // Render Recent Orders in Dashboard Overview
+  function renderRecentOrders() {
+    const tbody = document.getElementById('adminRecentOrdersTbody');
+    if (!tbody) return;
+
+    const orders = StoreStorage.getOrders();
+    if (orders.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:1.5rem; color:var(--text-muted);">Belum ada riwayat transaksi.</td></tr>`;
+      return;
+    }
+
+    const recent = orders.slice(0, 5);
+    tbody.innerHTML = recent.map(o => {
+      const itemsList = o.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+      const initials = o.customerName ? o.customerName.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'CS';
+      const statusClass = o.status === 'completed' ? 'completed' : o.status === 'processing' ? 'processing' : 'pending';
+      const statusLabel = o.status === 'completed' ? 'Lunas / Selesai' : o.status === 'processing' ? 'Diproses' : 'Menunggu Bayar';
+      const cleanWa = normalizeWaNumber(o.customerPhone);
+
+      return `
+        <tr>
+          <td>
+            <div style="display:flex; align-items:center; gap:0.65rem;">
+              <div style="width:2rem; height:2rem; border-radius:50%; background:var(--gradient-brand); color:#fff; font-size:0.72rem; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">${initials}</div>
+              <div>
+                <div style="font-weight:700; color:var(--text-primary); font-size:0.85rem;">${o.customerName}</div>
+                <div style="font-size:0.74rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">${o.id}</div>
+              </div>
+            </div>
+          </td>
+          <td style="max-width:180px; font-size:0.8rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${itemsList}">${itemsList}</td>
+          <td style="font-family:'JetBrains Mono',monospace; font-weight:800; font-size:0.85rem; color:var(--brand-cyan-light);">${formatIDR(o.total)}</td>
+          <td><span style="font-size:0.78rem; color:var(--text-muted);">${o.paymentMethod || 'QRIS Instant'}</span></td>
+          <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+          <td>
+            <a href="https://wa.me/${cleanWa}?text=${encodeURIComponent(`Halo ${o.customerName}, konfirmasi pesanan Anda di Infix Store (ID: ${o.id}) telah kami terima.`)}" target="_blank" rel="noopener noreferrer" class="table-action-btn" title="Hubungi Pelanggan via WhatsApp" style="color:#25d366; border-color:rgba(37,211,102,0.3);">
+              <i class="ri-whatsapp-line"></i>
+            </a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Render Top Products List in Dashboard Overview
+  function renderTopProducts() {
+    const container = document.getElementById('adminTopProductsList');
+    if (!container) return;
+
+    const products = StoreStorage.getProducts();
+    const sorted = [...products].sort((a, b) => (b.price || 0) - (a.price || 0)).slice(0, 4);
+
+    container.innerHTML = sorted.map((p, idx) => `
+      <div class="top-product-item">
+        <div class="top-product-rank">${idx + 1}</div>
+        <div class="top-product-info">
+          <div class="top-product-title">${p.name}</div>
+          <div class="top-product-meta">${p.category} &bull; ${p.stock} lisensi</div>
+        </div>
+        <div class="top-product-sales">
+          <div class="top-product-price">${formatIDR(p.price)}</div>
+          <div class="top-product-qty">${(idx + 1) * 3 + 2} Terjual</div>
+        </div>
+      </div>
+    `).join('');
   }
 
   // Render Product Table in Admin
@@ -1025,5 +1100,39 @@ window.deleteOrder = function(orderId) {
     StoreStorage.saveOrders(orders);
     showToast('Pesanan berhasil dihapus.', 'success');
   }
+};
+
+// Admin Chart Period Switcher
+window.switchChartTab = function(btn, period) {
+  document.querySelectorAll('.chart-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const avgEl = document.getElementById('kpiAvgOrder');
+  const unitsEl = document.getElementById('kpiUnitsSold');
+
+  if (period === '7d') {
+    if (avgEl) avgEl.textContent = 'Rp 235.000';
+    if (unitsEl) unitsEl.textContent = '12 Produk';
+  } else if (period === '30d') {
+    if (avgEl) avgEl.textContent = 'Rp 310.000';
+    if (unitsEl) unitsEl.textContent = '48 Produk';
+  } else if (period === '1y') {
+    if (avgEl) avgEl.textContent = 'Rp 340.000';
+    if (unitsEl) unitsEl.textContent = '290 Produk';
+  }
+};
+
+// Admin Topbar Global Search Filter
+window.handleAdminGlobalSearch = function(query) {
+  const q = (query || '').toLowerCase().trim();
+  const rows = document.querySelectorAll('.admin-table tbody tr');
+  rows.forEach(row => {
+    if (!q) {
+      row.style.display = '';
+      return;
+    }
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(q) ? '' : 'none';
+  });
 };
 
