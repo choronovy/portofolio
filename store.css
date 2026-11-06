@@ -346,20 +346,23 @@
    ------------------------------------------------------------------- */
 .product-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 3rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) and (max-width: 1023px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
     }
 }
 
 @media (min-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+        margin-bottom: 4rem;
     }
 }
 
@@ -561,6 +564,131 @@
 .btn-add-cart:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+/* -------------------------------------------------------------------
+   5b. RESPONSIVE 3-COLUMN MOBILE GRID (< 640px)
+   ------------------------------------------------------------------- */
+@media (max-width: 639px) {
+    .store-container {
+        padding: 0 0.5rem;
+    }
+
+    .store-filter-bar {
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .category-chips {
+        gap: 0.35rem;
+    }
+
+    .category-chip {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .sort-select-wrapper {
+        font-size: 0.75rem;
+        gap: 0.4rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sort-select {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.45rem !important;
+        margin-bottom: 2.5rem;
+    }
+
+    .product-card {
+        border-radius: 0.75rem;
+        cursor: pointer;
+    }
+
+    .product-card-banner {
+        height: 72px !important;
+    }
+
+    .product-banner-icon {
+        font-size: 1.65rem !important;
+    }
+
+    .product-category-badge {
+        display: none !important;
+    }
+
+    .product-promo-badge {
+        top: 0.25rem !important;
+        right: 0.25rem !important;
+        padding: 0.12rem 0.3rem !important;
+        font-size: 0.52rem !important;
+        border-radius: 0.3rem !important;
+        letter-spacing: 0;
+    }
+
+    .product-card-body {
+        padding: 0.45rem 0.35rem 0.3rem !important;
+    }
+
+    .product-title {
+        font-size: 0.72rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 0.15rem !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .product-desc,
+    .product-features-pills {
+        display: none !important;
+    }
+
+    .product-card-footer {
+        padding: 0.35rem 0.35rem 0.45rem !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.3rem !important;
+    }
+
+    .product-price-box {
+        text-align: left;
+    }
+
+    .product-price-orig {
+        font-size: 0.52rem !important;
+    }
+
+    .product-price-current {
+        font-size: 0.74rem !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    .product-actions {
+        width: 100% !important;
+        gap: 0.25rem !important;
+    }
+
+    .btn-detail {
+        display: none !important;
+    }
+
+    .btn-add-cart {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.32rem 0.2rem !important;
+        font-size: 0.66rem !important;
+        gap: 0.2rem !important;
+        border-radius: 0.45rem !important;
+    }
 }
 
 /* -------------------------------------------------------------------

@@ -438,7 +438,7 @@ function initShopPage() {
       const pillsHtml = p.features.slice(0, 3).map(f => `<span class="feature-pill">${f}</span>`).join('');
 
       return `
-        <div class="product-card">
+        <div class="product-card" onclick="handleCardClick(event, '${p.id}')">
           <div class="product-card-banner">
             <span class="product-category-badge">${p.category}</span>
             ${promoBadgeHtml}
@@ -457,10 +457,10 @@ function initShopPage() {
               <span class="product-price-current">${formatIDR(p.price)}</span>
             </div>
             <div class="product-actions">
-              <button class="btn-detail" onclick="openProductDetail('${p.id}')" title="Lihat Detail Produk">
+              <button class="btn-detail" onclick="event.stopPropagation(); openProductDetail('${p.id}')" title="Lihat Detail Produk">
                 <i class="ri-eye-line"></i>
               </button>
-              <button class="btn-add-cart" onclick="CartManager.addItem('${p.id}')">
+              <button class="btn-add-cart" onclick="event.stopPropagation(); CartManager.addItem('${p.id}')">
                 <i class="ri-shopping-bag-3-line"></i> Beli
               </button>
             </div>
@@ -652,6 +652,14 @@ function initShopPage() {
   // Initial render
   renderProducts();
 }
+
+// Product card click handler (especially useful on mobile where whole card can be tapped)
+window.handleCardClick = function(event, productId) {
+  if (event.target.closest('.btn-add-cart') || event.target.closest('.btn-detail')) {
+    return;
+  }
+  window.openProductDetail(productId);
+};
 
 // Product detail modal opener
 window.openProductDetail = function(productId) {
