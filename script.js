@@ -288,9 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyCodeBtn = document.getElementById('copyCodeBtn');
   const resetCodeBtn = document.getElementById('resetCodeBtn');
 
-  // Default Code Templates for PHP and Python
-  const defaultSnippets = {
-    'developer.php': `<?php
+  // Default Code Template for PHP
+  const defaultPhpSnippet = `<?php
 // Profil Backend Developer - Viryo Fabrellino
 class BackendDeveloper {
     public string $name = "Viryo Fabrellino Kudjinona";
@@ -298,7 +297,6 @@ class BackendDeveloper {
     public array $techStack = [
         "PHP 8.3",
         "Code Igniter 3",
-        "Python",
         "MySQL",
         "REST API"
     ];
@@ -310,35 +308,9 @@ class BackendDeveloper {
 
 $developer = new BackendDeveloper();
 echo $developer->executeMission();
-`,
-    'developer.py': `# Profil Backend Developer - Viryo Fabrellino
-class BackendDeveloper:
-    def __init__(self):
-        self.name = "Viryo Fabrellino Kudjinona"
-        self.role = "Backend & Python Developer"
-        self.tech_stack = [
-            "Python 3",
-            "PHP",
-            "Code Igniter 3",
-            "MySQL",
-            "REST API"
-        ]
+`;
 
-    def execute_mission(self) -> str:
-        return f"Mengembangkan script otomasi data, web scraping, & backend handal dengan {self.tech_stack[0]}!"
-
-developer = BackendDeveloper()
-print(developer.execute_mission())
-`
-  };
-
-  // State to preserve user typing per tab
-  const userCode = {
-    'developer.php': defaultSnippets['developer.php'],
-    'developer.py': defaultSnippets['developer.py']
-  };
-
-  let activeFile = 'developer.php';
+  let currentPhpCode = defaultPhpSnippet;
 
   function updateLineNumbers() {
     if (!codeEditorInput || !editorLineNumbers) return;
@@ -350,14 +322,13 @@ print(developer.execute_mission())
     editorLineNumbers.innerHTML = numsHtml;
   }
 
-  function loadFileContent(fileName) {
-    activeFile = fileName;
+  function initEditor() {
     if (codeEditorInput) {
-      codeEditorInput.value = userCode[fileName] || defaultSnippets[fileName];
+      codeEditorInput.value = currentPhpCode;
       updateLineNumbers();
     }
     if (terminalPromptPrefix) {
-      terminalPromptPrefix.textContent = fileName === 'developer.php' ? '$ php developer.php' : '$ python developer.py';
+      terminalPromptPrefix.textContent = '$ php developer.php';
     }
     if (terminalOutput) {
       terminalOutput.classList.remove('show');
@@ -366,11 +337,11 @@ print(developer.execute_mission())
 
   // Initialize line numbers & code
   if (codeEditorInput) {
-    loadFileContent('developer.php');
+    initEditor();
 
     // Sync line numbers on user typing
     codeEditorInput.addEventListener('input', () => {
-      userCode[activeFile] = codeEditorInput.value;
+      currentPhpCode = codeEditorInput.value;
       updateLineNumbers();
     });
 
@@ -382,7 +353,7 @@ print(developer.execute_mission())
         const end = codeEditorInput.selectionEnd;
         codeEditorInput.value = codeEditorInput.value.substring(0, start) + '  ' + codeEditorInput.value.substring(end);
         codeEditorInput.selectionStart = codeEditorInput.selectionEnd = start + 2;
-        userCode[activeFile] = codeEditorInput.value;
+        currentPhpCode = codeEditorInput.value;
         updateLineNumbers();
       }
     });
@@ -395,22 +366,11 @@ print(developer.execute_mission())
     });
   }
 
-  // Switch between PHP and Python tabs
-  terminalTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      terminalTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const fileName = tab.getAttribute('data-file');
-      loadFileContent(fileName);
-    });
-  });
-
   // Reset Code Button
   if (resetCodeBtn && codeEditorInput) {
     resetCodeBtn.addEventListener('click', () => {
-      userCode[activeFile] = defaultSnippets[activeFile];
-      codeEditorInput.value = defaultSnippets[activeFile];
+      currentPhpCode = defaultPhpSnippet;
+      codeEditorInput.value = defaultPhpSnippet;
       updateLineNumbers();
       resetCodeBtn.innerHTML = `<i class="ri-check-line w-4 h-4 text-cyan-400"></i>`;
       setTimeout(() => {
@@ -585,97 +545,17 @@ print(developer.execute_mission())
     }
   }
 
-  // Realistic Python Execution Engine (Client-Side)
-  function executePythonCode(code) {
-    const output = [];
-    try {
-      let clean = code.trim();
-      if (!clean) return { success: true, output: '(Program selesai dieksekusi tanpa output)' };
-
-      // Handle default OOP snippet
-      if (clean.includes('class BackendDeveloper') && clean.includes('execute_mission')) {
-        const retMatch = clean.match(/def\s+execute_mission\s*\(self\)[^:]*:\s*(?:(?:#.*?\n)|\s)*return\s+(?:f)?(["'])(.*?)\1/s);
-        if (retMatch) {
-          let msg = retMatch[2];
-          msg = msg.replace('{self.tech_stack[0]}', 'Python 3');
-          return { success: true, output: msg };
-        }
-      }
-
-      // Extract print statements
-      const printRegex = /print\s*\((.*?)\)/gs;
-      let printMatches = [];
-      let m;
-      while ((m = printRegex.exec(clean)) !== null) {
-        printMatches.push(m[1]);
-      }
-
-      if (printMatches.length > 0) {
-        for (let p of printMatches) {
-          let arg = p.trim();
-
-          // f-string
-          const fMatch = arg.match(/^f(["'])(.*?)\1$/s);
-          if (fMatch) {
-            let inner = fMatch[2];
-            inner = inner.replace(/\{([a-zA-Z0-9_]+)\}/g, (_, varName) => {
-              const vRegex = new RegExp(`\\b${varName}\\s*=\\s*(["'])(.*?)\\1`);
-              const vMatch = clean.match(vRegex);
-              return vMatch ? vMatch[2] : `{${varName}}`;
-            });
-            output.push(inner);
-            continue;
-          }
-
-          // Regular string
-          const sMatch = arg.match(/^(["'])(.*?)\1$/s);
-          if (sMatch) {
-            output.push(sMatch[2]);
-            continue;
-          }
-
-          // Simple math
-          try {
-            if (/^[\d\s+\-*/%().]+$/.test(arg)) {
-              output.push(String(Function(`'use strict'; return (${arg})`)()));
-              continue;
-            }
-          } catch (_) {}
-
-          // Variable lookup
-          const vRegex = new RegExp(`\\b${arg}\\s*=\\s*(["'])(.*?)\\1`);
-          const vMatch = clean.match(vRegex);
-          if (vMatch) {
-            output.push(vMatch[2]);
-            continue;
-          }
-
-          output.push(arg.replace(/^["']|["']$/g, ''));
-        }
-        return { success: true, output: output.join('\n') };
-      }
-
-      return { success: true, output: '(Program selesai dieksekusi tanpa output)' };
-    } catch (err) {
-      return {
-        success: false,
-        error: `Traceback (most recent call last):\n  File "developer.py", line 1\nSyntaxError: ${err.message}`
-      };
-    }
-  }
-
-  // Run Code Simulation
+  // Run Code Simulation (Dedicated to PHP)
   if (runWorkflowBtn && terminalOutput && codeEditorInput) {
     runWorkflowBtn.addEventListener('click', () => {
       runWorkflowBtn.disabled = true;
-      const isPhp = activeFile === 'developer.php';
-      runWorkflowBtn.innerHTML = `<i class="ri-loader-4-line w-3.5 h-3.5 animate-spin"></i> <span>Menjalankan ${isPhp ? 'PHP 8.3' : 'Python 3'}...</span>`;
+      runWorkflowBtn.innerHTML = `<i class="ri-loader-4-line w-3.5 h-3.5 animate-spin"></i> <span>Menjalankan PHP 8.3...</span>`;
 
       terminalOutput.classList.remove('show');
 
       setTimeout(() => {
         const currentCode = codeEditorInput.value;
-        const result = isPhp ? executePhpCode(currentCode) : executePythonCode(currentCode);
+        const result = executePhpCode(currentCode);
 
         const latency = (0.015 + Math.random() * 0.03).toFixed(3);
         const mem = (2.1 + Math.random() * 0.5).toFixed(1);
@@ -687,7 +567,7 @@ print(developer.execute_mission())
                 ✔ [EXECUTION SUCCESSFUL] Process finished with exit code 0
               </div>
               <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:0.4rem;">
-                Runtime: ${isPhp ? 'PHP 8.3.6 (Zend Engine)' : 'Python 3.12.3'} | Memory: ${mem} MB | Latency: ${latency}s
+                Runtime: PHP 8.3.6 (Zend Engine) | Memory: ${mem} MB | Latency: ${latency}s
               </div>
               <div class="terminal-result-box">
 ${escapeHtml(result.output)}
@@ -701,7 +581,7 @@ ${escapeHtml(result.output)}
                 ✖ [EXECUTION FAILED] Process finished with exit code 255
               </div>
               <div style="color:var(--text-muted); font-size:0.75rem; margin-bottom:0.4rem;">
-                Runtime: ${isPhp ? 'PHP 8.3.6 (Zend Engine)' : 'Python 3.12.3'} | Error on execution
+                Runtime: PHP 8.3.6 (Zend Engine) | Error on execution
               </div>
               <div class="terminal-result-box error">
 ${escapeHtml(result.error)}

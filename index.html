@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="./node_modules/remixicon/fonts/remixicon.css">
 
   <!-- External Luxury CSS Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3.6">
+  <link rel="stylesheet" href="style.css?v=3.7">
 </head>
 
 <body>
@@ -243,16 +243,12 @@
                   <span class="terminal-dot dot-green"></span>
                 </div>
 
-                <!-- Clickable File Tabs: PHP & Python -->
+                <!-- File Tab: PHP -->
                 <div class="terminal-tabs">
-                  <button class="terminal-tab active" data-file="developer.php" id="tabPhp">
+                  <div class="terminal-tab active" data-file="developer.php" id="tabPhp">
                     <i class="ri-php-line w-3.5 h-3.5 text-indigo-400"></i>
                     <span>developer.php</span>
-                  </button>
-                  <button class="terminal-tab" data-file="developer.py" id="tabPy">
-                    <i class="ri-file-code-line w-3.5 h-3.5 text-yellow-400"></i>
-                    <span>developer.py</span>
-                  </button>
+                  </div>
                 </div>
 
                 <div class="terminal-actions">
@@ -270,7 +266,7 @@
               <div class="terminal-body editor-body" id="terminalCodeBody">
                 <div class="editor-container">
                   <div class="editor-line-numbers" id="editorLineNumbers"></div>
-                  <textarea id="codeEditorInput" class="code-editor-textarea" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Ketik kode PHP atau Python Anda di sini..."></textarea>
+                  <textarea id="codeEditorInput" class="code-editor-textarea" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Ketik kode PHP Anda di sini (contoh: echo 'viryo';)..."></textarea>
                 </div>
               </div>
 
@@ -956,7 +952,7 @@
   </button>
 
   <!-- External JavaScript Controller -->
-  <script src="script.js?v=3.6?v=3.4"></script>
+  <script src="script.js?v=3.7?v=3.4"></script>
 </body>
 
 </html>
